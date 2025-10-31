@@ -12,6 +12,15 @@ import { TiHome } from "react-icons/ti";
 import { MdElectricBolt } from "react-icons/md";
 import { GiCigarette } from "react-icons/gi";
 
+import {
+  FaBeer,
+  FaBus,
+  FaBook,
+  FaPrescriptionBottle,
+  FaWater,
+  FaGasPump,
+} from "react-icons/fa";
+
 export const navLinksData = [
   {
     title: "What We Stand For",
@@ -28,8 +37,8 @@ export const navLinksData = [
       { label: "Immigration", href: "/immigration" },
     ],
   },
-  { title: "Make It Happen", href: "#" },
-  { title: "Contact Us", href: "#" },
+  { title: "Make It Happen", href: "/join-us" },
+  { title: "Contact Us", href: "/contact-us" },
 ];
 
 export const servicesData = [
@@ -483,5 +492,78 @@ export const giveawayMilestones = [
     id: 5,
     title: "5th Giveaway — 100,000 Members",
     description: "10x $10,000 Winners at the 100,000-member milestone.",
+  },
+];
+
+export const realWinnersData = [
+  {
+    id: 1,
+    icon: TiHome,
+    title: "Buy or Rent a Home",
+    description:
+      "Making housing accessible and affordable for all Australians through effective reforms and policies.",
+  },
+  {
+    id: 2,
+    icon: FaCartShopping,
+    title: "Groceries",
+    description:
+      "Reducing everyday grocery costs to ensure families can afford nutritious food without financial strain.",
+  },
+  {
+    id: 3,
+    icon: FaPrescriptionBottle,
+    title: "Healthcare and Prescribed Medication",
+    description:
+      "Providing affordable healthcare and prescription medicines to all citizens through policy interventions.",
+  },
+  {
+    id: 4,
+    icon: MdElectricBolt,
+    title: "Utilities Services",
+    description:
+      "Lowering costs of electricity, gas, water, internet, and other essential utility services for households.",
+  },
+  {
+    id: 5,
+    icon: FaGasPump,
+    title: "Petrol",
+    description:
+      "Ensuring fair pricing and accessibility for petrol and other fuels to support transportation needs.",
+  },
+  {
+    id: 6,
+    icon: FaBus,
+    title: "Public Transport and Road Tolls",
+    description:
+      "Improving affordability and accessibility of public transport and reducing the burden of road tolls.",
+  },
+  {
+    id: 7,
+    icon: FaBook,
+    title: "School Fees, Uniforms, and Books",
+    description:
+      "Making education more affordable by easing the financial load on families for school expenses.",
+  },
+  {
+    id: 8,
+    icon: FaBeer,
+    title: "Enjoy a Beer or a Cigarette",
+    description:
+      "Allowing Australians to enjoy small pleasures without exorbitant taxation or financial strain.",
+  },
+  {
+    id: 9,
+    icon: FaWater,
+    title: "Council and Water Rates",
+    description:
+      "Reducing ongoing council and water rates to ease household financial pressure.",
+  },
+  {
+    id: 10,
+    icon: GiCigarette,
+    title: "Other Ongoing Necessities",
+    description:
+      "Addressing costs of other essential items needed for everyday life, ensuring affordability for all.",
   },
 ];

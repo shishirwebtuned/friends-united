@@ -9,10 +9,9 @@ const SubscriptionForm = () => {
                 <div className="subscription-grdient md:p-8 sm:p-7 p-6 lg:p-9 xl:p-10 rounded-[30px]">
                     {/* Section Title */}
                     <div className="text-center mb-8">
-                        <h3 className="text-white md:text-sm text-xs lg:text-base font-semibold uppercase inline-block font-lato">Get Involved</h3>
+                        <h3 className="text-white md:text-sm text-xs lg:text-base font-semibold uppercase inline-block font-lato">Become One of the super powerful voices </h3>
                         <h1 className="text-3xl md:text-4xl mt-4 font-normal lg:text-5xl font-staatliches text-black">
-                            SUPPORT US TO MAKE IT HAPPEN
-                        </h1>
+                            Join Us                        </h1>
                     </div>
 
                     <form className="space-y-6">

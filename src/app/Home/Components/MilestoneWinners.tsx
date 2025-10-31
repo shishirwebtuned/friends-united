@@ -1,4 +1,5 @@
 "use client";
+import SectionHeader from "@/Components/SectionHeader";
 import React from "react";
 
 const milestoneWinners = [
@@ -11,10 +12,13 @@ const MilestoneWinners = () => {
     return (
         <div className="pt-16 pb-10 bg-white px-4 md:px-8 lg:px-16 text-center text-white">
             {/* Header */}
-            <div className="mb-12">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-staatliches gradient-text-Colorful mb-3">
-                    MILESTONE WINNERS
-                </h1>
+            <div className="mb-12 text-center flex items-center flex-col justify-center">
+                <SectionHeader
+                    subtitle="Celebrating the lucky members"
+                    title="OUR MILESTONE WINNERS"
+                    align="center"
+                />
+
                 <p className="max-w-3xl mx-auto font-manrope md:text-sm text-xs lg:text-base font-medium text-gray-800">
                     Meet the lucky members who have won our milestone cash giveaways — a
                     celebration of unity and dedication from the Friends United community.

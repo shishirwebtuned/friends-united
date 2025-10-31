@@ -10,6 +10,10 @@ import FAQ from './Components/FAQ';
 import SubscriptionForm from './Components/SubscriptionForm';
 import ContactBanner from './Components/ContactBanner';
 import MilestoneWinners from './Components/MilestoneWinners';
+import RealWinners from './Components/RealWinners';
+import JoinUs from './Components/JoinUs';
+import DailySocialMedia from './Components/DailySocialMedia';
+import JoinUsForm from './Components/JoinUsForm';
 
 const HomePage = () => {
     return (
@@ -21,10 +25,14 @@ const HomePage = () => {
             <HadEnough />
             <GiveawaySection />
             <MilestoneWinners />
-            <BreakSilence />
-            <ContactBanner />
+            {/* <BreakSilence /> */}
+            <RealWinners />
+            {/* <JoinUs /> */}
+            {/* <SubscriptionForm /> */}
+            <JoinUsForm />
             <FAQ />
-            <SubscriptionForm />
+            <ContactBanner />
+            {/* <DailySocialMedia /> */}
         </div>
     )
 }

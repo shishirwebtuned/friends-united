@@ -102,6 +102,24 @@
   );
 }
 
+.joinus-gradient {
+  background: linear-gradient(
+    170deg,
+    var(--primary-color) 0%,
+    #f8f1e6 60%,
+    #f8f1e6 100%
+  );
+}
+
+.contactus-gradient {
+  background: linear-gradient(
+    170deg,
+    var(--primary-color) 0%,
+    #f8f1e6 70%,
+    #f8f1e6 100%
+  );
+}
+
 @keyframes pulse-custom {
   0%,
   100% {

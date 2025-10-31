@@ -105,7 +105,7 @@ export default function Navbar() {
                 </ul>
 
                 <div className="hidden md:block">
-                    <CustomButton btnPadding="more" label="Join Us Today" buttonType="filled-outlined" />
+                    <CustomButton btnPadding="more" label="Join Us Today" buttonType="filled-outlined" href="/join-us" />
                 </div>
 
                 <div className="md:hidden">
