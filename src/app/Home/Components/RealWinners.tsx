@@ -14,7 +14,7 @@ const RealWinners = () => {
                     align="center"
                 />
 
-                <p className='md:text-lg text-base lg:text-xl mt-5 font-manrope font-medium'>Australians, who can once again comfortability afford to:</p>
+                <p className='md:text-lg text-base lg:text-xl mt-5 font-manrope font-medium'>Australians, who can once again comfortably afford :</p>
             </div>
             <motion.div
                 initial={{ opacity: 0, y: 30 }}

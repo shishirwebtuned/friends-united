@@ -499,7 +499,7 @@ export const realWinnersData = [
   {
     id: 1,
     icon: TiHome,
-    title: "Buy or Rent a Home",
+    title: "To Buy or Rent a Home",
     description:
       "Making housing accessible and affordable for all Australians through effective reforms and policies.",
   },
