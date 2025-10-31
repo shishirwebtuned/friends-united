@@ -1,7 +1,6 @@
 
 import React from "react";
 import { paddingX } from "@/data/paddingData";
-import CustomButton from "@/Components/CustomButton";
 
 const HeroSection: React.FC = () => {
     return (
@@ -17,6 +16,7 @@ const HeroSection: React.FC = () => {
             <img
                 src="images/sydneyBanner3.jpg"
                 alt="Hero Background"
+                loading="lazy"
                 className="absolute top-0 left-0 w-full h-full object-cover z-0 hero-image"
             />
 
