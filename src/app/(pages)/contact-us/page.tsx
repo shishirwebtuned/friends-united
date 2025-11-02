@@ -3,6 +3,7 @@
 import React from "react";
 import SectionHeader from "@/Components/SectionHeader";
 import { paddingX } from "@/data/paddingData";
+import { motion } from "framer-motion";
 
 const page = () => {
     return (
@@ -14,11 +15,20 @@ const page = () => {
                     align="center"
                 />
 
-                <p className="font-staatliches font-medium lg:text-2xl md:text-xl text-lg text-[#ca7b28] md:-mt-0 -mt-1">
+                <motion.p initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="font-staatliches font-medium lg:text-2xl md:text-xl text-lg text-[#ca7b28] md:-mt-0 -mt-1">
                     We’d love to hear from you
-                </p>
+                </motion.p>
 
-                <div className="md:mt-6 mt-4 md:text-base lg:text-lg text-left text-black space-y-1.5 md:space-y-2 leading-relaxed">
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="md:mt-6 mt-4 md:text-base lg:text-lg text-left text-black space-y-1.5 md:space-y-2 leading-relaxed">
                     <p className="font-lato text-sm md:text-base lg:text-lg">
                         Email:
                         <a
@@ -54,7 +64,7 @@ const page = () => {
                             123 Friends United Street, Sydney, Australia
                         </a>
                     </p>
-                </div>
+                </motion.div>
 
             </div>
 

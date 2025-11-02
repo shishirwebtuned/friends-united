@@ -40,7 +40,7 @@ const JoinUs = () => {
                     >
                         {/* Rotating gradient background */}
                         <div
-                            className="absolute inset-0 rounded-full opacity-40 animate-[spin_25s_linear_infinite]"
+                            className="absolute inset-0 rounded-full opacity-40 animate-[spin_10s_linear_infinite]"
                             style={{
                                 background: "conic-gradient(from 0deg, #ca7b28, transparent 70%)",
                                 transformOrigin: "center",
