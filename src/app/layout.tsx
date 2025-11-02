@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
+import { PaypalProvider } from "./provider";
+
 
 export const metadata: Metadata = {
   title: "Friends United",
@@ -28,9 +30,11 @@ export default function RootLayout({
       </head>
       <body className="relative"
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <PaypalProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </PaypalProvider>
       </body>
     </html>
   );

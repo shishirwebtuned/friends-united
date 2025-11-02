@@ -27,9 +27,9 @@ const HomePage = () => {
             <MilestoneWinners />
             {/* <BreakSilence /> */}
             <RealWinners />
-            {/* <JoinUs /> */}
+            <JoinUs />
             {/* <SubscriptionForm /> */}
-            <JoinUsForm />
+            {/* <JoinUsForm /> */}
             <FAQ />
             <ContactBanner />
             {/* <DailySocialMedia /> */}

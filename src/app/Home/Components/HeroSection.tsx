@@ -1,12 +1,13 @@
 
 import React from "react";
 import { paddingX } from "@/data/paddingData";
+import Image from "next/image";
 
 const HeroSection: React.FC = () => {
     return (
         <section className={`relative overflow-hidden h-[77dvh] md:h-[78dvh] ${paddingX}`}>
             {/* <Image
-                src="/images/sydneyBanner2.jpg"
+                src="/images/sydneyBanner3.jpg"
                 alt="Hero Background"
                 fill
                 quality={100}
@@ -14,14 +15,15 @@ const HeroSection: React.FC = () => {
                 className="absolute top-0 left-0 w-full h-full object-cover z-0 hero-image"
             /> */}
             <img
-                src="images/sydneyBanner3.jpg"
+                src="images/sydneyBanner3.webp"
                 alt="Hero Background"
                 loading="lazy"
                 className="absolute top-0 left-0 w-full h-full object-cover z-0 hero-image"
+
             />
 
 
-            <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-10"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-black/20 z-10"></div>
 
             <div className="relative z-20 h-full flex items-start">
                 <div className="">

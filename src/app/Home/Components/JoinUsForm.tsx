@@ -4,156 +4,276 @@ import CustomButton from "@/Components/CustomButton";
 import { paddingX } from "@/data/paddingData";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-
+import { PayPalButtons } from "@paypal/react-paypal-js";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const JoinUsForm = () => {
     const [step, setStep] = useState(1);
     const [monthlySupport, setMonthlySupport] = useState(0);
     const [annualSupport, setAnnualSupport] = useState(0);
+    const [monthlySupportCustom, setMonthlySupportCustom] = useState(0);
+    const [annualSupportCustom, setAnnualSupportCustom] = useState(0);
+    const [paymentCompleted, setPaymentCompleted] = useState(false);
 
-    const total = monthlySupport + annualSupport;
+    const total = (monthlySupportCustom || monthlySupport) + (annualSupportCustom || annualSupport);
 
     const nextStep = () => setStep((prev) => Math.min(prev + 1, 4));
     const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
-
     const progress = (step / 4) * 100;
+
+    const validationSchema = Yup.object({
+        firstName: Yup.string().required("First name is required"),
+        lastName: Yup.string().required("Last name is required"),
+        email: Yup.string().email("Invalid email").required("Email is required"),
+        streetAddress: Yup.string().when([], {
+            is: () => step === 2,
+            then: (schema) => schema.required("Street address is required"),
+            otherwise: (schema) => schema,
+        }),
+        city: Yup.string(),
+        zip: Yup.string(),
+    });
+
     return (
         <section className={`${paddingX} py-16`}>
-            <div className="">
+            <div>
                 <div className="joinus-gradient md:p-8 sm:p-7 p-6 lg:p-9 xl:p-10 rounded-[30px]">
-                    {/* Section Title */}
                     <div className="text-center mb-8">
-                        <h3 className="text-white md:text-sm text-xs lg:text-base font-semibold uppercase inline-block font-lato">Become One of the super powerful voices </h3>
+                        <h3 className="text-white md:text-sm text-xs lg:text-base font-semibold uppercase inline-block font-lato">
+                            Become One of the super powerful voices
+                        </h3>
                         <h1 className="text-3xl md:text-4xl mt-4 font-normal lg:text-5xl font-staatliches text-black">
-                            Join Us                        </h1>
+                            Join Us
+                        </h1>
                     </div>
 
-                    <form className="space-y-6 font-manrope">
-                        {/* Step 1: Personal Info */}
-                        {step === 1 && (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                <div>
-                                    <label className="block font-medium mb-1 text-[#212529]">
-                                        First Name*
-                                    </label>
-                                    <input type="text" placeholder="First Name" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
-                                </div>
-                                <div>
-                                    <label className="block font-medium mb-1 text-[#212529]">
-                                        Last Name*
-                                    </label>
-                                    <input type="text" placeholder="Last Name" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
-                                </div>
-                                <div>
-                                    <label className="block font-medium mb-1 text-[#212529]">
-                                        Email*
-                                    </label>
-                                    <input type="email" placeholder="Email" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
-                                </div>
-                            </div>
-                        )}
+                    <Formik
+                        initialValues={{
+                            firstName: "",
+                            lastName: "",
+                            email: "",
+                            streetAddress: "",
+                            city: "",
+                            zip: "",
+                        }}
+                        validationSchema={validationSchema}
+                        onSubmit={(values, { resetForm }) => {
+                            console.log("Form values:", values);
+                            console.log("Support amounts:", { monthlySupport, monthlySupportCustom, annualSupport, annualSupportCustom });
+                            alert("Form submitted successfully!");
 
-                        {/* Step 2: Address Info */}
-                        {step === 2 && (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block font-medium mb-1 text-[#212529]">
-                                        Street Address*
-                                    </label>
-                                    <input type="text" placeholder="Street Address" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
-                                </div>
-                                <div>
-                                    <label className="block font-medium mb-1 text-[#212529]">
-                                        City
-                                    </label>
-                                    <input type="text" placeholder="City" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
-                                </div>
-                                <div>
-                                    <label className="block font-medium mb-1 text-[#212529]">
-                                        ZIP / Postal Code
-                                    </label>
-                                    <input type="text" placeholder="ZIP / Postal Code" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
-                                </div>
-                            </div>
-                        )}
+                            resetForm();
+                            setMonthlySupport(0);
+                            setAnnualSupport(0);
+                            setMonthlySupportCustom(0);
+                            setAnnualSupportCustom(0);
+                            setPaymentCompleted(false);
+                            setStep(1);
+                        }}
+                    >
+                        {({ isValid, validateForm, setTouched }) => (
+                            <Form className="space-y-6 font-manrope">
 
-                        {/* Step 3: Support Options */}
-                        {step === 3 && (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block font-medium mb-3 text-[#212529]">Monthly Support</label>
-                                    <div className="space-y-4">
-                                        <label className="flex items-center gap-2">
-                                            <input type="radio" name="monthlySupport" value="50" onChange={(e) => setMonthlySupport(Number(e.target.value))} />
-                                            <span>$50</span>
-                                        </label>
-                                        <label className="flex items-center gap-2">
-                                            <input type="radio" name="monthlySupport" value="100" onChange={(e) => setMonthlySupport(Number(e.target.value))} />
-                                            <span>$100</span>
-                                        </label>
+                                {/* Step 1 */}
+                                {step === 1 && (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        <div>
+                                            <label className="block font-medium mb-1 text-[#212529]">First Name*</label>
+                                            <Field name="firstName" placeholder="First Name" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
+                                            <ErrorMessage name="firstName" component="div" className="text-red-500 text-sm mt-1" />
+                                        </div>
+                                        <div>
+                                            <label className="block font-medium mb-1 text-[#212529]">Last Name*</label>
+                                            <Field name="lastName" placeholder="Last Name" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
+                                            <ErrorMessage name="lastName" component="div" className="text-red-500 text-sm mt-1" />
+                                        </div>
+                                        <div>
+                                            <label className="block font-medium mb-1 text-[#212529]">Email*</label>
+                                            <Field name="email" type="email" placeholder="Email" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
+                                            <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div>
-                                    <label className="block font-medium mb-3 text-[#212529]">Annual Support</label>
-                                    <div className="space-y-4">
-                                        <label className="flex items-center gap-2">
-                                            <input type="radio" name="annualSupport" value="500" onChange={(e) => setAnnualSupport(Number(e.target.value))} />
-                                            <span>$500</span>
-                                        </label>
-                                        <label className="flex items-center gap-2">
-                                            <input type="radio" name="annualSupport" value="1000" onChange={(e) => setAnnualSupport(Number(e.target.value))} />
-                                            <span>$1000</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div className="col-span-full">
-                                    <p className="font-semibold text-[#212529]">Total: ${total}</p>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Step 4: Review & Submit */}
-                        {step === 4 && (
-                            <div className="text-center space-y-4">
-                                <p className="text-[#212529] font-semibold">Please review your information before submitting.</p>
-                                <CustomButton btnPadding="less" buttonType="filled-outlined" label="Submit" type="submit" />
-                            </div>
-                        )}
-
-                        {/* Navigation Buttons */}
-                        <div className="flex justify-between mt-6">
-                            {step > 1 ?
-                                (<button
-                                    type="button" className="text-gray-700 hover:text-[#ca7b28] cursor-pointer"
-                                    onClick={prevStep}>
-                                    Back
-                                </button>
-                                ) : (
-                                    <div />
                                 )}
 
-                            {step < 4 && (
-                                <button
-                                    type="button" className="text-white bg-[#ca7b28] px-6 py-2 rounded-full hover:bg-[#d4861f] cursor-pointer" onClick={nextStep}>
-                                    Next
-                                </button>
-                            )}
-                        </div>
+                                {/* Step 2 */}
+                                {step === 2 && (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label className="block font-medium mb-1 text-[#212529]">Street Address*</label>
+                                            <Field name="streetAddress" placeholder="Street Address" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
+                                            <ErrorMessage name="streetAddress" component="div" className="text-red-500 text-sm mt-1" />
+                                        </div>
+                                        <div>
+                                            <label className="block font-medium mb-1 text-[#212529]">City</label>
+                                            <Field name="city" placeholder="City" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
+                                        </div>
+                                        <div>
+                                            <label className="block font-medium mb-1 text-[#212529]">ZIP / Postal Code</label>
+                                            <Field name="zip" placeholder="ZIP / Postal Code" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
+                                        </div>
+                                    </div>
+                                )}
 
-                        {/* Progress */}
-                        <div className="w-full bg-gray-200 h-2 rounded-full mt-6">
-                            <motion.div className="bg-[#ca7b28] h-2 rounded-full" initial={{ width: 0 }}
-                                animate={{ width: `${progress}%` }}
-                                transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                            ></motion.div>
-                        </div>
-                    </form>
+                                {/* Step 3 */}
+                                {step === 3 && (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label className="block font-medium mb-3 text-[#212529]">Monthly Support</label>
+                                            <div className="space-y-4">
+                                                <label className="flex items-center gap-2">
+                                                    <input type="radio" name="monthlySupport" value="50" checked={monthlySupport === 50} onChange={(e) => setMonthlySupport(Number(e.target.value))} />
+                                                    <span>$50</span>
+                                                </label>
+                                                <label className="flex items-center gap-2">
+                                                    <input type="radio" name="monthlySupport" value="100" checked={monthlySupport === 100} onChange={(e) => setMonthlySupport(Number(e.target.value))} />
+                                                    <span>$100</span>
+                                                </label>
+                                                <label className="flex items-center gap-2">
+                                                    <input type="radio" name="monthlySupport" value="custom" checked={monthlySupportCustom > 0} onChange={() => setMonthlySupportCustom(0)} />
+                                                    <span>Custom:</span>
+                                                    <input type="number" placeholder="Enter amount" className="border border-gray-300 px-2 py-1 w-24 focus:outline-none focus:border-[#ca7b28]" value={monthlySupportCustom > 0 ? monthlySupportCustom : ""} onChange={(e) => setMonthlySupportCustom(Number(e.target.value))} />
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label className="block font-medium mb-3 text-[#212529]">Annual Support</label>
+                                            <div className="space-y-4">
+                                                <label className="flex items-center gap-2">
+                                                    <input type="radio" name="annualSupport" value="500" checked={annualSupport === 500} onChange={(e) => setAnnualSupport(Number(e.target.value))} />
+                                                    <span>$500</span>
+                                                </label>
+                                                <label className="flex items-center gap-2">
+                                                    <input type="radio" name="annualSupport" value="1000" checked={annualSupport === 1000} onChange={(e) => setAnnualSupport(Number(e.target.value))} />
+                                                    <span>$1000</span>
+                                                </label>
+                                                <label className="flex items-center gap-2">
+                                                    <input type="radio" name="annualSupport" value="custom" checked={annualSupportCustom > 0} onChange={() => setAnnualSupportCustom(0)} />
+                                                    <span>Custom:</span>
+                                                    <input type="number" placeholder="Enter amount" className="border border-gray-300 px-2 py-1 w-24 focus:outline-none focus:border-[#ca7b28]" value={annualSupportCustom > 0 ? annualSupportCustom : ""} onChange={(e) => setAnnualSupportCustom(Number(e.target.value))} />
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div className="col-span-full">
+                                            <p className="font-semibold text-[#212529]">
+                                                Total: ${total}
+                                            </p>
+
+                                            {total > 0 && (
+                                                <div className="mt-6 bg-[white] p-6 rounded-xl shadow-lg flex flex-col items-center">
+                                                    <p className="text-[#212529] font-semibold mb-4 text-lg">Proceed to pay ${total}</p>
+                                                    <PayPalButtons
+                                                        style={{ layout: "vertical", color: "gold", shape: "rect", label: "pay", tagline: false }}
+                                                        createOrder={(data, actions) => {
+                                                            if (!actions?.order) return Promise.reject("PayPal actions.order undefined");
+                                                            return actions.order.create({
+                                                                intent: "CAPTURE",
+                                                                purchase_units: [{ amount: { currency_code: "AUD", value: total.toString() } }],
+                                                            });
+                                                        }}
+                                                        onApprove={async (data, actions) => {
+                                                            if (actions?.order) {
+                                                                await actions.order.capture();
+                                                                setPaymentCompleted(true);
+                                                                alert("Payment successful!");
+                                                            }
+                                                        }}
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Step 4 */}
+                                {step === 4 && (
+                                    <div className="text-center space-y-4">
+                                        <p className="text-[#212529] font-semibold">Please review your information before submitting.</p>
+                                        <CustomButton
+                                            btnPadding="less"
+                                            buttonType="filled-outlined"
+                                            label="Submit"
+                                            type="submit"
+                                            disabled={!isValid || !paymentCompleted}
+                                        />
+
+                                        {(!isValid || !paymentCompleted) && (
+                                            <p className="text-red-600 text-sm mt-2">
+                                                {!paymentCompleted
+                                                    ? "Please complete your payment before submitting."
+                                                    : "Some fields are invalid or missing. Please check your information."}
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+
+                                {/* Navigation Buttons */}
+                                <div className="flex mt-6">
+                                    {step > 1 ? (
+                                        <button
+                                            type="button"
+                                            className="text-gray-700 cursor-pointer hover:text-[#ca7b28]"
+                                            onClick={prevStep}
+                                        >
+                                            Back
+                                        </button>
+                                    ) : (
+                                        <div className="w-24" />
+                                    )}
+
+                                    <div className="ml-auto">
+                                        {step < 4 && (
+                                            <button
+                                                type="button"
+                                                className="text-white cursor-pointer bg-[#ca7b28] px-6 py-2 rounded-full hover:bg-[#d4861f]"
+                                                onClick={async () => {
+                                                    const errors = await validateForm();
+
+
+                                                    let touchedFields: { [key: string]: boolean } = {};
+                                                    if (step === 1) {
+                                                        touchedFields = { firstName: true, lastName: true, email: true };
+                                                    } else if (step === 2) {
+                                                        touchedFields = { streetAddress: true };
+                                                    }
+
+                                                    setTouched(touchedFields, true);
+
+                                                    let stepHasError = false;
+
+                                                    if (step === 1) {
+                                                        stepHasError = !!errors.firstName || !!errors.lastName || !!errors.email;
+                                                    }
+                                                    if (step === 2) {
+                                                        stepHasError = !!errors.streetAddress;
+                                                    }
+                                                    if (step === 3) {
+                                                        stepHasError = total <= 0;
+                                                    }
+
+                                                    if (!stepHasError) nextStep();
+                                                }}
+                                            >
+                                                Next
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Progress Bar */}
+                                <div className="w-full bg-[#ca7b28]/30 h-2 rounded-full mt-6">
+                                    <motion.div className="bg-[#ca7b28] h-2 rounded-full" initial={{ width: 0 }} animate={{ width: `${progress}%` }} transition={{ type: "spring", stiffness: 100, damping: 20 }} />
+                                </div>
+
+                            </Form>
+                        )}
+                    </Formik>
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default JoinUsForm
+export default JoinUsForm;

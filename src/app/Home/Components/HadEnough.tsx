@@ -20,7 +20,7 @@ const HadEnough: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-3xl sm:text-4xl md:text-6xl lg:text-[76px] font-normal text-white leading-tight md:leading-[1.1] tracking-[-1px] mb-4">
+                    className="text-3xl sm:text-4xl md:text-6xl lg:text-[76px] font-normal text-white leading-tight md:leading-[1.1] tracking-[-1px] mb-2 mt-2">
                     <span>Australians Have Had Enough.</span>
                     <br />
 

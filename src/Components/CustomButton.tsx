@@ -6,7 +6,8 @@ interface CustomButtonProps {
     href?: string;
     type?: "button" | "submit" | "reset";
     buttonType: "filled-outlined" | "filled-nonoutlined" | "outlined";
-    btnPadding: "more" | "less"
+    btnPadding: "more" | "less";
+    disabled?: boolean;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -15,6 +16,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     type = "button",
     buttonType,
     btnPadding,
+    disabled,
 }) => {
     const baseClasses =
         "inline-block font-semibold tracking-wide md:text-[15px] text-xs sm:text-sm lg:text-[16px] xl:text-[17px] transition focus:outline-none focus:ring-0 ease-in-out duration-300 transition-all cursor-pointer";
@@ -59,7 +61,12 @@ const CustomButton: React.FC<CustomButtonProps> = ({
                 "md:px-[24px] px-[15px] rounded-xl sm:rounded-2xl sm:px-[18px] xl:px-[28px] sm:py-[9px] py-[8px] md:py-[12px] xl:py-[15px]";
     }
 
-    const finalClasses = `${baseClasses} ${buttonClasses} ${paddingClasses}`;
+    // 🔹 Disabled style (light grey, no hover)
+    const disabledClasses =
+        "bg-gray-300 border-gray-300 text-gray-600 cursor-not-allowed opacity-80";
+
+    const finalClasses = `${baseClasses} ${paddingClasses} ${disabled ? disabledClasses : buttonClasses
+        }`;
 
     if (href) {
         return (
@@ -70,7 +77,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     }
 
     return (
-        <button type={type} className={finalClasses}>
+        <button type={type} className={finalClasses} disabled={disabled}>
             {label}
         </button>
     );
