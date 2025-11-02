@@ -60,7 +60,7 @@ export default function Navbar() {
                         alt="Logo"
                         width={220}
                         height={70}
-                        className="w-[140px] sm:w-[160px] md:w-[170px] lg:w-[200px] xl:w-[240px]"
+                        className="w-[140px] sm:w-[160px] md:w-[170px] lg:w-[200px] xl:w-[230px]"
                     />
                 </Link>
 
@@ -95,7 +95,7 @@ export default function Navbar() {
                             ) : (
                                 <Link
                                     href={link.href ?? "#"}
-                                    className="text-xs lg:text-sm xl:text-[17px]  font-medium uppercase text-[#1b1b1b] hover:text-[#D1792C] transition"
+                                    className="text-xs lg:text-sm xl:text-[17px] font-medium uppercase text-[#1b1b1b] hover:text-[#D1792C] transition"
                                 >
                                     {link.title}
                                 </Link>
