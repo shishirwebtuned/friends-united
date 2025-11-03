@@ -1,23 +1,43 @@
+"use client";
 
 import React from "react";
 import { paddingX } from "@/data/paddingData";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+const MotionImage = motion(Image);
+
 
 const HeroSection: React.FC = () => {
+
+
+    const { scrollY } = useScroll();
+    const y = useTransform(scrollY, [0, 400], [0, 80]);
+
     return (
         <section className={`relative overflow-hidden h-[77dvh] md:h-[78dvh] ${paddingX}`}>
-            {/* <Image
-                src="/images/sydneyBanner3.jpg"
-                alt="Hero Background"
+            {/* <MotionImage
+                src="/images/sydneyBanner3.webp"
+                alt="Friends United"
+                loading="lazy"
+                style={{ y }}
+                initial={{ opacity: 0.8, scale: 1.15 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 2, ease: "easeOut" }}
                 fill
-                quality={100}
-                priority
+                quality={90}
+                placeholder="blur"
+                blurDataURL="/images/sydneyBanner3.webp"
                 className="absolute top-0 left-0 w-full h-full object-cover z-0 hero-image"
             /> */}
-            <img
+            <motion.img
                 src="images/sydneyBanner3.webp"
-                alt="Hero Background"
+                alt="Friends United"
                 loading="lazy"
+                style={{ y }}
+                initial={{ opacity: 0.8, scale: 1.15 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 2, ease: "easeOut" }}
                 className="absolute top-0 left-0 w-full h-full object-cover z-0 hero-image"
 
             />
