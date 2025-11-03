@@ -133,3 +133,17 @@
 .animate-pulse-custom {
   animation: pulse-custom 2s infinite;
 }
+
+@keyframes bounceScale {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.08);
+  }
+}
+
+.bounce-button {
+  animation: bounceScale 1.4s ease-in-out infinite;
+}

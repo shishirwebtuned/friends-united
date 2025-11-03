@@ -23,7 +23,7 @@ const ContactBanner = () => {
 
                 <Link
                     href="/contact-us"
-                    className="inline-block bg-white text-[#ca7b28] font-semibold font-manrope px-8 py-3 rounded-full shadow-lg hover:bg-[#f5f5f5] hover:scale-[1.05] transition-all duration-300 lg:text-base md:text-sm text-xs"
+                    className="inline-block bg-white text-[#ca7b28] font-semibold font-manrope px-8 py-3 rounded-full shadow-lg hover:bg-[#f5f5f5] hover:scale-[1.05] transition-all duration-300 lg:text-base md:text-sm text-xs bounce-button"
                 >
                     Contact Us
                 </Link>

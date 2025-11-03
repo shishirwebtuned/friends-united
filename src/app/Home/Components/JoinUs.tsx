@@ -26,7 +26,7 @@ const JoinUs = () => {
 
                     <Link
                         href="/join-us"
-                        className="inline-block bg-[#ca7b28] text-white font-semibold font-manrope px-8 py-3 rounded-full shadow-lg hover:bg-[#b66d22] hover:scale-105 transition-all duration-300"
+                        className="inline-block bg-[#ca7b28] text-white font-semibold font-manrope px-8 py-3 rounded-full shadow-lg hover:bg-[#b66d22] hover:scale-105 transition-all duration-300 bounce-button"
                     >
                         Join Us
                     </Link>
