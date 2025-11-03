@@ -4,9 +4,9 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const milestoneWinners = [
-    { name: "James Wilson", location: "Melbourne, VIC", image: "/images/winner1.jpg", milestone: "1st Giveaway-20,000 Members" },
-    { name: "Olivia Martin", location: "Sydney, NSW", image: "/images/winner2.jpg", milestone: "1st Giveaway-20,000 Members" },
-    { name: "James Wilson", location: "Melbourne, VIC", image: "/images/winner3.jpg", milestone: "2nd Giveaway-40,000 Members" },
+    { id: 1, name: "James Wilson", location: "Melbourne, VIC", image: "/images/winner1.jpg", milestone: "1st Giveaway-20,000 Members" },
+    { id: 2, name: "Olivia Martin", location: "Sydney, NSW", image: "/images/winner2.jpg", milestone: "1st Giveaway-20,000 Members" },
+    { id: 3, name: "James Wilson", location: "Melbourne, VIC", image: "/images/winner3.jpg", milestone: "2nd Giveaway-40,000 Members" },
 ];
 
 const MilestoneWinners = () => {
@@ -20,21 +20,25 @@ const MilestoneWinners = () => {
                     align="center"
                 />
 
-                <p className="max-w-3xl mx-auto font-manrope md:text-sm text-xs lg:text-base font-medium text-gray-800">
+                <motion.p
+                    initial={{ opacity: 0, y: 40, scale: 0.98 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1], }}
+                    viewport={{ once: true, amount: 0.2 }} className="max-w-3xl mx-auto font-manrope md:text-sm text-xs lg:text-base font-medium text-gray-800">
                     Meet the lucky members who have won our milestone cash giveaways — a
                     celebration of unity and dedication from the Friends United community.
-                </p>
+                </motion.p>
             </div>
 
             {/* Winners Grid */}
             <div className="grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 justify-center items-start md:px-4 px-2 lg:px-6">
                 {milestoneWinners.map((winner, idx) => (
                     <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, y: 60 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        key={winner.id || idx}
+                        initial={{ opacity: 0, y: 40, scale: 0.98 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1], }}
+                        viewport={{ once: true, amount: 0.2 }}
                         className="bg-[#ca7b28] backdrop-blur-lg border border-[#ffffff33] border-t-0 rounded-2xl hover:-translate-y-2 hover:shadow-[0_20px_40px_#CA7B284D] transition-all duration-300 w-full overflow-hidden"
                     >
                         <div className="h-[6px] bg-[#facc15] rounded-2xl" />
