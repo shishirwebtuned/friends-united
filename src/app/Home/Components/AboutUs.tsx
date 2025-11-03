@@ -132,7 +132,7 @@ const AboutUs: React.FC = () => {
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.9, ease: "easeOut" }}
                             className="relative w-full h-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px] md:px-0 px-2">
-                            <div className="relative w-[260px] h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px] lg:w-[400px] lg:h-[400px]">
+                            <div className="relative w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px] lg:w-[400px] lg:h-[400px]">
                                 <img
                                     src="images/united_hands.jpg"
                                     alt="Main"
@@ -141,7 +141,7 @@ const AboutUs: React.FC = () => {
                                 />
                             </div>
 
-                            <div className="absolute bottom-4 lg:bottom-8 right-2 md:right-0 w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px]">
+                            <div className="absolute bottom-4 lg:bottom-8 right-2 md:right-0 w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px]">
                                 <img
                                     src="images/about-us.jpg"
                                     alt="Overlay"

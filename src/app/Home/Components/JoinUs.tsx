@@ -36,7 +36,7 @@ const JoinUs = () => {
                 <div className="flex-1 flex justify-center md:justify-end">
                     <Link
                         href="/join-us"
-                        className="relative w-[300px] h-[300px] md:w-[360px] md:h-[360px] border border-[#ca7b28]/30 backdrop-blur-md rounded-[32px] flex items-center justify-center shadow-2xl cursor-pointer overflow-hidden"
+                        className="relative w-[230px] h-[230px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[360px] lg:h-[360px] border border-[#ca7b28]/30 backdrop-blur-md rounded-[32px] flex items-center justify-center shadow-2xl cursor-pointer overflow-hidden"
                     >
                         {/* Rotating gradient background */}
                         <div
@@ -50,8 +50,8 @@ const JoinUs = () => {
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ca7b28]/20 to-transparent rounded-[32px]" />
 
                         {/* Static Text (does NOT rotate) */}
-                        <h3 className="text-6xl md:text-7xl font-staatliches text-white/90 tracking-wider relative z-10">
-                            US
+                        <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-staatliches text-white/90 tracking-wider relative z-10">
+                            JOIN US
                         </h3>
                     </Link>
                 </div>
