@@ -61,7 +61,7 @@ const Footer = () => {
                     <div className="lg:col-span-2">
                         <h4 className="text-xl md:text-2xl lg:text-3xl md:mb-4 mb-3 lg:mb-6 font-staatliches font-normal">Friends United</h4>
                         <div className="flex flex-col gap-2 text-white/90 w-[90%] lg:text-lg md:text-base text-sm font-manrope">
-                            <a href="#" className=" hover:text-[#ca7b28] transition-colors">
+                            <a href="/our-story" className=" hover:text-[#ca7b28] transition-colors">
                                 What We Stand For
                             </a>
                         </div>
