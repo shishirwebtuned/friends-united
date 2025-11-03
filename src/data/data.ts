@@ -49,28 +49,31 @@ export const servicesData = [
     image: "images/services/Cost-of-living.jpg",
     link: "/cost-of-living",
     demands: [
-      "IMPLEMENT STRATEGIC MEASURES TO ADDRESS UNSUSTAINABLE RISING COSTS",
+      "Implement Strategic Measures To Address Unsustainable Rising Costs",
     ],
-    details: `The Australian standard of living has fallen to an all-time low.
-    Record numbers of people struggling to be able to afford to:
-    • Buy or Rent a Home
-    • Buy Groceries
-    • Prescribed Medication and Healthcare
-    • Utilities – Electricity, Gas, Water, Internet etc
-    • Petrol
-    • Public Transport and Road Tolls – Just to get to work
-    • School Fees, uniforms, books, and all the other needs,
-    • Council and Water Rates
-    • And the list continues.
+    details: {
+      intro:
+        "The Australian standard of living has fallen to an all-time low. Record numbers of people are struggling to afford basic needs such as housing, food, and healthcare.",
+      expenses: {
+        title: "Living Expenses",
+        list: [
+          "Buy or Rent a Home",
+          "Buy Groceries",
+          "Prescribed Medication and Healthcare",
+          "Utilities – Electricity, Gas, Water, Internet etc",
+          "Petrol",
+          "Public Transport and Road Tolls – Just to get to work",
+          "School Fees, uniforms, books, and other necessities",
+          "Council and Water Rates",
+          "And the list continues.",
+        ],
+      },
 
-    We are now seeing many Australians are now living in their cars,
-    families forced to choose between paying the rent or buying medicine,
-    and resorting to charity organisations for support.
-
-    Whilst corporate profiteering and government expenditure have been
-    identified as significant factors contributing to Australia's inflation
-    and the ongoing cost of living crisis.
-  `,
+      crisis:
+        "Many Australians are now living in their cars, families are forced to choose between paying rent or buying medicine, and some are relying on charity organisations for support.",
+      causes:
+        "Corporate profiteering and government expenditure have been identified as major contributors to Australia's inflation and the ongoing cost of living crisis.",
+    },
   },
   {
     id: 2,
@@ -79,26 +82,30 @@ export const servicesData = [
     image: "images/services/residential-housing.jpg",
     link: "/residental-housing",
     demands: [
-      "DECREASE DEMAND AND INCREASE SUPPLY",
-      "AUSTRALIAN RESIDENTIAL HOUSING FOR AUSTRALIANS ONLY",
+      "Decrease Demand And Increase Supply",
+      "Australian Residential Housing For Australians Only",
     ],
-    details: `Can only be purchased and owned by Australian citizens and residents.
-    Foreign Investment in Australian Residential Housing to be totally abolished.
-
-    Australian Residential Housing already owned by Foreign Investors to incur a:
-    • Foreign Owned Tax, plus
-    • Land Tax with no threshold eligibility, and
-    • Land Tax to be calculated on the number of properties owned within Australia plus the owner's country of origin.
-
-    Funds from these levies will be reinvested in:
-    • Housing the underprivileged; and
-    • Developing new housing for Australians.
-
-    NO LONGER DO WE WANT TO SEE AUSTRALIANS
-    BEING PUSHED OUT OF THE AUSTRALIAN HOUSING MARKET
-    BY
-    OVERSEAS BUYERS / INVESTORS.
-  `,
+    details: {
+      ownershipPolicy:
+        "Residential properties can only be purchased and owned by Australian citizens and residents. Foreign investment in Australian residential housing must be completely abolished.",
+      taxation: {
+        note: "Foreign-owned Australian residential housing to incur:",
+        taxes: [
+          "Foreign Owned Tax",
+          "Land Tax with no threshold eligibility",
+          "Land Tax calculated based on number of properties owned and owner’s country of origin",
+        ],
+      },
+      reinvestment: {
+        description: "Funds from these levies will be reinvested in:",
+        uses: [
+          "Housing the underprivileged",
+          "Developing new housing for Australians",
+        ],
+      },
+      message:
+        "No longer do we want to see Australians being pushed out of the housing market by overseas buyers and investors.",
+    },
   },
   {
     id: 3,
@@ -107,32 +114,37 @@ export const servicesData = [
     image: "images/services/legalise-drugs.avif",
     link: "/illicit-drugs",
     demands: [
-      "TAKE CONTROL OF ILLICIT DRUGS",
-      "THINK OUTSIDE THE SQUARE",
-      "REMOVE THE FINANCIAL INCENTIVE THAT DRIVES THE ‘VIBRANT MULTIBILLION-DOLLAR BLACK-MARKET INDUSTRY’",
+      "Take Control Of Illicit Drugs",
+      "Think Outside The Square",
+      "Remove The Financial Incentive That Drives The ‘vibrant Multibillion-dollar Black-market Industry’",
     ],
-    details: `Let’s pull our faces out of the sand and acknowledge the hard cold facts:
-    making 'Illicit Drugs an Illegal Commodity' has only created a 'Vibrant Multibillion-Dollar Black-Market Industry'
-    controlled by 'Organised Crime Groups' and has failed to stop people from being able to buy and take them.
-
-    A report by the Australian Institute of Criminology, *Estimating the costs of serious and organised crime in Australia, 2020–21*, revealed that:
-    • Transnational, Serious and Organised Crime (TSOC) groups are trafficking illicit drugs into Australia on an industrial scale,
-    • Australian consumers are willing to pay high street prices for illicit drugs,
-    • Traffickers can make a healthy profit from even the smallest of shipments,
-    • Methylamphetamine is posing the greatest harm to the Australian community, and
-    • Demand is growing for a range of other substances.
-
-    This encourages criminal groups to continue importing illicit drugs, backyard laboratories to keep manufacturing,
-    whilst the Australian illicit drug-user consumer has no guarantee as to the actual content and safety of the substances being purchased from these sources.
-
-    By legalising Illicit Drugs:
-    • Transnational, Serious and Organised Crime (TSOC) groups will be out of business in Australia along with backyard laboratories and the street merchants,
-    • Illicit Drugs can be manufactured and sold under government legislation that will impose strict controls over the entire process, and
-    • Government will know exactly who is taking illicit drugs and can implement measures to help drug users.
-
-    It needs to be noted that Friends United does not endorse the use of illicit drugs
-    but acknowledges that current methods of addressing the issue are ineffective.
-  `,
+    details: {
+      problem:
+        "Making illicit drugs illegal has only created a multibillion-dollar black market controlled by organised crime groups, failing to stop consumption.",
+      report: {
+        source:
+          "Australian Institute of Criminology – 'Estimating the costs of serious and organised crime in Australia, 2020–21'.",
+        findings: [
+          "TSOC groups traffic illicit drugs into Australia on an industrial scale.",
+          "Australian consumers are willing to pay high street prices.",
+          "Traffickers profit even from small shipments.",
+          "Methylamphetamine poses the greatest harm.",
+          "Demand is growing for other substances.",
+        ],
+      },
+      impact:
+        "Criminal groups continue importing and manufacturing, while users face unsafe and unregulated products.",
+      solution: {
+        summary: "Legalising illicit drugs would:",
+        benefits: [
+          "Shut down TSOC groups, backyard labs, and street dealers.",
+          "Allow government regulation of production and sale.",
+          "Enable tracking and support for drug users.",
+        ],
+      },
+      disclaimer:
+        "Friends United does not endorse drug use but recognises the need for more effective approaches.",
+    },
   },
   {
     id: 4,
@@ -141,11 +153,10 @@ export const servicesData = [
     image: "images/services/electricity.jpg",
     link: "/electricity-water-gas",
     demands: [
-      "DEEMED AS ESSENTIAL SERVICE",
-      "OPERATED AS NON-PROFIT ORGANISATION",
-      "REDUCE THE PRICE OF ELECTRICITY TO 1/3 OF ITS CURRENT PRICE",
+      "Deemed As Essential Service",
+      "Operated As Non-profit Organisation",
+      "Reduce The Price Of Electricity To 1/3 Of Its Current Price",
     ],
-
     demandtext:
       "In-line with Russia, China, Venezuela, Turkey and the list continues.",
     references: [
@@ -154,23 +165,25 @@ export const servicesData = [
         link: "https://worldpopulationreview.com/country-rankings/cost-of-electricity-by-country",
       },
       {
-        label: "Electricity price by country 2025| Statista",
+        label: "Electricity price by country 2025 | Statista",
         link: "https://www.statista.com/statistics/263492/electricity-prices-in-selected-countries/",
       },
     ],
-
-    details: `Electricity, Gas and Water are essential commodities and must serve the benefit of Australian residents, businesses, and industry — not Oligopolies or Corporate Enterprises cashing in on the opportunity to make huge profits on our essential needs.
-
-    Ideally, all electricity generation and transmission should be 'Owned and Operated' by the Australian Federal Government,
-    along with our Gas and Water supplies. Ownership should also be enshrined in the Australian Constitution to prevent future governments from selling off these assets.
-
-    Taking control of our energy costs will help Australia reduce inflation and make Australian businesses and industry far more competitive locally and internationally.
-
-    Unfortunately, a significant portion of the Australian energy structure has already been sold to private enterprises by our politicians, making this a challenging task to achieve.
-    Australia needs to either:
-    • Buy it back, or 
-    • Implement measures stopping these Oligopolies / Corporate Enterprises from profiteering on our essential needs.
-  `,
+    details: {
+      context:
+        "Electricity, Gas and Water are essential services that should benefit Australians — not corporations profiting from essential needs.",
+      proposal: {
+        title: "Proposal",
+        list: [
+          "All electricity generation and transmission should be owned and operated by the Australian Federal Government.",
+          "Gas and Water supplies should also be under federal ownership and constitutionally protected from privatisation.",
+        ],
+      },
+      outcome:
+        "Taking control of energy costs would reduce inflation and make Australian businesses more competitive.",
+      challenge:
+        "Since much of the energy sector is privately owned, Australia must either buy it back or stop corporate profiteering on essential needs.",
+    },
   },
   {
     id: 5,
@@ -178,40 +191,35 @@ export const servicesData = [
     description: "Fair Use Of Tax Payers Money.",
     image: "images/services/tax-cut.webp",
     link: "/government-accountability",
-
     demands: [
-      "MANAGE AUSTRALIAN TAX-PAYERS MONEY RESPONSIBLY AND RESPECTFULLY",
+      "Manage Australian Tax-payers Money Responsibly And Respectfully",
     ],
-
-    details: `There is an old English saying that goes like this:
-    'Look after your Pennies for your Pounds shall look after themselves.'
-    This analogy translates to governments wasting taxpayers’ money:
-
-    • All the thousands of dollars wasted add up to millions of dollars wasted,
-    • Millions of dollars wasted add up to hundreds of millions of dollars wasted,
-    • Hundreds of millions of dollars wasted add up to billions of dollars wasted, and
-    • Billions of dollars wasted turn into trillions of dollars wasted —
-      leaving the poor struggling taxpayer to pick up all these losses.
-
-    Our governments have absolutely no respect for Australians’ hard-earned taxpayer dollars
-    and spend it like it’s ‘free-flowing water’. When the numbers aren’t adding up,
-    they just find new ways of increasing taxes to cover the shortfall.
-
-    Let’s look at only some of the financial wastage that has taken place:
-    • Albanese government’s failed ‘Voice Referendum’ that was divisive, incompetently managed,
-      and saw over $450 million of taxpayers’ money wasted.
-    • Two new business jets costing the Australian taxpayer $450 million just to ferry the Prime Minister
-      and Ministers around in absolute comfort and style — while the rest of the country is in crisis.
-    • Minister Bill Shorten’s personal speechwriter costing taxpayers $620,000 over two years.
-    • Albanese government’s $172 million on advertising its own policies.
-    • Labor’s $650 million spending spree.
-    • And there’s been much more money wasted.
-
-    Let’s not disregard pork-barrelling — spending public money in particular electorates to win votes
-    rather than spending those funds where they are most needed.
-
-    AUSTRALIA NEEDS GOOD, INTELLIGENT ECONOMIC MANAGEMENT.
-  `,
+    details: {
+      analogy:
+        "‘Look after your pennies for your pounds shall look after themselves.’ Governments waste small amounts that snowball into trillions.",
+      issues: {
+        title: "Issues",
+        list: [
+          "Thousands wasted add up to millions.",
+          "Millions wasted add up to hundreds of millions.",
+          "Hundreds of millions wasted add up to billions.",
+          "Billions wasted become trillions — taxpayers bear the burden.",
+        ],
+      },
+      examples: {
+        title: "Examples",
+        list: [
+          "Over $450M wasted on the failed Voice Referendum.",
+          "Two new business jets costing taxpayers $450M.",
+          "Minister Bill Shorten’s speechwriter costing $620,000 over two years.",
+          "$172M spent advertising government policies.",
+          "Labor’s $650M spending spree.",
+        ],
+      },
+      misuse:
+        "Pork-barrelling — misusing public money to win votes instead of allocating funds based on need.",
+      message: "Australia needs good, intelligent economic management.",
+    },
   },
   {
     id: 6,
@@ -220,34 +228,34 @@ export const servicesData = [
     image: "images/services/tobacco-tax.webp",
     link: "/tobacco-alcohol-taxes",
     demands: [
-      "TOTAL REVIEW OF TOBACCO AND ALCOHOL TAXES",
-      "Price cigarettes in-line with our European friends.",
-      "Remove the financial incentive that drives the 'vibrant multibillion-dollar black-market industry'.",
+      "Total Review Of Tobacco And Alcohol Taxes",
+      "Price Cigarettes In-line With Our European Friends.",
+      "Remove The Financial Incentive That Drives The 'vibrant Multibillion-dollar Black-market Industry'.",
     ],
     references: [
       {
         label: "Price Rankings by Country of Cigarettes 20 Pack",
         link: "https://www.numbeo.com/cost-of-living/prices_by_country.jsp?displayCurrency=USD&itemId=17",
       },
+      {
+        label: "Tobacco Taxes in Australia",
+        link: "https://www.tobaccoinaustralia.org.au/chapter-13-taxation/13-6-what-tobacco-taxes-apply-in-australia",
+      },
     ],
-    details: `For decades, Australian Governments have argued that by excessively taxing cigarettes,
-    it will reduce the number of people smoking. How wrong they got this.
-
-    On the contrary, excessive taxation has created a multibillion-dollar Tobacco Black Market
-    controlled by organised crime syndicates — resulting in a surge of violence and arson attacks,
-    endangering many innocent people and even leading to deaths.
-
-    Tobacco and Alcohol Tax has become nothing more than revenue-raising —
-    penalising ordinary Australians who simply enjoy a beer or a cigarette.
-
-    Want to know more about how excessively this product is taxed?
-    Visit:
-    https://www.tobaccoinaustralia.org.au/chapter-13-taxation/13-6-what-tobacco-taxes-apply-in-australia
-
-    THIS TAX POLICY IS CLEARLY NOT WORKING
-    AND
-    GOVERNMENTS HAVE NOT REALISED IT.
-  `,
+    details: {
+      context:
+        "Excessive taxation on tobacco and alcohol has failed to curb consumption, instead fueling organised crime and black markets.",
+      consequences: {
+        title: "Consequences",
+        list: [
+          "Creation of a multibillion-dollar tobacco black market controlled by crime syndicates.",
+          "Increased violence and arson attacks related to illegal trade.",
+          "Punishing law-abiding citizens who drink or smoke responsibly.",
+        ],
+      },
+      conclusion:
+        "This tax policy is clearly not working, and governments have yet to realise it.",
+    },
   },
   {
     id: 7,
@@ -256,16 +264,15 @@ export const servicesData = [
     image: "images/services/passport.jpg",
     link: "/immigration",
     demands: [
-      "IMMEDIATE STOP TO IMMIGRATION",
-      "THERE IS A TIME FOR EVERYTHING – Ecclesiastes 3:1-8 NIV",
+      "Immediate Stop To Immigration",
+      "There Is A Time For Everything – Ecclesiastes 3:1-8 Niv",
     ],
-
-    details: `Now is not the right time for a record number of people to be entering Australia
-    when there are not enough housing and services to meet our current needs and demands.
-
-    Doesn’t our Prime Minister understand the Basic Law of Economics:
-    'Supply and Demand'?
-  `,
+    details: {
+      issue:
+        "Now is not the right time for record immigration when housing and essential services are already under strain.",
+      reasoning:
+        "Even the most basic principle of economics — 'Supply and Demand' — is being ignored by current leadership.",
+    },
   },
 ];
 

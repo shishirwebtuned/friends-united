@@ -16,7 +16,7 @@ interface Service {
     id: number;
     title: string;
     description: string;
-    details: string;
+    details: any;
     image: string;
     link: string;
     demands?: string[];
@@ -40,9 +40,9 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
             className={`py-12 ${paddingX}`}
         >
             {/* Top Row: SectionHeader + Demands | Image */}
-            <div className="flex flex-col md:flex-row items-start md:items-end gap-10 mb-12 mt-3 md:mt-5 w-full h-full">
+            <div className="flex flex-col md:flex-row items-start md:items-end md:gap-5 gap-6 mb-12 mt-3 md:mt-5 w-full h-full">
                 {/* Left Column */}
-                <div className="md:flex-1 w-full flex flex-col gap-4 md:gap-6 px-2 md:px-0">
+                <div className="md:flex-1 w-full flex flex-col gap-2 md:gap-6 px-2 md:px-0">
                     <SectionHeader
                         key={service?.title}
                         subtitle={service?.description}
@@ -52,11 +52,11 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
 
                     {service.demands && service.demands.length > 0 && (
                         <div className="bg-[#FFF7E6] p-4 md:p-5 lg:p-8 rounded-xl shadow-lg">
-                            <h3 className="text-lg md:text-xl lg:text-2xl font-staatliches mb-4 text-[#CA7B28]">
+                            <h3 className="text-lg md:text-xl lg:text-2xl font-staatliches mb-4 text-[#CA7B28] capitalize tracking-wide border-b-2 border-[#CA7B28]/30 pb-2">
                                 Key Demands
                             </h3>
 
-                            <ul className="list-disc list-outside ml-4 md:ml-6 space-y-2 text-gray-800 lg:text-base md:text-sm text-xs font-lato">
+                            <ul className="list-disc list-outside ml-3 md:ml-4 space-y-2 text-gray-700 lg:text-base md:text-sm text-xs font-manrope font-medium">
                                 {service.demands.map((demand, idx) => (
                                     <li key={idx}>{demand}</li>
                                 ))}
@@ -84,14 +84,129 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
             </div>
 
             <div className="px-2 md:px-0">
-                {/* Details */}
-                <div className="subscription-grdient  rounded-xl shadow-lg p-4 md:p-6 lg:p-8 text-black mb-8">
-                    <p className="font-manrope text-sm md:text-base lg:text-lg leading-relaxed whitespace-pre-line">
-                        {service.details}
-                    </p>
+
+                <div className="subscription-grdient rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.08)] p-6 md:p-8 lg:p-10 text-gray-800 backdrop-blur-sm mb-10">
+                    {typeof service.details === "string" ? (
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="font-manrope text-base md:text-lg leading-relaxed text-gray-700 whitespace-pre-line"
+                        >
+                            {service.details}
+                        </motion.p>
+                    ) : (
+                        <div className="space-y-6">
+                            {Object.entries(service.details).map(([key, rawValue], index) => {
+                                const value = rawValue as
+                                    | string
+                                    | { title?: string; list?: string[] }
+                                    | Record<string, any>;
+
+                                const MotionWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.8, delay: index * 0.1 }}
+                                    >
+                                        {children}
+                                    </motion.div>
+                                );
+
+                                if (typeof value === "string") {
+                                    return (
+                                        <MotionWrapper key={index}>
+                                            <p className="font-manrope font-medium text-sm md:text-base lg:text-lg leading-relaxed text-gray-800">
+                                                {value}
+                                            </p>
+                                        </MotionWrapper>
+                                    );
+                                }
+
+                                if ("title" in value && "list" in value) {
+                                    return (
+                                        <MotionWrapper key={index}>
+                                            <div className="space-y-2 p-4 md:p-6 bg-white/60 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                                                {value.title && (
+                                                    <h4 className="text-[#CA7B28] font-staatliches text-lg md:text-xl lg:text-2xl capitalize mb-3 tracking-wide border-b-2 border-[#CA7B28]/30 pb-1">
+                                                        {value.title}
+                                                    </h4>
+                                                )}
+                                                {value.list && (
+                                                    <ul className="list-disc ml-6 space-y-1 font-lato md:text-[15px] text-[13px] lg:text-[17px] text-gray-700">
+                                                        {value.list.map((item: any, i: number) => (
+                                                            <li key={i}>{item}</li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                            </div>
+                                        </MotionWrapper>
+                                    );
+                                }
+
+                                if (typeof value === "object" && value !== null) {
+                                    return (
+                                        <MotionWrapper key={index}>
+                                            <div className="space-y-4 p-4 md:p-6 bg-white/60 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                                                <h4 className="text-[#CA7B28] font-staatliches text-lg md:text-xl lg:text-2xl capitalize tracking-wide border-b-2 border-[#CA7B28]/30 pb-2">
+                                                    {key.replace(/([A-Z])/g, " $1")}
+                                                </h4>
+
+                                                <div className="space-y-3 text-gray-700">
+                                                    {("note" in value && value.note) && (
+                                                        <p className="italic text-sm md:text-base text-gray-800 border-l-2 border-[#CA7B28]/50 pl-3">
+                                                            {value.note}
+                                                        </p>
+                                                    )}
+                                                    {("description" in value && value.description) && (
+                                                        <p className="md:text-base text-sm lg:text-lg leading-relaxed font-lato italic">
+                                                            {value.description}
+                                                        </p>
+                                                    )}
+                                                    {("summary" in value && value.summary) && (
+                                                        <p className="font-semibold md:text-base text-sm lg:text-lg text-gray-800 font-manrope">
+                                                            {value.summary}
+                                                        </p>
+                                                    )}
+                                                    {("source" in value && value.source) && (
+                                                        <p className="text-[13px] md:text-[15px] lg:text-[17px] font-manrope text-gray-700">
+                                                            <span className="font-semibold">Source:</span> {value.source}
+                                                        </p>
+                                                    )}
+
+                                                    {Object.entries(value).map(([listKey, listVal]) => {
+                                                        if (Array.isArray(listVal)) {
+                                                            return (
+                                                                <div key={listKey}>
+                                                                    <p className="font-semibold text-[#CA7B28] mb-2 font-manrope md:text-base text-sm lg:text-lg capitalize">
+                                                                        {listKey}:
+                                                                    </p>
+                                                                    <ul className="list-disc ml-5 space-y-2 font-manrope font-medium md:text-sm text-xs lg:text-base">
+                                                                        {listVal.map((item: string, i: number) => (
+                                                                            <li key={i}>{item}</li>
+                                                                        ))}
+                                                                    </ul>
+                                                                </div>
+                                                            );
+                                                        }
+                                                        return null;
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </MotionWrapper>
+                                    );
+                                }
+
+                                return null;
+                            })}
+                        </div>
+                    )}
                 </div>
 
-                {/* References */}
+
+
+
+
                 {service.references && service.references.length > 0 && (
                     <div className="mb-8">
                         <h3 className="text-lg md:text-xl lg:text-2xl font-staatliches mb-4 text-[#CA7B28]">
