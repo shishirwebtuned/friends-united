@@ -78,7 +78,7 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                     <img
                         src={service.image}
                         alt={service.title}
-                        className="w-[95%] sm:w-[90%] md:w-auto rounded-xl shadow-2xl object-cover relative z-10"
+                        className="w-[95%] sm:w-[90%] md:w-[90%] rounded-xl shadow-2xl object-cover relative z-10"
                     />
                 </div>
             </div>
