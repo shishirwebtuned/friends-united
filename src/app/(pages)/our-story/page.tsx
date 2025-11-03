@@ -108,7 +108,7 @@ const Page = () => {
 
             {/* Sections */}
             <div
-                className="space-y-16 mt-8 text-[#222]">
+                className="space-y-12 mt-8 text-[#222]">
                 {sections.map((section, index) => {
                     const direction = index % 2 === 0 ? "left" : "right";
 
