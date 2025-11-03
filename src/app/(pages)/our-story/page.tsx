@@ -115,7 +115,7 @@ const Page = () => {
                     return (
                         <div
                             key={index}
-                            className={`relative group p-6 md:p-10 rounded-2xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_8px_25px_rgba(0,0,0,0.08)] overflow-hidden bg-white backdrop-blur-md ${index % 2 === 0
+                            className={`relative group p-6 md:p-10 rounded-3xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_8px_25px_rgba(0,0,0,0.08)] overflow-hidden bg-white backdrop-blur-md ${index % 2 === 0
                                 ? "border-l-4 border-[#ca7b28]"
                                 : "border-r-4 border-[#ca7b28]"
                                 }`}
