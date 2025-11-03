@@ -265,13 +265,30 @@ export const servicesData = [
     link: "/immigration",
     demands: [
       "Immediate Stop To Immigration",
-      "There Is A Time For Everything – Ecclesiastes 3:1-8 Niv",
+      "There Is A Time For Everything – Ecclesiastes 3:1-8 NIV",
     ],
     details: {
       issue:
         "Now is not the right time for record immigration when housing and essential services are already under strain.",
       reasoning:
         "Even the most basic principle of economics — 'Supply and Demand' — is being ignored by current leadership.",
+      impact: {
+        title: "Impact",
+        list: [
+          "Increased pressure on housing markets, causing affordability issues for citizens.",
+          "Strain on healthcare, education, and public infrastructure.",
+          "Potential reduction in quality of services due to overextended resources.",
+          "Social tensions arising from resource scarcity and overcrowding.",
+        ],
+      },
+      proposal: {
+        title: "Proposed Measures",
+        list: [
+          "Temporarily pause or reduce immigration until current infrastructure meets demand.",
+          "Implement policies to prioritise housing and services for current residents.",
+          "Review immigration targets annually based on housing and service capacity.",
+        ],
+      },
     },
   },
 ];
