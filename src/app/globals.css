@@ -56,6 +56,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 0 15px rgba(255, 180, 70, 0.2);
 }
 
 .giveaway-gradient {
@@ -111,8 +112,8 @@
   background: linear-gradient(
     170deg,
     var(--primary-color) 0%,
-    #f8f1e6 60%,
-    #f8f1e6 100%
+    #fde5bf 60%,
+    #fdecd0 100%
   );
 }
 

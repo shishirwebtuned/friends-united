@@ -73,7 +73,7 @@ const page = () => {
                         muted
                         loop
                         playsInline
-                        className="object-cover h-full w-full rounded-xl"
+                        className="object-cover h-full w-[95%] rounded-xl"
                     />
                     {/* <img src="/images/contactUs3.jpg" alt="friend united" className="object-cover h-full w-full rounded-xl" /> */}
                 </div>

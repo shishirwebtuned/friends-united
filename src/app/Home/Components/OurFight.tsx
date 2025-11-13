@@ -60,7 +60,7 @@ const OurFight = () => {
                             768: { slidesPerView: 3 },
                             1024: { slidesPerView: 4 },
                         }}
-                        className="pb-10"
+                        className="pb-10 overflow-hidden"
                     >
                         {servicesData.map((service) => (
                             <SwiperSlide key={service.id}>

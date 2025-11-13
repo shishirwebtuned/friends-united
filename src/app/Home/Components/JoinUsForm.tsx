@@ -44,12 +44,15 @@ const JoinUsForm = () => {
                         <h3 className="text-white md:text-sm text-xs lg:text-base font-semibold uppercase inline-block font-lato">
                             Become One of the super powerful voices
                         </h3>
-                        <h1 className="text-3xl md:text-4xl mt-3 font-normal lg:text-5xl font-staatliches text-black">
+                        {/* <h1 className="text-3xl md:text-4xl mt-3 font-normal lg:text-5xl font-staatliches text-black">
                             Join Us
-                        </h1>
-                        {/* <h2 className="text-xl md:text-2xl font-semibold text-[#212529] border-b-3 border-[#ca7b28]/80 font-manrope pb-1 w-fit">
-                            Personal Details
-                        </h2> */}
+                        </h1> */}
+                        <div className="flex flex-col items-center justify-center w-full">
+                            <h2 className="text-xl md:text-2xl mt-4 font-semibold text-[#212529] font-manrope pb-1">
+                                Personal Details
+                            </h2>
+                            <div className="w-[15%] mb-1 h-[2px] rounded-full bg-[#ca7b28]/80"></div>
+                        </div>
                     </div>
 
                     <Formik
