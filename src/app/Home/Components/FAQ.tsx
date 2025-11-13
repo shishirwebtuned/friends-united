@@ -1,18 +1,36 @@
 "use client";
 import SectionHeader from '@/Components/SectionHeader';
-import { faqData } from '@/data/data';
+import { staticFAQData } from '@/data/data';
 import { paddingX } from '@/data/paddingData';
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
 
-const FAQ = () => {
+interface FAQItem {
+    question: string;
+    answer: string;
+}
+
+interface FAQProps {
+    faqDataList: {
+        faq: FAQItem[];
+    };
+}
+
+const FAQ: React.FC<FAQProps> = ({ faqDataList }) => {
     const [openId, setOpenId] = useState<number | null>(null);
-    const contentRefs = useRef<(HTMLDivElement | null)[]>([]); // ref array
+    const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const toggleAccordion = (id: number) => {
         setOpenId(openId === id ? null : id);
     };
 
+    console.log('faqDatalist', faqDataList);
+    console.log("faqData", staticFAQData);
+
+    const faqData = (faqDataList.faq || staticFAQData).map((item: any, index: number) => ({
+        ...item,
+        id: item.id ?? item._key ?? index,
+    }))
     return (
         <div className={`${paddingX}`}>
             <div className="text-center flex items-center justify-center">
@@ -35,18 +53,18 @@ const FAQ = () => {
                 </div>
 
                 <div className="rounded-lg">
-                    {faqData.map((faq, index) => (
+                    {faqData.map((faq: any, index: number) => (
                         <div
-                            key={faq.id}
+                            key={faq?.id}
                             className="border-b border-gray-200 md:mb-4 mb-3 overflow-hidden"
                         >
                             <button
-                                className={`w-full flex items-center text-left text-gray-800 font-semibold lg:text-lg md:text-base text-sm lg:px-5 md:px-4 px-3 py-3 transition-all cursor-pointer duration-300 ${openId === faq.id ? 'bg-gray-100' : 'bg-white'
+                                className={`w-full flex items-center text-left text-gray-700 font-semibold lg:text-lg md:text-base text-sm lg:px-5 md:px-4 px-3 py-3 transition-all cursor-pointer duration-300 font-manrope ${openId === faq.id ? 'bg-gray-100' : 'bg-white'
                                     }`}
                                 onClick={() => toggleAccordion(faq.id)}
                             >
                                 <span className="mr-3 font-bold text-[var(--primary-color)] lg:text-base md:text-sm font-lato text-xs">
-                                    {faq.id}.
+                                    {index + 1}.
                                 </span>
                                 {faq.question}
                                 <span className="ml-auto text-[var(--primary-color)] md:text-xl text-lg lg:text-2xl">
@@ -65,20 +83,28 @@ const FAQ = () => {
                                     transition: "max-height 0.5s ease, opacity 0.5s ease",
                                     overflow: "hidden",
                                 }}
-                                className="xl:px-10 lg:px-8 md:px-6 px-5 text-gray-600 lg:text-base md:text-sm text-xs leading-relaxed bg-white font-manrope"
+                                className="xl:px-10 lg:px-8 md:px-6 px-5 text-gray-700 lg:text-base md:text-sm text-xs leading-relaxed bg-white font-manrope"
                             >
-                                <div
+                                {faqDataList?.faq ? (
+                                    <div className="py-5">
+                                        <div className="whitespace-pre-line  leading-relaxed">
+                                            {faq.answer}
+                                        </div>
+                                    </div>
+                                ) : (<div
                                     className="py-5"
                                     dangerouslySetInnerHTML={{
                                         __html: typeof faq.answer === 'string' ? faq.answer : ''
                                     }}
                                 />
+                                )}
                             </div>
+
                         </div>
                     ))}
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

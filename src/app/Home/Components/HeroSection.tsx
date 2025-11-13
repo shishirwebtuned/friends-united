@@ -5,9 +5,6 @@ import { paddingX } from "@/data/paddingData";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const MotionImage = motion(Image);
-
-
 const HeroSection: React.FC = () => {
 
 
@@ -15,7 +12,7 @@ const HeroSection: React.FC = () => {
     const y = useTransform(scrollY, [0, 400], [0, 80]);
 
     return (
-        <section className={`relative overflow-hidden h-[77dvh] md:h-[78dvh] ${paddingX}`}>
+        <section className={`relative overflow-hidden h-[77dvh] md:h-[70dvh] ${paddingX}`}>
             {/* <MotionImage
                 src="/images/sydneyBanner3.webp"
                 alt="Friends United"

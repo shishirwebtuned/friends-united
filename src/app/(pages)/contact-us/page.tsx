@@ -7,9 +7,9 @@ import { motion } from "framer-motion";
 
 const page = () => {
     return (
-        <div className={`${paddingX} py-10 md:py-14 w-full md:gap-3 gap-7 flex md:flex-row flex-col items-center`}>
+        <div className={`${paddingX} py-10 md:py-12 w-full md:gap-4 gap-7 flex md:flex-row flex-col items-center`}>
             {/* Section Header */}
-            <div className="w-full md:w-[40%] flex flex-col md:items-start items-center justify-center text-center md:text-start px-2 md:px-0">
+            <div className="w-full md:w-[42%] flex flex-col md:items-start items-center justify-center text-center md:text-start px-2 md:px-0">
                 <SectionHeader
                     title="Contact Us"
                     align="center"
@@ -19,7 +19,7 @@ const page = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="font-staatliches font-medium lg:text-2xl md:text-xl text-lg text-[#ca7b28] md:-mt-0 -mt-1">
+                    className="font-staatliches font-medium lg:text-2xl md:text-xl text-lg text-[#ca7b28] md:-mt-1 -mt-1">
                     We’d love to hear from you
                 </motion.p>
 
@@ -28,7 +28,7 @@ const page = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="md:mt-6 mt-4 md:text-base lg:text-lg text-left text-black space-y-1.5 md:space-y-2 leading-relaxed">
+                    className="md:mt-4 mt-4 md:text-base lg:text-lg text-left text-black space-y-1 md:space-y-1.5 leading-relaxed">
                     <p className="font-lato text-sm md:text-base lg:text-lg">
                         Email:
                         <a
@@ -66,11 +66,24 @@ const page = () => {
                     </p>
                 </motion.div>
 
+                <div className="flex pr-0 md:pr-4 py-2 md:py-4 mt-4 rounded-xl h-[310px] md:h-[360px] w-full overflow-hidden">
+                    <video
+                        src="/videos/contactus.mp4"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="object-cover h-full w-full rounded-xl"
+                    />
+                    {/* <img src="/images/contactUs3.jpg" alt="friend united" className="object-cover h-full w-full rounded-xl" /> */}
+                </div>
+
+
             </div>
 
 
             {/* Contact Form */}
-            <div className="md:w-[60%] w-full contactus-gradient backdrop-blur-lg rounded-2xl py-6 px-5 md:py-8 md:px-8 shadow-lg">
+            <div className="md:w-[58%] w-full contactus-gradient backdrop-blur-lg rounded-2xl py-6 px-5 md:py-8 md:px-8 shadow-lg">
                 <form className="md:space-y-5 space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
                         <div>
@@ -119,7 +132,7 @@ const page = () => {
                     <div className="flex items-center justify-end">
                         <button
                             type="submit"
-                            className="bg-[#ca7b28] hover:bg-[#d4861f] text-white font-semibold px-4 py-2  md:py-[10px] md:px-5 lg:px-6 lg:py-3 rounded-full lg:text-base md:text-sm text-xs transition-all duration-300 cursor-pointer"
+                            className="bg-[#d4861f] hover:bg-[#ca7b28] text-white font-semibold px-4 py-2  md:py-[10px] md:px-5 lg:px-6 shadow-xl lg:py-3 rounded-full lg:text-base md:text-sm text-xs transition-all duration-300 cursor-pointer"
                         >
                             Send Message
                         </button>

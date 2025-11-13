@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Stepper from "@/Components/Stepper";
 
 const JoinUsForm = () => {
     const [step, setStep] = useState(1);
@@ -36,16 +37,19 @@ const JoinUsForm = () => {
     });
 
     return (
-        <section className={`${paddingX} py-16`}>
+        <section className={`${paddingX} py-12`}>
             <div>
-                <div className="joinus-gradient md:p-8 sm:p-7 p-6 lg:p-9 xl:p-10 rounded-[30px]">
-                    <div className="text-center mb-8">
+                <div className="joinus-gradient md:p-6 sm:p-6 p-5 lg:p-7 xl:p-8 rounded-[30px]">
+                    <div className="text-center mb-6">
                         <h3 className="text-white md:text-sm text-xs lg:text-base font-semibold uppercase inline-block font-lato">
                             Become One of the super powerful voices
                         </h3>
-                        <h1 className="text-3xl md:text-4xl mt-4 font-normal lg:text-5xl font-staatliches text-black">
+                        <h1 className="text-3xl md:text-4xl mt-3 font-normal lg:text-5xl font-staatliches text-black">
                             Join Us
                         </h1>
+                        {/* <h2 className="text-xl md:text-2xl font-semibold text-[#212529] border-b-3 border-[#ca7b28]/80 font-manrope pb-1 w-fit">
+                            Personal Details
+                        </h2> */}
                     </div>
 
                     <Formik
@@ -77,21 +81,23 @@ const JoinUsForm = () => {
 
                                 {/* Step 1 */}
                                 {step === 1 && (
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        <div>
-                                            <label className="block font-medium mb-1 text-[#212529]">First Name*</label>
-                                            <Field name="firstName" placeholder="First Name" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
-                                            <ErrorMessage name="firstName" component="div" className="text-red-500 text-sm mt-1" />
-                                        </div>
-                                        <div>
-                                            <label className="block font-medium mb-1 text-[#212529]">Last Name*</label>
-                                            <Field name="lastName" placeholder="Last Name" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
-                                            <ErrorMessage name="lastName" component="div" className="text-red-500 text-sm mt-1" />
-                                        </div>
-                                        <div>
-                                            <label className="block font-medium mb-1 text-[#212529]">Email*</label>
-                                            <Field name="email" type="email" placeholder="Email" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
-                                            <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+                                    <div className="flex flex-col gap-5">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                            <div>
+                                                <label className="block font-medium mb-1 text-[#212529]">First Name*</label>
+                                                <Field name="firstName" placeholder="First Name" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
+                                                <ErrorMessage name="firstName" component="div" className="text-red-500 text-sm mt-1" />
+                                            </div>
+                                            <div>
+                                                <label className="block font-medium mb-1 text-[#212529]">Last Name*</label>
+                                                <Field name="lastName" placeholder="Last Name" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
+                                                <ErrorMessage name="lastName" component="div" className="text-red-500 text-sm mt-1" />
+                                            </div>
+                                            <div>
+                                                <label className="block font-medium mb-1 text-[#212529]">Email*</label>
+                                                <Field name="email" type="email" placeholder="Email" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
+                                                <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+                                            </div>
                                         </div>
                                     </div>
                                 )}
@@ -123,16 +129,16 @@ const JoinUsForm = () => {
                                             <div className="space-y-4">
                                                 <label className="flex items-center gap-2">
                                                     <input type="radio" name="monthlySupport" value="50" checked={monthlySupport === 50} onChange={(e) => setMonthlySupport(Number(e.target.value))} />
-                                                    <span>$50</span>
+                                                    <span>$ 2.50</span>
                                                 </label>
                                                 <label className="flex items-center gap-2">
                                                     <input type="radio" name="monthlySupport" value="100" checked={monthlySupport === 100} onChange={(e) => setMonthlySupport(Number(e.target.value))} />
-                                                    <span>$100</span>
+                                                    <span>$ 5.00</span>
                                                 </label>
                                                 <label className="flex items-center gap-2">
                                                     <input type="radio" name="monthlySupport" value="custom" checked={monthlySupportCustom > 0} onChange={() => setMonthlySupportCustom(0)} />
                                                     <span>Custom:</span>
-                                                    <input type="number" placeholder="Enter amount" className="border border-gray-300 px-2 py-1 w-24 focus:outline-none focus:border-[#ca7b28]" value={monthlySupportCustom > 0 ? monthlySupportCustom : ""} onChange={(e) => setMonthlySupportCustom(Number(e.target.value))} />
+                                                    <input type="number" placeholder="Enter amount" className="border border-gray-300 px-2 py-1 w-auto sm:w-36 focus:outline-none bg-white rounded-sm focus:border-[#ca7b28] pl-3" value={monthlySupportCustom > 0 ? monthlySupportCustom : ""} onChange={(e) => setMonthlySupportCustom(Number(e.target.value))} />
                                                 </label>
                                             </div>
                                         </div>
@@ -142,16 +148,16 @@ const JoinUsForm = () => {
                                             <div className="space-y-4">
                                                 <label className="flex items-center gap-2">
                                                     <input type="radio" name="annualSupport" value="500" checked={annualSupport === 500} onChange={(e) => setAnnualSupport(Number(e.target.value))} />
-                                                    <span>$500</span>
+                                                    <span>$ 30</span>
                                                 </label>
                                                 <label className="flex items-center gap-2">
                                                     <input type="radio" name="annualSupport" value="1000" checked={annualSupport === 1000} onChange={(e) => setAnnualSupport(Number(e.target.value))} />
-                                                    <span>$1000</span>
+                                                    <span>$ 60</span>
                                                 </label>
                                                 <label className="flex items-center gap-2">
                                                     <input type="radio" name="annualSupport" value="custom" checked={annualSupportCustom > 0} onChange={() => setAnnualSupportCustom(0)} />
                                                     <span>Custom:</span>
-                                                    <input type="number" placeholder="Enter amount" className="border border-gray-300 px-2 py-1 w-24 focus:outline-none focus:border-[#ca7b28]" value={annualSupportCustom > 0 ? annualSupportCustom : ""} onChange={(e) => setAnnualSupportCustom(Number(e.target.value))} />
+                                                    <input type="number" placeholder="Enter amount" className="border border-gray-300 px-2 py-1 w-auto sm:w-36 focus:outline-none bg-white rounded-sm focus:border-[#ca7b28] pl-3" value={annualSupportCustom > 0 ? annualSupportCustom : ""} onChange={(e) => setAnnualSupportCustom(Number(e.target.value))} />
                                                 </label>
                                             </div>
                                         </div>
@@ -263,8 +269,11 @@ const JoinUsForm = () => {
                                 </div>
 
                                 {/* Progress Bar */}
-                                <div className="w-full bg-[#ca7b28]/30 h-2 rounded-full mt-6">
+                                {/* <div className="w-full bg-[#ca7b28]/30 h-2 rounded-full mt-6">
                                     <motion.div className="bg-[#ca7b28] h-2 rounded-full" initial={{ width: 0 }} animate={{ width: `${progress}%` }} transition={{ type: "spring", stiffness: 100, damping: 20 }} />
+                                </div> */}
+                                <div className="relative">
+                                    <Stepper currentStep={step} totalSteps={4} />
                                 </div>
 
                             </Form>

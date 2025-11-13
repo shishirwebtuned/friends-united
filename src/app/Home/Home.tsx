@@ -12,29 +12,58 @@ import ContactBanner from './Components/ContactBanner';
 import MilestoneWinners from './Components/MilestoneWinners';
 import RealWinners from './Components/RealWinners';
 import JoinUs from './Components/JoinUs';
-import DailySocialMedia from './Components/DailySocialMedia';
-import JoinUsForm from './Components/JoinUsForm';
+import { client } from '@/lib/sanity.client';
+import HeroBannerNew from './Components/HeroBannerNew';
 
-const HomePage = () => {
-    return (
-        <div>
-            <HeroSection />
-            <HeroBanner />
-            <AboutUs />
-            <OurFight />
-            <HadEnough />
-            <GiveawaySection />
-            <MilestoneWinners />
-            {/* <BreakSilence /> */}
-            <RealWinners />
-            <JoinUs />
-            {/* <SubscriptionForm /> */}
-            {/* <JoinUsForm /> */}
-            <FAQ />
-            <ContactBanner />
-            {/* <DailySocialMedia /> */}
-        </div>
-    )
+export const revalidate = 60
+
+export default async function HomePage() {
+  const bannerData = await client.fetch(`
+    *[_type == "bannerData"][0]{
+      title,
+      subTitle,
+    }
+  `);
+
+  const aboutUsData = await client.fetch(`
+    *[_type == "unitedVoices"][0]{
+    title,
+    subTitle,
+    description,
+    voices
+    } `);
+
+  const faq = await client.fetch(`
+  *[_type == "faq"][0]{
+    faq[]{
+      _key,
+      question,
+      answer
+    }
+  }
+`)
+
+  console.log("faq", faq);
+
+  return (
+    <div>
+      <HeroSection />
+      {/* <HeroBanner bannerData={bannerData} /> */}
+      <HeroBannerNew bannerData={bannerData} />
+      <AboutUs aboutUsData={aboutUsData} />
+      <OurFight />
+      <HadEnough />
+      <GiveawaySection />
+      <MilestoneWinners />
+      {/* <BreakSilence /> */}
+      <RealWinners />
+      <JoinUs />
+      {/* <SubscriptionForm /> */}
+      {/* <JoinUsForm /> */}
+      <FAQ faqDataList={faq} />
+      <ContactBanner />
+      {/* <DailySocialMedia /> */}
+    </div>
+  )
 }
 
-export default HomePage;

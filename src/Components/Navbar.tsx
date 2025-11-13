@@ -60,7 +60,7 @@ export default function Navbar() {
                         alt="Logo"
                         width={220}
                         height={70}
-                        className="w-[140px] sm:w-[160px] md:w-[170px] lg:w-[200px] xl:w-[230px]"
+                        className="w-[140px] sm:w-[160px] md:w-[170px] lg:w-[200px] xl:w-[210px]"
                     />
                 </Link>
 

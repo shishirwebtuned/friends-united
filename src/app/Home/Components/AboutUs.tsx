@@ -7,7 +7,19 @@ import { paddingX } from "@/data/paddingData";
 import SectionHeader from "@/Components/SectionHeader";
 import { motion } from "framer-motion";
 
-const AboutUs: React.FC = () => {
+export interface AboutUs {
+    title: string;
+    subTitle: string;
+    description: string;
+    voices: any;
+}
+
+interface AboutUsProps {
+    aboutUsData: AboutUs;
+}
+
+const AboutUs: React.FC<AboutUsProps> = ({ aboutUsData }) => {
+    console.log("aboutus", aboutUsData)
     return (
         <section className={` ${paddingX} py-20 md:py-[5.5rem]`}>
             <div className="">
@@ -15,8 +27,8 @@ const AboutUs: React.FC = () => {
                     {/* Text Column */}
                     <div className="lg:w-1/2 flex flex-col">
                         <SectionHeader
-                            subtitle="Raising a Fierce Force of Change-Makers"
-                            title="United Voices, Unstoppable Revolution"
+                            subtitle={`${aboutUsData?.subTitle || "Raising a Fierce Force of Change-Makers"}`}
+                            title={`${aboutUsData?.title || "United Voices, Unstoppable Revolution"}`}
                             align="left"
                         />
 
@@ -25,12 +37,8 @@ const AboutUs: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.7, ease: "easeOut" }}
-                            className="text-sm md:text-[15px] lg:text-base font-manrope leading-relaxed mb-8 text-[#4e4e4e]">
-                            Friends United turns everyday Australians’ frustrations into a
-                            thunderous force that demands politicians stop ignoring us. Together,
-                            we battle for affordable living, the right to own a home, and a future
-                            that’s fair and just. When over 100,000 voices roar as one, our leaders
-                            will have no choice but to act—or be swept away.
+                            className="text-sm md:text-[15px] lg:text-base font-manrope leading-relaxed mb-8 text-[#4e4e4e]">{`${aboutUsData?.description || "Friends United turns everyday Australians’ frustrations into a thunderous force that demands politicians stop ignoring us. Together, we battle for affordable living, the right to own a home, and a future that’s fair and just. When over 100,000 voices roar as one, our leaders will have no choice but to act—or be swept away."}`}
+
                         </motion.p>
 
                         {/* Features Grid */}
@@ -51,8 +59,9 @@ const AboutUs: React.FC = () => {
                                     />
                                 </div>
                                 <div>
-                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">Stronger Together</h4>
-                                    <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">Collective action to create lasting political impact.</p>
+                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">{`${aboutUsData?.voices?.[0]?.heading || "Stronger Together"}`}</h4>
+                                    <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">  {aboutUsData?.voices?.[0]?.subHeading || "Collective action to create lasting political impact."}
+                                    </p>
                                 </div>
                             </motion.div>
 
@@ -71,8 +80,8 @@ const AboutUs: React.FC = () => {
                                     />
                                 </div>
                                 <div>
-                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">Making Voices Heard</h4>
-                                    <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">Turning voter concerns into undeniable demands for change.</p>
+                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">{`${aboutUsData?.voices?.[1]?.heading || "Making Voices Heard"}`}</h4>
+                                    <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">{aboutUsData?.voices?.[1]?.subHeading || "Turning voter concerns into undeniable demands for change."}</p>
                                 </div>
                             </motion.div>
 
@@ -91,8 +100,9 @@ const AboutUs: React.FC = () => {
                                     />
                                 </div>
                                 <div>
-                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">Standing Strong</h4>
-                                    <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">Building solidarity to protect our rights and future.</p>
+                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">{`${aboutUsData?.voices?.[2]?.heading || "Standing Strong"}`}</h4>
+                                    <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">
+                                        {aboutUsData?.voices?.[2]?.subHeading || "Building solidarity to protect our rights and future."}</p>
                                 </div>
                             </motion.div>
 
@@ -112,9 +122,10 @@ const AboutUs: React.FC = () => {
                                     />
                                 </div>
                                 <div>
-                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">Drive Change Forward</h4>
+                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1"> {`${aboutUsData?.voices?.[3]?.heading || "Drive Change Forward"}`} </h4>
                                     <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">
-                                        Empowering communities to turn ideas into policies that matter.
+                                        {aboutUsData?.voices?.[3]?.subHeading || "Empowering communities to turn ideas into policies that matter."}
+
                                     </p>
                                 </div>
                             </motion.div>

@@ -391,7 +391,7 @@ export const demandsData = [
   },
 ];
 
-export const faqData: FaqItem[] = [
+export const staticFAQData: FaqItem[] = [
   {
     id: 1,
     question: "What will you get for your $2.50 monthly investment?",
@@ -454,13 +454,14 @@ export const faqData: FaqItem[] = [
     id: 4,
     question: "What if I don’t agree with all of Friends United (FU) policies?",
     answer: `
-        I. Write to us at{" "}
+        I. Write to us at 
         <a
           href="mailto:hello@friendsunited.com.au"
           className="text-[var(--primary-color)]"
+          style="color:#ca7b28"
         >
           hello@friendsunited.com.au
-        </a>{" "}
+        </a> 
         and make your view known to us.
 `,
   },

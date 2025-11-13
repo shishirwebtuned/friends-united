@@ -7,7 +7,7 @@ const page = () => {
     return (
         <div className="w-full min-h-screen bg-white">
             {/* Header Section */}
-            <section className={`pt-10 md:pt-12 text-center ${paddingX}`}>
+            <section className={`pt-10 md:pt-10 text-center ${paddingX}`}>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-staatliches text-[#ca7b28] mb-4">
                     Join Our Movement
                 </h1>

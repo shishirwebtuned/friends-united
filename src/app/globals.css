@@ -11,6 +11,11 @@
   --accent-color: #f59e0b;
 }
 
+@theme {
+  --font-broadway: "Broadway", "sans-serif";
+  --font-arialGreek: "ArialGreek", "sans-serif";
+}
+
 .font-staatliches {
   font-family: "Staatliches", sans-serif;
 }
@@ -111,12 +116,21 @@
   );
 }
 
-.contactus-gradient {
+/* .contactus-gradient {
   background: linear-gradient(
     170deg,
     var(--primary-color) 0%,
     #f8f1e6 70%,
     #f8f1e6 100%
+  );
+} */
+
+.contactus-gradient {
+  background: linear-gradient(
+    170deg,
+    var(--primary-color) 0%,
+    #e5c182 70%,
+    #eacf9d 100%
   );
 }
 
@@ -146,4 +160,20 @@
 
 .bounce-button {
   animation: bounceScale 1.4s ease-in-out infinite;
+}
+
+@font-face {
+  font-family: "Broadway";
+  src: url("/fonts/Broadway/Broadway.ttf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ArialGreek";
+  src: url("/fonts/ArialGreek/ArialGreek.ttf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }

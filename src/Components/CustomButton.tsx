@@ -49,7 +49,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     switch (btnPadding) {
         case "more":
             paddingClasses =
-                "md:px-[16px] px-[12px] rounded-xl sm:rounded-2xl sm:px-[18px] lg:px-[24px] xl:px-[28px] sm:py-[9px] py-[8px] md:py-[11px] lg:py-[14px] xl:py-[15px]";
+                "md:px-[16px] px-[12px] rounded-xl sm:rounded-2xl sm:px-[18px] lg:px-[24px] xl:px-[26px] sm:py-[9px] py-[8px] md:py-[11px] lg:py-[13px] xl:py-[14px]";
             break;
 
         case "less":
