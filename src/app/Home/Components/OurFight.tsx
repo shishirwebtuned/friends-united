@@ -6,7 +6,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Link from "next/link";
-import { servicesData } from "@/data/data";
+import { newservicesData } from "@/data/data";
 import { paddingX } from "@/data/paddingData";
 import { motion } from "framer-motion";
 import SectionHeader from "@/Components/SectionHeader";
@@ -62,7 +62,7 @@ const OurFight = () => {
                         }}
                         className="pb-10 overflow-hidden"
                     >
-                        {servicesData.map((service) => (
+                        {newservicesData.map((service) => (
                             <SwiperSlide key={service.id}>
                                 <motion.div
                                     className="relative group rounded-lg overflow-hidden shadow-lg cursor-pointer h-72 md:h-100"
