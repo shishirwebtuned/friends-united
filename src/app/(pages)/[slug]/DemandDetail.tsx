@@ -86,123 +86,74 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
             <div className="px-2 md:px-0">
 
                 <div className="subscription-grdient rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.08)] p-6 md:p-8 lg:p-10 text-gray-800 backdrop-blur-sm mb-10">
-                    {typeof service.details === "string" ? (
+
+                    {/* INTRO */}
+                    {service.details.intro && (
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="font-manrope text-base md:text-lg leading-relaxed text-gray-700 whitespace-pre-line"
+                            className="font-manrope text-sm md:text-base lg:text-lg leading-relaxed text-gray-900 whitespace-pre-line mb-6 font-medium"
                         >
-                            {service.details}
+                            {service.details.intro}
                         </motion.p>
-                    ) : (
-                        <div className="space-y-6">
-                            {Object.entries(service.details).map(([key, rawValue], index) => {
-                                const value = rawValue as
-                                    | string
-                                    | { title?: string; list?: string[] }
-                                    | Record<string, any>;
-
-                                const MotionWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.8, delay: index * 0.1 }}
-                                    >
-                                        {children}
-                                    </motion.div>
-                                );
-
-                                if (typeof value === "string") {
-                                    return (
-                                        <MotionWrapper key={index}>
-                                            <p className="font-manrope font-medium text-sm md:text-base lg:text-lg leading-relaxed text-gray-800">
-                                                {value}
-                                            </p>
-                                        </MotionWrapper>
-                                    );
-                                }
-
-                                if ("title" in value && "list" in value) {
-                                    return (
-                                        <MotionWrapper key={index}>
-                                            <div className="space-y-2 p-4 md:p-6 bg-white/60 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
-                                                {value.title && (
-                                                    <h4 className="text-[#CA7B28] font-staatliches text-lg md:text-xl lg:text-2xl capitalize mb-3 tracking-wide border-b-2 border-[#CA7B28]/30 pb-1">
-                                                        {value.title}
-                                                    </h4>
-                                                )}
-                                                {value.list && (
-                                                    <ul className="list-disc ml-6 space-y-1 font-lato md:text-[15px] text-[13px] lg:text-[17px] text-gray-700">
-                                                        {value.list.map((item: any, i: number) => (
-                                                            <li key={i}>{item}</li>
-                                                        ))}
-                                                    </ul>
-                                                )}
-                                            </div>
-                                        </MotionWrapper>
-                                    );
-                                }
-
-                                if (typeof value === "object" && value !== null) {
-                                    return (
-                                        <MotionWrapper key={index}>
-                                            <div className="space-y-4 p-4 md:p-6 bg-white/60 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
-                                                <h4 className="text-[#CA7B28] font-staatliches text-lg md:text-xl lg:text-2xl capitalize tracking-wide border-b-2 border-[#CA7B28]/30 pb-2">
-                                                    {key.replace(/([A-Z])/g, " $1")}
-                                                </h4>
-
-                                                <div className="space-y-3 text-gray-700">
-                                                    {("note" in value && value.note) && (
-                                                        <p className="italic text-sm md:text-base text-gray-800 border-l-2 border-[#CA7B28]/50 pl-3">
-                                                            {value.note}
-                                                        </p>
-                                                    )}
-                                                    {("description" in value && value.description) && (
-                                                        <p className="md:text-base text-sm lg:text-lg leading-relaxed font-lato italic">
-                                                            {value.description}
-                                                        </p>
-                                                    )}
-                                                    {("summary" in value && value.summary) && (
-                                                        <p className="font-semibold md:text-base text-sm lg:text-lg text-gray-800 font-manrope">
-                                                            {value.summary}
-                                                        </p>
-                                                    )}
-                                                    {("source" in value && value.source) && (
-                                                        <p className="text-[13px] md:text-[15px] lg:text-[17px] font-manrope text-gray-700">
-                                                            <span className="font-semibold">Source:</span> {value.source}
-                                                        </p>
-                                                    )}
-
-                                                    {Object.entries(value).map(([listKey, listVal]) => {
-                                                        if (Array.isArray(listVal)) {
-                                                            return (
-                                                                <div key={listKey}>
-                                                                    <p className="font-semibold text-[#CA7B28] mb-2 font-manrope md:text-base text-sm lg:text-lg capitalize">
-                                                                        {listKey}:
-                                                                    </p>
-                                                                    <ul className="list-disc ml-5 space-y-2 font-manrope font-medium md:text-sm text-xs lg:text-base">
-                                                                        {listVal.map((item: string, i: number) => (
-                                                                            <li key={i}>{item}</li>
-                                                                        ))}
-                                                                    </ul>
-                                                                </div>
-                                                            );
-                                                        }
-                                                        return null;
-                                                    })}
-                                                </div>
-                                            </div>
-                                        </MotionWrapper>
-                                    );
-                                }
-
-                                return null;
-                            })}
-                        </div>
                     )}
-                </div>
 
+                    {/* SECTIONS */}
+                    <div className="space-y-6">
+                        {service.details.sections.map((section: any, index: number) => {
+                            const hasList = Array.isArray(section.list) && section.list.length > 0;
+
+                            return (
+                                <motion.div
+                                    key={section.key}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                                >
+                                    {!hasList && (
+                                        <div>
+                                            {section.title && (
+                                                <h4 className="text-[#CA7B28] font-staatliches text-lg md:text-xl lg:text-2xl capitalize mb-3 tracking-wide">
+                                                    {section.title}
+                                                </h4>
+                                            )}
+
+                                            {section.text && (
+                                                <p className="font-manrope text-sm md:text-base lg:text-lg leading-relaxed text-gray-800 font-medium">
+                                                    {section.text}
+                                                </p>
+                                            )}
+                                        </div>
+                                    )}
+
+                                    {hasList && (
+                                        <div className="space-y-2 p-3 md:p-4 lg:p-6 bg-white/60 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                                            {section.title && (
+                                                <h4 className="text-[#CA7B28] font-staatliches text-lg md:text-xl lg:text-2xl capitalize mb-3 tracking-wide border-b-2 border-[#CA7B28]/30 pb-1">
+                                                    {section.title}
+                                                </h4>
+                                            )}
+
+                                            {section.text && (
+                                                <p className="text-xs md:text-sm lg:text-base leading-relaxed text-gray-800 italic">
+                                                    {section.text}
+                                                </p>
+                                            )}
+
+                                            <ul className="list-disc lg:ml-6 md:ml-5 ml-4 space-y-1 font-lato md:text-[15px] text-[13px] lg:text-[17px] text-gray-700">
+                                                {section.list.map((item: any, i: number) => (
+                                                    <li key={i}>{item}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </motion.div>
+                            );
+                        })}
+                    </div>
+
+                </div>
 
 
 

@@ -1,13 +1,13 @@
 // app/our-fight/[slug]/page.tsx
 import React from "react";
-import { servicesData } from "@/data/data";
+import { newservicesData } from "@/data/data";
 import { paddingX } from "@/data/paddingData";
 import DemandDetail from "./DemandDetail";
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-    return servicesData.map((service) => ({
+    return newservicesData.map((service) => ({
         slug: service.link.replace(/^\//, ""),
     }));
 }
@@ -19,7 +19,7 @@ interface PageParams {
 export default async function page({ params }: PageParams) {
     const { slug } = await params;
     const currentLink = `/${slug}`;
-    const service = servicesData.find((s) => s.link === currentLink);
+    const service = newservicesData.find((s) => s.link === currentLink);
 
     if (!service) {
         return (

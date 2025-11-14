@@ -9,7 +9,13 @@
   --secondary-color: #1b1b1b;
   --text-light: #f8fafc;
   --accent-color: #f59e0b;
+  --darkPrimary-color: #7c4f1b;
 }
+
+/* #b16d24
+#965e20
+#7c4f1b
+#8a5a22 */
 
 @theme {
   --font-broadway: "Broadway", "sans-serif";
@@ -64,7 +70,7 @@
     135deg,
     var(--secondary-color) 0%,
     #2d2d2d 50%,
-    var(--primary-color) 100%
+    var(--darkPrimary-color) 100%
   );
 }
 
