@@ -1,0 +1,19 @@
+import express from "express";
+import {
+  getUserById,
+  getUsers,
+  loginUser,
+  registerUser,
+  verifyOtp,
+} from "../controllers/user.controller.js";
+import { adminOnly, protect } from "../middleware/auth.middleware.js";
+
+const router = express.Router();
+
+router.post("/register", registerUser);
+router.post("/login", loginUser);
+router.post("/verifyOtp", verifyOtp);
+router.get("/user-list", getUsers);
+router.get("/:id", getUserById);
+
+export default router;

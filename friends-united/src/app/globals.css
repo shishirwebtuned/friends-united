@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --primary-color: #ca7b28;
+  --secondary-color: #1b1b1b;
+  --text-light: #f8fafc;
+  --accent-color: #f59e0b;
+  --darkPrimary-color: #7c4f1b;
+}
+
+/* #b16d24
+#965e20
+#7c4f1b
+#8a5a22 */
+
+@theme {
+  --font-broadway: "Broadway", "sans-serif";
+  --font-arialGreek: "ArialGreek", "sans-serif";
+}
+
+.font-staatliches {
+  font-family: "Staatliches", sans-serif;
+}
+
+.font-lato {
+  font-family: "Lato", sans-serif;
+}
+
+.font-manrope {
+  font-family: "Manrope", sans-serif;
+}
+
+.text-customOrange {
+  color: var(--primary-color);
+}
+.text-customBlack {
+  color: var(--secondary-color);
+}
+
+.gradient-text {
+  background: linear-gradient(
+    170deg,
+    var(--primary-color) 0%,
+    #f8f1e6 25%,
+    #f8f1e6 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-Colorful {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 25%,
+    var(--text-light) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 15px rgba(255, 180, 70, 0.2);
+}
+
+.giveaway-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color) 0%,
+    #2d2d2d 50%,
+    var(--darkPrimary-color) 100%
+  );
+}
+
+.giveaway-text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--text-light) 0%,
+    var(--primary-color) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+.progressbar-bg-gradient {
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+.swiper {
+  overflow-y: scroll;
+  padding-bottom: 2rem !important;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: -4px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ffa500 !important;
+  bottom: -10px !important;
+}
+
+.subscription-grdient {
+  background: linear-gradient(
+    170deg,
+    var(--primary-color) 0%,
+    #f8f1e6 25%,
+    #f8f1e6 100%
+  );
+}
+
+.joinus-gradient {
+  background: linear-gradient(
+    170deg,
+    var(--primary-color) 0%,
+    #fde5bf 60%,
+    #fdecd0 100%
+  );
+}
+
+/* .contactus-gradient {
+  background: linear-gradient(
+    170deg,
+    var(--primary-color) 0%,
+    #f8f1e6 70%,
+    #f8f1e6 100%
+  );
+} */
+
+.contactus-gradient {
+  background: linear-gradient(
+    170deg,
+    var(--primary-color) 0%,
+    #e5c182 70%,
+    #eacf9d 100%
+  );
+}
+
+@keyframes pulse-custom {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-custom {
+  animation: pulse-custom 2s infinite;
+}
+
+@keyframes bounceScale {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.08);
+  }
+}
+
+.bounce-button {
+  animation: bounceScale 1.4s ease-in-out infinite;
+}
+
+@font-face {
+  font-family: "Broadway";
+  src: url("/fonts/Broadway/Broadway.ttf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ArialGreek";
+  src: url("/fonts/ArialGreek/ArialGreek.ttf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
