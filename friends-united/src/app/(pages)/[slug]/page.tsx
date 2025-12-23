@@ -1,13 +1,21 @@
 // app/our-fight/[slug]/page.tsx
 import React from "react";
-import { newservicesData } from "@/data/data";
+import { client } from "@/lib/sanity.client";
 import { paddingX } from "@/data/paddingData";
 import DemandDetail from "./DemandDetail";
+import imageUrlBuilder from '@sanity/image-url';
+
+const builder = imageUrlBuilder(client);
+
+function urlFor(source: any) {
+    return builder.image(source);
+}
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-    return newservicesData.map((service) => ({
+    const services = await client.fetch(`*[_type == "services"]{ link }`);
+    return services.map((service: any) => ({
         slug: service.link.replace(/^\//, ""),
     }));
 }
@@ -19,7 +27,20 @@ interface PageParams {
 export default async function page({ params }: PageParams) {
     const { slug } = await params;
     const currentLink = `/${slug}`;
-    const service = newservicesData.find((s) => s.link === currentLink);
+    
+    const service = await client.fetch(
+        `*[_type == "services" && link == $link][0]{
+            title,
+            description,
+            image,
+            link,
+            demands,
+            demandText,
+            references,
+            details
+        }`,
+        { link: currentLink }
+    );
 
     if (!service) {
         return (
@@ -29,5 +50,11 @@ export default async function page({ params }: PageParams) {
         );
     }
 
-    return <DemandDetail key={slug} service={service} />;
+    // Convert Sanity image to URL
+    const serviceWithImageUrl = {
+        ...service,
+        image: service.image ? urlFor(service.image).width(800).url() : null,
+    };
+
+    return <DemandDetail key={slug} service={serviceWithImageUrl} />;
 }

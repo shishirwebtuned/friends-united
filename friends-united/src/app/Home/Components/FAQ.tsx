@@ -11,9 +11,14 @@ interface FAQItem {
     answer: string;
 }
 
+interface FAQImage {
+    asset: any; // You can replace 'any' with the actual asset type if available
+    [key: string]: any;
+}
+
 interface FAQProps {
     faqDataList: {
-        image: string;
+        image: FAQImage;
         faq: FAQItem[];
     };
 }

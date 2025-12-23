@@ -4,5 +4,6 @@ import services from './services'
 import unitedVoices from './unitedVoices'
 import contact from './contract'
 import realWinners from './realWinners'
+import setting from './setting'
 
-export const schemaTypes = [banner, unitedVoices, faq, services, contact, realWinners]
+export const schemaTypes = [banner, unitedVoices, faq, services, contact, realWinners, setting]

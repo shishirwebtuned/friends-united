@@ -6,13 +6,57 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Link from "next/link";
-import { newservicesData } from "@/data/data";
 import { paddingX } from "@/data/paddingData";
 import { motion } from "framer-motion";
 import SectionHeader from "@/Components/SectionHeader";
+import { client } from '@/lib/sanity.client';
+import imageUrlBuilder from '@sanity/image-url';
+import React from 'react';
 
+const builder = imageUrlBuilder(client);
+
+function urlFor(source: any) {
+    return builder.image(source);
+}
 
 const OurFight = () => {
+    const [services, setServices] = React.useState<any[]>([]);
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        let isMounted = true;
+
+        client
+            .fetch(`*[_type == "services"]{
+                _id,
+                title,
+                description,
+                image,
+                link
+            }`)
+            .then((res) => {
+                if (!isMounted) return;
+                setServices(res);
+                setLoading(false);
+            })
+            .catch((error) => {
+                if (!isMounted) return;
+                console.error('Failed to load services:', error);
+                setLoading(false);
+            });
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    if (loading) {
+        return (
+            <section className={`relative py-10 ${paddingX}`}>
+                <p className="text-center text-gray-500">Loading...</p>
+            </section>
+        );
+    }
     return (
         <section className={`relative py-10 ${paddingX}`}>
             <div className="absolute top-0 left-[-50px] opacity-20">
@@ -62,8 +106,8 @@ const OurFight = () => {
                         }}
                         className="pb-10 overflow-hidden"
                     >
-                        {newservicesData.map((service) => (
-                            <SwiperSlide key={service.id}>
+                        {services.map((service) => (
+                            <SwiperSlide key={service._id}>
                                 <motion.div
                                     className="relative group rounded-lg overflow-hidden shadow-lg cursor-pointer h-72 md:h-100"
                                     initial="rest"
@@ -71,7 +115,7 @@ const OurFight = () => {
                                     animate="rest"
                                 >
                                     <img
-                                        src={service.image}
+                                        src={service.image ? urlFor(service.image).width(600).url() : '/images/placeholder.jpg'}
                                         alt={service.title}
                                         className="object-cover w-full h-full"
                                     />

@@ -1,7 +1,32 @@
+'use client';
+
+import React from "react";
+import { client } from "@/lib/sanity.client";
 import { paddingX } from "@/data/paddingData";
-import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedin, FaYoutube, FaWhatsapp, FaTiktok } from "react-icons/fa";
+
 
 const Footer = () => {
+
+      const [contactInfo, setContactInfo] = React.useState<{ socialLinks?: any[] }>({});
+    
+        React.useEffect(() => {
+            client.fetch(`*[_type == "setting"][0]{
+              socialLinks []
+            }`).then((data) => {
+                setContactInfo(data || {});
+            });
+        }, []);
+
+    const socialIconMap: Record<string, JSX.Element> = {
+        FaFacebook: <FaFacebookF />,
+        FaInstagram: <FaInstagram />,
+        FaTwitter: <FaTwitter />,
+        FaLinkedin: <FaLinkedin />,
+        FaYoutube: <FaYoutube />,
+        FaWhatsapp: <FaWhatsapp />,
+        FaTiktok: <FaTiktok />,
+    };
 
     return (
         <footer className={`bg-[#1d1d1d] text-white md:py-12 py-10 lg:py-14 ${paddingX}`}>
@@ -49,12 +74,17 @@ const Footer = () => {
                             </a>
                         </div>
                         <div className="flex gap-4 mt-6">
-                            <a href="#" className="lg:w-10 lg:h-10 md:w-8 md:h-8 w-6 h-6 flex items-center justify-center border border-white rounded-full text-white hover:bg-[#ca7b28] hover:border-[#ca7b28] transition-all duration-300 ease-in-out text-xs md:text-sm lg:text-base">
-                                <FaFacebookF />
-                            </a>
-                            <a href="#" className="lg:w-10 lg:h-10 md:w-8 md:h-8 w-6 h-6 flex items-center justify-center border border-white rounded-full text-white hover:bg-[#ca7b28] hover:border-[#ca7b28] transition-all duration-300 ease-in-out text-xs md:text-sm lg:text-base">
-                                <FaInstagram />
-                            </a>
+                            {contactInfo.socialLinks?.map((item: any, idx: number) => (
+                                <a
+                                    key={idx}
+                                    href={item.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="lg:w-10 lg:h-10 md:w-8 md:h-8 w-6 h-6 flex items-center justify-center border border-white rounded-full text-white hover:bg-[#ca7b28] hover:border-[#ca7b28] transition-all duration-300 ease-in-out text-xs md:text-sm lg:text-base"
+                                >
+                                    {socialIconMap[item.icon] || <FaFacebookF />}
+                                </a>
+                            ))}
                         </div>
                     </div>
 

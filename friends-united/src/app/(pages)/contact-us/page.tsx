@@ -8,8 +8,20 @@ import {Field , Form , Formik ,ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useEffect } from "react";
 import axiosInstance from "../../../utils/axiosinstance";
+import {client} from "@/lib/sanity.client";
 
 const Page = () => {
+    const [contactInfo, setContactInfo] = React.useState<{ email?: string; phone?: string; address?: string }>({});
+
+    React.useEffect(() => {
+        client.fetch(`*[_type == "setting"][0]{
+            email,
+            phone,
+            address
+        }`).then((data) => {
+            setContactInfo(data || {});
+        });
+    }, []);
 
 const [submitSuccess, setSubmitSuccess] = React.useState<boolean | null>(null);
 const [message, setMessage] = React.useState<string>('');
@@ -55,9 +67,10 @@ const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
         <div className={`${paddingX} py-10 md:py-12 w-full md:gap-4 gap-7 flex md:flex-row flex-col items-center`}>
             {/* Section Header */}
             <div className="w-full md:w-[42%] flex flex-col md:items-start items-center justify-center text-center md:text-start px-2 md:px-0">
+                <div>
                 <SectionHeader
                     title="Contact Us"
-                    align="center"
+                    align="left"
                 />
 
                 <motion.p initial={{ opacity: 0, x: 40 }}
@@ -83,7 +96,7 @@ const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
                             rel="noopener noreferrer"
                             className="ml-1 font-manrope font-semibold text-[#ca7b28] hover:underline hover:text-[#b56d21] transition-colors "
                         >
-                            support@friendsunited.com
+                        {contactInfo.email || ''}
                         </a>
                     </p>
 
@@ -95,7 +108,7 @@ const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
                             rel="noopener noreferrer"
                             className="ml-1 font-manrope font-semibold text-[#ca7b28] hover:underline hover:text-[#b56d21] transition-colors"
                         >
-                            +61 400 123 456
+                        {contactInfo.phone || ''}
                         </a>
                     </p>
 
@@ -107,10 +120,11 @@ const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
                             rel="noopener noreferrer"
                             className="ml-1 font-manrope font-semibold text-[#ca7b28] hover:underline hover:text-[#b56d21] transition-colors"
                         >
-                            123 Friends United Street, Sydney, Australia
+                        {contactInfo.address || ''}
                         </a>
                     </p>
                 </motion.div>
+                 </div>
 
                 <div className="flex pr-0 md:pr-4 py-2 md:py-4 mt-4 rounded-xl h-[310px] md:h-[360px] w-full overflow-hidden">
                     <video
@@ -124,6 +138,7 @@ const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
                     {/* <img src="/images/contactUs3.jpg" alt="friend united" className="object-cover h-full w-full rounded-xl" /> */}
                 </div>
                 </div>
+           
             </div>
 
 

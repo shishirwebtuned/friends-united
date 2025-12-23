@@ -1,21 +1,60 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaAngleDown } from "react-icons/fa";
 import CustomButton from "./CustomButton";
-import { navLinksData } from "@/data/data";
 import { paddingX } from "@/data/paddingData";
 import { IoMenu } from "react-icons/io5";
 import Drawer from "./Drawer";
 import MobileNavbar from "./MobileNavbar";
+import { client } from '@/lib/sanity.client';
+
+interface DropdownItem {
+    label: string;
+    href: string;
+}
+
+interface NavLink {
+    title: string;
+    href?: string;
+    dropdown?: DropdownItem[];
+}
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    // const [isScrolled, setIsScrolled] = useState(false);
     const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
     const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const [navLinksData, setNavLinksData] = useState<NavLink[]>([]);
+
+    useEffect(() => {
+        // Fetch services to build dynamic dropdown
+        client
+            .fetch(`*[_type == "services"]{ title, link }`)
+            .then((services) => {
+                const dynamicNav = [
+                    {
+                        title: "What We Stand For",
+                        dropdown: services.map((s: any) => ({
+                            label: s.title,
+                            href: s.link,
+                        })),
+                    },
+                    { title: "Make It Happen", href: "/join-us" },
+                    { title: "Contact Us", href: "/contact-us" },
+                ];
+                setNavLinksData(dynamicNav);
+            })
+            .catch((error) => {
+                console.error('Failed to load navigation:', error);
+                // Fallback to static nav if fetch fails
+                setNavLinksData([
+                    { title: "Make It Happen", href: "/join-us" },
+                    { title: "Contact Us", href: "/contact-us" },
+                ]);
+            });
+    }, []);
 
     // useEffect(() => {
     //     const handleScroll = () => setIsScrolled(window.scrollY > 50);
