@@ -13,11 +13,10 @@ interface Reference {
 }
 
 interface Service {
-    id: number;
     title: string;
     description: string;
     details: any;
-    image: string;
+    image: string | null;
     link: string;
     demands?: string[];
     references?: Reference[];
@@ -75,11 +74,13 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                 <div className="flex-1 relative flex  w-full items-center justify-center h-full">
                     {/* <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#CA7B2877] rounded-full blur-3xl"></div>
                     <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#FFD96655] rounded-full blur-3xl"></div> */}
-                    <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-[95%] sm:w-[90%] md:w-[90%] rounded-xl shadow-2xl object-cover relative z-10"
-                    />
+                    {service.image && (
+                        <img
+                            src={service.image}
+                            alt={service.title}
+                            className="w-[95%] sm:w-[90%] md:w-[90%] rounded-xl shadow-2xl object-cover relative z-10"
+                        />
+                    )}
                 </div>
             </div>
 

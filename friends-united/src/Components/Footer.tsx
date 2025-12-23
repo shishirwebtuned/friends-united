@@ -18,7 +18,7 @@ const Footer = () => {
             });
         }, []);
 
-    const socialIconMap: Record<string, JSX.Element> = {
+    const socialIconMap: Record<string, React.ReactNode> = {
         FaFacebook: <FaFacebookF />,
         FaInstagram: <FaInstagram />,
         FaTwitter: <FaTwitter />,

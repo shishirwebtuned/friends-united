@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "npx serve@latest out"
   },
   "dependencies": {
     "@paypal/react-paypal-js": "^8.9.2",
