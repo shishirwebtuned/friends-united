@@ -4,5 +4,6 @@ export const client = createClient({
   projectId: "e6ou6t4t",
   dataset: "production",
   apiVersion: "2025-01-01",
-  useCdn: true,
+  useCdn: false,
+  token: "skyDomIcWzzQRgesGqm6fSDfTBolIKl60ZPAB0jjjGduT8xdR7cj94fpk9L7VBMRWAY51LJQv4sKCj4Y97DddkHIoxhknrPD1RzgqWEaW65cld7uDUIMTCIRZNlkezElEPis6DZ1WcJv2TUfij34FrRtUGqAXkGQk0WHeKXobMiEIWxZqzuy",
 });

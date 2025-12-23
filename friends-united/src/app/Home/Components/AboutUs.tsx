@@ -6,20 +6,73 @@ import CustomButton from "@/Components/CustomButton";
 import { paddingX } from "@/data/paddingData";
 import SectionHeader from "@/Components/SectionHeader";
 import { motion } from "framer-motion";
+import { client } from '@/lib/sanity.client';
+import imageUrlBuilder from '@sanity/image-url';
+
+export interface Voice {
+    heading: string;
+    subHeading: string;
+}
 
 export interface AboutUs {
     title: string;
     subTitle: string;
     description: string;
-    voices: any;
+    frontimage: any;
+    backimage: any;
+    voices: Voice[];
 }
 
-interface AboutUsProps {
-    aboutUsData: AboutUs;
+const builder = imageUrlBuilder(client);
+
+function urlFor(source: any) {
+    return builder.image(source);
 }
 
-const AboutUs: React.FC<AboutUsProps> = ({ aboutUsData }) => {
-    console.log("aboutus", aboutUsData)
+const AboutUs: React.FC = () => {
+    const [aboutUsData, setAboutUsData] = React.useState<AboutUs | null>(null);
+    const [loading, setLoading] = React.useState<boolean>(true);
+
+    React.useEffect(() => {
+        let isMounted = true;
+
+        client
+            .fetch<AboutUs>(
+                `*[_type == "unitedVoices"][0]{
+                    title,
+                    subTitle,
+                    description,
+                    frontimage,
+                    backimage,
+                    voices[]{
+                        heading,
+                        subHeading
+                    }
+                }`
+            )
+            .then((res) => {
+                if (!isMounted) return;
+                setAboutUsData(res);
+                setLoading(false);
+            })
+            .catch((error) => {
+                if (!isMounted) return;
+                console.error('Failed to load About Us data:', error);
+                setLoading(false);
+            });
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    if (loading) {
+        return (
+            <section className={` ${paddingX} py-20 md:py-[5.5rem]`}>
+                <p className="text-center text-gray-500">Loading...</p>
+            </section>
+        );
+    }
     return (
         <section className={` ${paddingX} py-20 md:py-[5.5rem]`}>
             <div className="">
@@ -144,21 +197,35 @@ const AboutUs: React.FC<AboutUsProps> = ({ aboutUsData }) => {
                             transition={{ duration: 0.9, ease: "easeOut" }}
                             className="relative w-full h-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px] md:px-0 px-2">
                             <div className="relative w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px] lg:w-[400px] lg:h-[400px]">
-                                <img
-                                    src="images/united_hands.jpg"
-                                    alt="Main"
-
-                                    className="object-cover w-full h-full rounded-xl z-10"
-                                />
+                                {aboutUsData?.frontimage ? (
+                                    <img
+                                        src={urlFor(aboutUsData.frontimage).width(400).height(400).url()}
+                                        alt="Main"
+                                        className="object-cover w-full h-full rounded-xl z-10"
+                                    />
+                                ) : (
+                                    <img
+                                        src="images/united_hands.jpg"
+                                        alt="Main"
+                                        className="object-cover w-full h-full rounded-xl z-10"
+                                    />
+                                )}
                             </div>
 
                             <div className="absolute bottom-4 lg:bottom-8 right-2 md:right-0 w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px]">
-                                <img
-                                    src="images/about-us.jpg"
-                                    alt="Overlay"
-
-                                    className="object-cover w-full h-full rounded-xl shadow-lg z-20"
-                                />
+                                {aboutUsData?.backimage ? (
+                                    <img
+                                        src={urlFor(aboutUsData.backimage).width(400).height(400).url()}
+                                        alt="Overlay"
+                                        className="object-cover w-full h-full rounded-xl shadow-lg z-20"
+                                    />
+                                ) : (
+                                    <img
+                                        src="images/about-us.jpg"
+                                        alt="Overlay"
+                                        className="object-cover w-full h-full rounded-xl shadow-lg z-20"
+                                    />
+                                )}
                             </div>
                         </motion.div>
                     </div>

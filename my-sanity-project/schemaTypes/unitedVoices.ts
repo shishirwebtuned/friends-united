@@ -1,4 +1,4 @@
-import {defineType, defineField} from 'sanity'
+import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'unitedVoices',
@@ -20,6 +20,34 @@ export default defineType({
       title: 'Description',
       type: 'string',
     }),
+
+    defineField({
+      name: 'frontimage',
+      title: 'Main Image',
+      type: 'image',
+      options: { hotspot: true },
+      validation: Rule => Rule.required()
+        .custom(image => {
+          if (!image || !image.asset?._ref) return 'Image is required';
+         // Type and size validation will be handled in the asset source or upload step
+          return true;
+        }),
+      description: 'Only JPEG/PNG, max 2MB',
+    }),
+    defineField({
+      name: 'backimage',
+      title: 'Back Image',
+      type: 'image',
+      options: { hotspot: true },
+      validation: Rule => Rule.required()
+        .custom(image => {
+          if (!image || !image.asset?._ref) return 'Image is required';
+          // Type and size validation will be handled in the asset source or upload step
+          return true;
+        }),
+      description: 'Only JPEG/PNG, max 2MB',
+    }),
+  
 
     defineField({
       name: 'voices',

@@ -1,43 +1,43 @@
-import dotenv from "dotenv";
-import { AppError } from "../utils/AppError.js";
-import { catchAsync } from "../utils/catchAsync.js";
-import { sendEmail } from "../utils/sendEmail.js";
-import { sendResponse } from "../utils/sendResponse.js";
+// import dotenv from "dotenv";
+// import { AppError } from "../utils/AppError.js";
+// import { catchAsync } from "../utils/catchAsync.js";
+// import { sendEmail } from "../utils/sendEmail.js";
+// import { sendResponse } from "../utils/sendResponse.js";
 
-dotenv.config();
+// dotenv.config();
 
-export const createContact = catchAsync(async (req, res) => {
-  const { firstName, lastName, email, phone, message } = req.body;
+// export const createContact = catchAsync(async (req, res) => {
+//   const { firstName, lastName, email, phone, message } = req.body;
 
-  if (!firstName || !lastName || !email || !phone || !message) {
-    throw new AppError("All fields are requird", 400);
-  }
+//   if (!firstName || !lastName || !email || !phone || !message) {
+//     throw new AppError("All fields are requird", 400);
+//   }
 
-  const subject = "New Contact Form Submission";
-  const html = `
-    <div style="font-family: Arial, sans-serif;
-    line-height: 1.6; color: #333;">
-      <h2>New Contact Form Submission</h2>
-      <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> +${phone}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message}</p>
-      <hr/>
-      <p>This message was sent from the Contact Us form on your website.</p>
-      </div>
-      `;
+//   const subject = "New Contact Form Submission";
+//   const html = `
+//     <div style="font-family: Arial, sans-serif;
+//     line-height: 1.6; color: #333;">
+//       <h2>New Contact Form Submission</h2>
+//       <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+//       <p><strong>Email:</strong> ${email}</p>
+//       <p><strong>Phone:</strong> +${phone}</p>
+//       <p><strong>Message:</strong></p>
+//       <p>${message}</p>
+//       <hr/>
+//       <p>This message was sent from the Contact Us form on your website.</p>
+//       </div>
+//       `;
 
-  await sendEmail({
-    to: process.env.SMTP_USER as string,
-    subject,
-    html,
-  });
+//   await sendEmail({
+//     to: process.env.SMTP_USER as string,
+//     subject,
+//     html,
+//   });
 
-  sendResponse(res, {
-    success: true,
-    statusCode: 201,
-    message:
-      "Your message has been sent successfully. We'll get back to you soon!",
-  });
-});
+//   sendResponse(res, {
+//     success: true,
+//     statusCode: 201,
+//     message:
+//       "Your message has been sent successfully. We'll get back to you soon!",
+//   });
+// });

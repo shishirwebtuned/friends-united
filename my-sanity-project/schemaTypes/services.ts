@@ -17,6 +17,7 @@ export default defineType({
       name: 'description',
       title: 'Description',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
@@ -24,12 +25,14 @@ export default defineType({
       title: 'Image',
       type: 'image',
       options: {hotspot: true},
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
       name: 'link',
-      title: 'Link',
+      title: 'Link (URL slug)',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
 
     // Demands (Array of strings)
@@ -38,9 +41,10 @@ export default defineType({
       title: 'Key Demands',
       type: 'array',
       of: [{type: 'string'}],
+      validation: (Rule) => Rule.required().min(1),
     }),
 
-    // Extra Demand Text
+    // Extra Demand Text (optional)
     defineField({
       name: 'demandText',
       title: 'Demand Extra Text',
@@ -48,7 +52,7 @@ export default defineType({
       rows: 3,
     }),
 
-    // References
+    // References (Array of objects with label and link)
     defineField({
       name: 'references',
       title: 'References',
@@ -57,37 +61,42 @@ export default defineType({
         {
           type: 'object',
           fields: [
-            defineField({
+            {
               name: 'label',
               title: 'Label',
               type: 'string',
-            }),
-            defineField({
+              validation: (Rule) => Rule.required(),
+            },
+            {
               name: 'link',
-              title: 'Link',
+              title: 'Link URL',
               type: 'url',
-            }),
+              validation: (Rule) => Rule.required(),
+            },
           ],
+          preview: {
+            select: {
+              title: 'label',
+              subtitle: 'link',
+            },
+          },
         },
       ],
     }),
 
-    // DETAILS OBJECT
+    // Details Object
     defineField({
       name: 'details',
       title: 'Details',
       type: 'object',
       fields: [
-        // Intro text
-        defineField({
+        {
           name: 'intro',
           title: 'Introduction',
           type: 'text',
           rows: 4,
-        }),
-
-        // SECTIONS ARRAY
-        defineField({
+        },
+        {
           name: 'sections',
           title: 'Sections',
           type: 'array',
@@ -95,35 +104,54 @@ export default defineType({
             {
               type: 'object',
               fields: [
-                defineField({
+                {
                   name: 'key',
-                  title: 'Unique Key',
+                  title: 'Key (unique identifier)',
                   type: 'string',
-                  description: 'Used as a reference in frontend (e.g., "impact", "proposal")',
                   validation: (Rule) => Rule.required(),
-                }),
-                defineField({
+                },
+                {
                   name: 'title',
-                  title: 'Title',
+                  title: 'Section Title',
                   type: 'string',
-                }),
-                defineField({
+                },
+                {
                   name: 'text',
-                  title: 'Text',
+                  title: 'Text Content',
                   type: 'text',
-                  rows: 3,
-                }),
-                defineField({
+                  rows: 4,
+                },
+                {
                   name: 'list',
                   title: 'List Items',
                   type: 'array',
                   of: [{type: 'string'}],
-                }),
+                },
               ],
+              preview: {
+                select: {
+                  title: 'title',
+                  subtitle: 'key',
+                  text: 'text',
+                },
+                prepare({title, subtitle, text}) {
+                  return {
+                    title: title || subtitle || 'Section',
+                    subtitle: text ? text.substring(0, 60) + '...' : subtitle,
+                  }
+                },
+              },
             },
           ],
-        }),
+        },
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'description',
+      media: 'image',
+    },
+  },
 })

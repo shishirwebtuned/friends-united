@@ -11,7 +11,7 @@ const SubscriptionForm = () => {
                     <div className="text-center mb-8">
                         <h3 className="text-white md:text-sm text-xs lg:text-base font-semibold uppercase inline-block font-lato">Become One of the super powerful voices </h3>
                         <h1 className="text-3xl md:text-4xl mt-4 font-normal lg:text-5xl font-staatliches text-black">
-                            Join Us                        </h1>
+                            Join Us                  </h1>
                     </div>
 
                     <form className="space-y-6">

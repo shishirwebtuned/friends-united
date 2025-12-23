@@ -4,14 +4,16 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon --watch src --ext ts --exec node --loader ts-node/esm src/index.ts",
-    "build": "npx tsc",
-    "start": "node dist/index.js"
+    "build": "npm run clean && npx tsc",
+    "start": "nodemon --watch src --ext ts --exec node --loader ts-node/esm src/index.ts",
+    "clean": "node -e \"const fs = require('fs'); const path = require('path'); const deleteFiles = (dir, exts) => { if (fs.existsSync(dir)) fs.readdirSync(dir, {recursive: true, withFileTypes: true}).forEach(f => { if (f.isFile() && exts.some(ext => f.name.endsWith(ext))) fs.unlinkSync(path.join(f.path || f.parentPath, f.name)); }); }; deleteFiles('src', ['.js', '.d.ts', '.js.map', '.d.ts.map']); if (fs.existsSync('dist')) fs.rmSync('dist', {recursive: true, force: true}); console.log('✅ Cleaned compiled files');\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@sanity/client": "^7.13.2",
     "@types/nodemailer": "^7.0.3",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
@@ -29,7 +31,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.10.0",
-    "nodemon": "^3.1.10",
+    "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },

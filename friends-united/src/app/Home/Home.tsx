@@ -14,7 +14,6 @@ import RealWinners from './Components/RealWinners';
 import JoinUs from './Components/JoinUs';
 import { client } from '@/lib/sanity.client';
 import HeroBannerNew from './Components/HeroBannerNew';
-
 export const revalidate = 60
 
 export default async function HomePage() {
@@ -24,14 +23,6 @@ export default async function HomePage() {
       subTitle,
     }
   `);
-
-  const aboutUsData = await client.fetch(`
-    *[_type == "unitedVoices"][0]{
-    title,
-    subTitle,
-    description,
-    voices
-    } `);
 
   const faq = await client.fetch(`
   *[_type == "faq"][0]{
@@ -50,7 +41,7 @@ export default async function HomePage() {
       <HeroSection />
       {/* <HeroBanner bannerData={bannerData} /> */}
       <HeroBannerNew bannerData={bannerData} />
-      <AboutUs aboutUsData={aboutUsData} />
+      <AboutUs />
       <OurFight />
       <HadEnough />
       <GiveawaySection />
