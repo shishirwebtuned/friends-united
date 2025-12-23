@@ -26,6 +26,7 @@ export default async function HomePage() {
 
   const faq = await client.fetch(`
   *[_type == "faq"][0]{
+  image,
     faq[]{
       _key,
       question,

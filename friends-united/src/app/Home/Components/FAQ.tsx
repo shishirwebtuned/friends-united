@@ -2,7 +2,8 @@
 import SectionHeader from '@/Components/SectionHeader';
 import { staticFAQData } from '@/data/data';
 import { paddingX } from '@/data/paddingData';
-import Image from 'next/image';
+import imageUrlBuilder from '@sanity/image-url';
+import { client } from '@/lib/sanity.client';
 import React, { useState, useRef, useEffect } from 'react';
 
 interface FAQItem {
@@ -12,8 +13,14 @@ interface FAQItem {
 
 interface FAQProps {
     faqDataList: {
+        image: string;
         faq: FAQItem[];
     };
+}
+
+const builder = imageUrlBuilder(client);
+function urlFor(source: any) {
+    return builder.image(source);
 }
 
 const FAQ: React.FC<FAQProps> = ({ faqDataList }) => {
@@ -23,7 +30,7 @@ const FAQ: React.FC<FAQProps> = ({ faqDataList }) => {
     const toggleAccordion = (id: number) => {
         setOpenId(openId === id ? null : id);
     };
-
+console.log('faqDatalist', faqDataList.image);
     console.log('faqDatalist', faqDataList);
     console.log("faqData", staticFAQData);
 
@@ -42,14 +49,17 @@ const FAQ: React.FC<FAQProps> = ({ faqDataList }) => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:gap-10 lg:gap-8 gap-6 items-center mb-12 lg:mt-8 md:mt-7 mt-5">
+
                 <div className="relative flex items-center justify-center">
-                    <img
-                        src="images/mid-banner.webp"
-                        alt="FAQ Banner"
-                        width={600}
-                        height={600}
-                        className="lg:w-full lg:h-[620px] object-cover rounded-3xl md:h-[500px] md:w-auto w-auto h-auto"
-                    />
+                    {faqDataList?.image && faqDataList.image.asset ? (
+                        <img
+                            src={urlFor(faqDataList.image).width(600).height(600).url()}
+                            alt="FAQ Banner"
+                            width={600}
+                            height={600}
+                            className="lg:w-full lg:h-[620px] object-cover rounded-3xl md:h-[500px] md:w-auto w-auto h-auto"
+                        />
+                    ) : null}
                 </div>
 
                 <div className="rounded-lg">
