@@ -14,3 +14,4 @@ export function PaypalProvider({ children }: { children: React.ReactNode }) {
         </PayPalScriptProvider>
     );
 }
+export default PaypalProvider;

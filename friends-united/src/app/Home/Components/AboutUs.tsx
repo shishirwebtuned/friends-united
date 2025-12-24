@@ -66,13 +66,6 @@ const AboutUs: React.FC = () => {
         };
     }, []);
 
-    if (loading) {
-        return (
-            <section className={` ${paddingX} py-20 md:py-[5.5rem]`}>
-                <p className="text-center text-gray-500">Loading...</p>
-            </section>
-        );
-    }
     return (
         <section className={` ${paddingX} py-20 md:py-[5.5rem]`}>
             <div className="">
