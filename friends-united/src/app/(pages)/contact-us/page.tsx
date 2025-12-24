@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import { useEffect } from "react";
 import axiosInstance from "../../../utils/axiosinstance";
 import {client} from "@/lib/sanity.client";
+// export const revalidate = 60; // seconds
 
 const Page = () => {
     const [contactInfo, setContactInfo] = React.useState<{ email?: string; phone?: string; address?: string }>({});
@@ -135,7 +136,7 @@ const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
                         playsInline
                         className="object-cover h-full w-[95%] rounded-xl"
                     />
-                    {/* <img src="/images/contactUs3.jpg" alt="friend united" className="object-cover h-full w-full rounded-xl" /> */}
+               
                 </div>
                 </div>
            

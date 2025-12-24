@@ -1,6 +1,7 @@
 // app/our-fight/[slug]/page.tsx
 import React from "react";
 import { client } from "@/lib/sanity.client";
+export const revalidate = 60; // seconds
 import { paddingX } from "@/data/paddingData";
 import DemandDetail from "./DemandDetail";
 import imageUrlBuilder from '@sanity/image-url';

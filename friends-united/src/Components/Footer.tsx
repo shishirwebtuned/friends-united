@@ -2,6 +2,7 @@
 
 import React from "react";
 import { client } from "@/lib/sanity.client";
+export const revalidate = 60; // seconds
 import { paddingX } from "@/data/paddingData";
 import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedin, FaYoutube, FaWhatsapp, FaTiktok } from "react-icons/fa";
 

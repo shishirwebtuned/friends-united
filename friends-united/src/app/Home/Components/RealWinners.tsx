@@ -4,6 +4,7 @@ import { paddingX } from '@/data/paddingData'
 import React from 'react';
 import { motion } from "framer-motion";
 import { client } from '@/lib/sanity.client';
+export const revalidate = 60; // seconds
 import * as FaIcons from 'react-icons/fa';
 import * as FaIcons6 from 'react-icons/fa6';
 import * as TiIcons from 'react-icons/ti';

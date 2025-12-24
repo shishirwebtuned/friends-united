@@ -7,6 +7,7 @@ import { paddingX } from "@/data/paddingData";
 import SectionHeader from "@/Components/SectionHeader";
 import { motion } from "framer-motion";
 import { client } from '@/lib/sanity.client';
+export const revalidate = 60; // seconds
 import imageUrlBuilder from '@sanity/image-url';
 
 export interface Voice {

@@ -3,6 +3,7 @@ import SectionHeader from "@/Components/SectionHeader";
 import { paddingX } from "@/data/paddingData";
 import React from "react";
 import { client } from "@/lib/sanity.client";
+export const revalidate = 60; // seconds
 import OurStorySections from "./OurStorySections";
 
 interface Section {

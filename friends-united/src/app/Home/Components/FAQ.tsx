@@ -5,6 +5,7 @@ import { paddingX } from '@/data/paddingData';
 import imageUrlBuilder from '@sanity/image-url';
 import { client } from '@/lib/sanity.client';
 import React, { useState, useRef, useEffect } from 'react';
+export const revalidate = 60; // seconds
 
 interface FAQItem {
     question: string;
