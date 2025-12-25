@@ -14,6 +14,7 @@ import RealWinners from './Components/RealWinners';
 import JoinUs from './Components/JoinUs';
 import { client } from '@/lib/sanity.client';
 import HeroBannerNew from './Components/HeroBannerNew';
+import DailySocialMedia from './Components/DailySocialMedia';
 export const revalidate = 60
 
 export default async function HomePage() {
@@ -54,7 +55,7 @@ export default async function HomePage() {
       {/* <JoinUsForm /> */}
       <FAQ faqDataList={faq} />
       <ContactBanner />
-      {/* <DailySocialMedia /> */}
+      <DailySocialMedia />
     </div>
   )
 }

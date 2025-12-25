@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
     const y = useTransform(scrollY, [0, 400], [0, 80]);
 
     return (
-        <section className={`relative overflow-hidden h-[77dvh] md:h-[70dvh] ${paddingX}`}>
+        <section className={`relative overflow-hidden h-[78dvh] md:h-[74dvh] ${paddingX}`}>
             {/* <MotionImage
                 src="/images/sydneyBanner3.webp"
                 alt="Friends United"

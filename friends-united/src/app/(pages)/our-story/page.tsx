@@ -1,4 +1,4 @@
-'use client';
+
 import CustomButton from "@/Components/CustomButton";
 import SectionHeader from "@/Components/SectionHeader";
 import { paddingX } from "@/data/paddingData";
