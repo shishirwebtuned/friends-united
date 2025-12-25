@@ -23,7 +23,10 @@ export default async function HomePage() {
       title,
       subTitle,
     }
-  `);
+  `,
+    {},
+    { cache: "no-store" }
+  );
 
   const faq = await client.fetch(`
   *[_type == "faq"][0]{
@@ -34,7 +37,10 @@ export default async function HomePage() {
       answer
     }
   }
-`)
+`,
+    {},
+    { cache: "no-store" }
+  );
 
   console.log("faq", faq);
 
