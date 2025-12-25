@@ -1,9 +1,10 @@
+'use client';
 import CustomButton from "@/Components/CustomButton";
 import SectionHeader from "@/Components/SectionHeader";
 import { paddingX } from "@/data/paddingData";
 import React from "react";
 import { client } from "@/lib/sanity.client";
-export const revalidate = 60; // seconds
+
 import OurStorySections from "./OurStorySections";
 
 interface Section {
@@ -24,7 +25,7 @@ async function getOurStoryData(): Promise<OurStoryData | null> {
         const query = `*[_type == "ourstory"][0]{
             sections
         }`;
-        const data = await client.fetch(query, {}, { next: { revalidate: 60 } });
+        const data = await client.fetch(query, {}, { next: { revalidate: 600 } });
         return data;
     } catch (error) {
         console.error("Error fetching our story data:", error);

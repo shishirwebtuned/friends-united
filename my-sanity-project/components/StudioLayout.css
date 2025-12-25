@@ -1,0 +1,125 @@
+/* Custom Sidebar Styling */
+[data-ui="NavMenu"] {
+  padding: 0 !important;
+}
+
+[data-ui="NavMenu"] > div {
+  padding: 0 !important;
+}
+
+[data-ui="NavMenu"] a,
+[data-ui="NavMenu"] button {
+  border-radius: 8px !important;
+  margin: 4px 12px !important;
+  padding: 12px 16px !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-ui="NavMenu"] a:hover,
+[data-ui="NavMenu"] button:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  transform: translateX(4px);
+}
+
+[data-ui="NavMenu"] [data-selected="true"],
+[data-ui="NavMenu"] a[aria-current="page"] {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Document List Styling */
+[data-ui="DocumentListPane"] {
+  background: #f8fafc !important;
+}
+
+[data-ui="DocumentListPane"] header {
+  background: white !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 20px 24px !important;
+}
+
+/* Cards */
+[data-ui="Card"] {
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Form Fields */
+[data-ui="TextInput"],
+[data-ui="TextArea"] {
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 10px 12px !important;
+  transition: all 0.2s !important;
+}
+
+[data-ui="TextInput"]:focus,
+[data-ui="TextArea"]:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Buttons */
+button[data-ui="Button"] {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s !important;
+  padding: 10px 20px !important;
+}
+
+button[data-ui="Button"][data-mode="default"] {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  color: white !important;
+  border: none !important;
+}
+
+button[data-ui="Button"][data-mode="default"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Document Panel */
+[data-ui="DocumentPanel"] {
+  background: white !important;
+}
+
+/* Pane Header */
+[data-ui="PaneHeader"] {
+  background: white !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 16px 24px !important;
+}
+
+/* Badge */
+[data-ui="Badge"] {
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+}

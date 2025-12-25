@@ -16,7 +16,7 @@ const app = express();
 // CORS Configuration
 const allowedOrigins = [
   'http://localhost:3000',
-  'http://127.0.0.1:3000',
+  'http://localhost:8080',
   process.env.CLIENT_URL
 ].filter((origin): origin is string => Boolean(origin));
 
@@ -33,7 +33,7 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // Routes
-const baseApi = "/api/v1/en"; // Updated base API path
+const baseApi = "/api"; // Updated base API path
 
 app.use(`${baseApi}/users`, userRoutes);
 app.use(`${baseApi}/contacts`, contactRoutes);

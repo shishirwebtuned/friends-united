@@ -5,10 +5,11 @@ export interface IUser extends Document {
   email: string;
   password: string;
   role: string;
-  phoneNumber: string;
+  phone: string;
   address: string;
-  status: "pending" | "verified";
+  status: boolean;
   otp: string | null;
   otpExpiry: Date | null;
   bookings: Types.ObjectId[];
+  createdBy: "user" | "admin";
 }

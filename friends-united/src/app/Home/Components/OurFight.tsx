@@ -10,7 +10,7 @@ import { paddingX } from "@/data/paddingData";
 import { motion } from "framer-motion";
 import SectionHeader from "@/Components/SectionHeader";
 import { client } from '@/lib/sanity.client';
-export const revalidate = 60; // seconds
+
 import imageUrlBuilder from '@sanity/image-url';
 import React from 'react';
 
