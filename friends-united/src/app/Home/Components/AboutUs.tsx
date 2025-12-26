@@ -21,6 +21,11 @@ export interface AboutUs {
     frontimage: any;
     backimage: any;
     voices: Voice[];
+    revival: {
+        title: string;
+        description: string;
+        pointList: string[];
+    }
 }
 
 const builder = imageUrlBuilder(client);
@@ -44,10 +49,16 @@ const AboutUs: React.FC = () => {
                     description,
                     frontimage,
                     backimage,
+                    revival{
+                        title,
+                        description,
+                        pointList[]
+                    },
                     voices[]{
                         heading,
                         subHeading
                     }
+
                 }`
             )
             .then((res) => {
@@ -66,6 +77,7 @@ const AboutUs: React.FC = () => {
         };
     }, []);
 
+    console.log("aboutUS Data", aboutUsData);
     return (
         <section className={` ${paddingX} py-20 md:py-[5.5rem]`}>
             <div className="">
@@ -176,7 +188,32 @@ const AboutUs: React.FC = () => {
                                 </div>
                             </motion.div>
                         </div>
-                        <div>
+                        <div className="flex flex-col gap-2 md:gap-3 lg:gap-5 mt-2">
+                            <h2 className="text-lg md:text-xl lg:text-2xl font-staatliches text-[#ca7b28]">
+                                {aboutUsData?.revival?.title}
+                            </h2>
+
+                            <p className="text-gray-800 leading-relaxed tracking-wide text-xs md:text-sm lg:text-base font-manrope max-w-2xl">
+                                {aboutUsData?.revival?.description}
+                            </p>
+
+                            <div className="flex flex-col gap-1">
+                                {aboutUsData?.revival?.pointList.map((item: any, index: number) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-center gap-2"
+                                    >
+                                        <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#ca7b28] flex-shrink-0" />
+
+                                        <p className="text-gray-600 text-[11px] md:text-[13px] lg:text-[15px] leading-relaxed font-manrope font-medium">
+                                            {item}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="mt-6">
                             <CustomButton btnPadding="more" label="Explore Our Story" buttonType="filled-outlined" href="/our-story" />
 
                         </div>
@@ -205,7 +242,7 @@ const AboutUs: React.FC = () => {
                                 )}
                             </div>
 
-                            <div className="absolute bottom-4 lg:bottom-8 right-2 md:right-0 w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px]">
+                            <div className="absolute bottom-6 lg:bottom-16 right-2 md:right-0 w-[180px] h-[180px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px]">
                                 {aboutUsData?.backimage ? (
                                     <img
                                         src={urlFor(aboutUsData.backimage).width(400).height(400).url()}

@@ -43,7 +43,9 @@ const RealWinners = () => {
                         title,
                         description
                     }
-                }`
+                }`,
+                {},
+                { cache: "no-store" }
             )
             .then((res) => {
                 if (!isMounted) return;
@@ -63,7 +65,7 @@ const RealWinners = () => {
 
     const renderIcon = (iconName: string) => {
         if (!iconName) return null;
-        
+
         // Combine all icon libraries
         const allIcons = {
             ...FaIcons,
@@ -72,15 +74,15 @@ const RealWinners = () => {
             ...MdIcons,
             ...GiIcons,
         };
-        
+
         const IconComponent = allIcons[iconName as keyof typeof allIcons];
-        
+
         // Check if it's a valid React component
         if (!IconComponent || typeof IconComponent !== 'function') {
             console.warn(`Icon "${iconName}" not found in react-icons`);
             return null;
         }
-        
+
         return <IconComponent className="w-7 h-7" />;
     };
 

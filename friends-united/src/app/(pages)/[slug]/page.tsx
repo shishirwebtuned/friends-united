@@ -15,7 +15,12 @@ function urlFor(source: any) {
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-    const services = await client.fetch(`*[_type == "services"]{ link }`);
+    const services = await client.fetch(`
+        *[_type == "services"]{ link }`
+        ,
+        {},
+        { cache: "no-store" }
+    );
     return services.map((service: any) => ({
         slug: service.link.replace(/^\//, ""),
     }));
@@ -28,7 +33,7 @@ interface PageParams {
 export default async function page({ params }: PageParams) {
     const { slug } = await params;
     const currentLink = `/${slug}`;
-    
+
     const service = await client.fetch(
         `*[_type == "services" && link == $link][0]{
             title,
@@ -40,7 +45,8 @@ export default async function page({ params }: PageParams) {
             references,
             details
         }`,
-        { link: currentLink }
+        { link: currentLink },
+        { cache: "no-store" }
     );
 
     if (!service) {

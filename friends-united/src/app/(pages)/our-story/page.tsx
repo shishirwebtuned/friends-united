@@ -25,7 +25,9 @@ async function getOurStoryData(): Promise<OurStoryData | null> {
         const query = `*[_type == "ourstory"][0]{
             sections
         }`;
-        const data = await client.fetch(query, {}, { next: { revalidate: 600 } });
+        const data = await client.fetch(query,
+            {},
+            { cache: "no-store" });
         return data;
     } catch (error) {
         console.error("Error fetching our story data:", error);
@@ -41,7 +43,7 @@ const Page = async () => {
         <div className={`${paddingX} bg-gradient-to-b from-white via-[#fff9f3] to-white py-16 mb-8`}>
             {/* Header */}
             <div className="text-center flex items-center justify-center">
-                <SectionHeader subtitle="Explore FAQs" title="Our Story" align="center" />
+                <SectionHeader subtitle="Explore About Us" title="Our Story" align="center" />
             </div>
 
             {/* Sections */}
@@ -55,7 +57,7 @@ const Page = async () => {
                         Join FRIENDS UNITED
                     </h2>
                     <p className="mb-8 font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
-                        Advocate for changes impacting Australia, Australians, our lifestyle, and the future of our nation.
+                        Advocate for changes impacting Australia, Australians, our lifestyle, and the future of our Australia.
                     </p>
 
                     <CustomButton

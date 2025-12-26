@@ -34,8 +34,10 @@ const OurFight = () => {
                 description,
                 image,
                 link
-            }`)
-            .then((res) => {
+            }`,
+                {},
+                { cache: "no-store" }
+            ).then((res) => {
                 if (!isMounted) return;
                 setServices(res);
                 setLoading(false);
@@ -50,6 +52,7 @@ const OurFight = () => {
             isMounted = false;
         };
     }, []);
+    console.log("services", services)
 
     if (loading) {
         return (
