@@ -248,3 +248,85 @@ export const updateUser = catchAsync(async (req, res) => {
   }
   
 });
+
+export const forgotPassword = catchAsync(async (req, res) => {
+  const { email } = req.body
+
+  if (!email) {
+    throw new AppError('Email is required', 400)
+  }
+
+  // Find user by email
+  const user = await User.findOne({ email })
+
+  if (!user) {
+    // Return consistent response for security (don't reveal if email exists)
+    return sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message: 'If this email exists, you will receive a password reset link',
+      data: null,
+    })
+  }
+
+  // Generate OTP
+  const otp = Math.floor(100000 + Math.random() * 900000)
+
+  // Hash OTP for storage
+  const hashedOtp = crypto
+    .createHash('sha256')
+    .update(String(otp))
+    .digest('hex')
+
+  // Set OTP expiration (10 minutes)
+ const otpExpires = new Date(Date.now() + 10 * 60 * 1000)
+
+
+  // Update user with OTP and expiry
+  user.otp = hashedOtp
+  user.otpExpiry =  otpExpires
+  await user.save()
+
+  // Send OTP via email
+  const subject = 'Friends United - Password Reset OTP'
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+      <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h2 style="color: #007bff;">Password Reset Request</h2>
+        <p>Hello ${user.name},</p>
+        <p>We received a request to reset your password. Use the code below to proceed:</p>
+        
+        <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
+          <h1 style="color: #007bff; letter-spacing: 5px; margin: 0;">${otp}</h1>
+        </div>
+        
+        <p><strong>This code will expire in 10 minutes.</strong></p>
+        
+        <p style="color: #666;">
+          If you didn't request a password reset, please ignore this email or contact our support team immediately.
+        </p>
+        
+        <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+        <p style="font-size: 12px; color: #999;">
+          Friends United Admin Dashboard<br>
+          © ${new Date().getFullYear()}
+        </p>
+      </div>
+    </div>
+  `
+
+  try {
+    await sendEmail({ to: email, subject, html })
+  } catch (emailError) {
+    console.error('Failed to send password reset OTP:', emailError)
+    throw new AppError('Failed to send reset email. Please try again.', 500)
+  }
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Password reset OTP sent to your email',
+    data: null,
+  })
+})
