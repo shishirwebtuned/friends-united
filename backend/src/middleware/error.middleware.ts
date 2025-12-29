@@ -13,7 +13,7 @@ export const errorHandler = (
 
   sendResponse(res, {
     success: false,
-    statusCode,a
+    statusCode,
     message,
     error: process.env.NODE_ENV === "development" ? err : undefined,
   });

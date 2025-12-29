@@ -8,18 +8,20 @@ import {
   deleteUser,
   updateUserStatus,
   updateUser,
-  forgotPassword
+  forgotPassword,
+  resetpassword,
+  getme
 } from "../controllers/user.controller.js";
 import { adminOnly, protect } from "../middleware/auth.middleware.js";
-
-
 const router = express.Router();
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/verifyOtp", verifyOtp);
 router.post("/forgot-password",forgotPassword );
+router.post("/reset-password",resetpassword );
 router.get("/user-list", getUsers);
+router.get('/me', protect ,getme);
 router.get("/:id", getUserById);
 router.delete("/:id", deleteUser);
 router.patch("/updateuserstatus/:id", updateUserStatus);

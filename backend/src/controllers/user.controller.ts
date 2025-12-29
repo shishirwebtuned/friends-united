@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import { User } from "../models/user.model.js";
 import { AppError } from "../utils/AppError.js";
 import { catchAsync } from "../utils/catchAsync.js";
+import type { AuthRequest } from "../types/authRequest.js";
 import { generateToken } from "../utils/generateToken.js";
 import { sendResponse } from "../utils/sendResponse.js";
 import crypto from "crypto";
@@ -41,7 +42,7 @@ export const registerUser = catchAsync(async (req, res) => {
   if (!name || !email || !password || !phone || !address || !role )
     throw new AppError("All fields are  required", 400);
 
- const existingUser = await User.findOne({ 
+ const existingUser = await User.findOne({
   $or: [
     { email: email }, 
     { phone: phone }
@@ -286,6 +287,13 @@ export const forgotPassword = catchAsync(async (req, res) => {
   user.otp = hashedOtp
   user.otpExpiry =  otpExpires
   await user.save()
+  sendResponse(res,{
+      success: true,
+      statusCode: 200,
+      message: `${otp}`,
+
+    }
+  )
 
   // Send OTP via email
   const subject = 'Friends United - Password Reset OTP'
@@ -330,3 +338,61 @@ export const forgotPassword = catchAsync(async (req, res) => {
     data: null,
   })
 })
+
+export const resetpassword = catchAsync(async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  // Validation
+  if (!email) {
+    throw new AppError("Email is required", 400);
+  }
+
+  if (!newPassword) {
+    throw new AppError("New password is required", 400);
+  }
+
+  if (newPassword.length < 6) {
+    throw new AppError("Password must be at least 6 characters long", 400);
+  }
+
+  // Find user by email
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    // Return consistent response for security (don't reveal if email exists)
+    return sendResponse(res, {
+      success: true,
+      statusCode: 204,
+      message: "User not found",
+      data: null,
+    });
+  }
+
+  // Update password - DO NOT hash here, let the pre-save hook handle it
+  user.password = newPassword;
+  await user.save();
+
+  return sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Password reset successfully",
+    data: null,
+  });
+});
+
+export const getme = catchAsync<AuthRequest>(async (req, res) => {
+  const user = req.user;
+
+  if (!user) {
+    throw new AppError("User not found", 404);
+  }
+
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: "User profile fetched successfully",
+    data: user,
+  });
+});
+
+
