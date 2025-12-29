@@ -17,11 +17,28 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:8080',
-  process.env.CLIENT_URL
+  process.env.CLIENT_URL,
+  'https://friends-united.vercel.app',
+  'https://*.vercel.app'
 ].filter((origin): origin is string => Boolean(origin));
 
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+    // Allow requests with no origin (mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.some(allowed => {
+      if (allowed.includes('*')) {
+        const pattern = allowed.replace(/\*/g, '.*');
+        return new RegExp(`^${pattern}$`).test(origin);
+      }
+      return allowed === origin;
+    })) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200
 };

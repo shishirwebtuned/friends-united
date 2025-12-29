@@ -17,11 +17,6 @@ app.get("/", (req, resp) => {
   });
 });
 
-// Start server first
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
-});
-
 // Connect to database (non-blocking)
 connectDB()
   .then(async () => {
@@ -32,3 +27,13 @@ connectDB()
     console.error("❌ Database connection failed:", error.message);
     console.log("⚠️ Server is running but database is not connected");
   });
+
+// Start server only in development (Vercel handles this in production)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`✅ Server running on http://localhost:${PORT}`);
+  });
+}
+
+// Export for Vercel
+export default app;
