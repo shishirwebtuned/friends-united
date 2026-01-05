@@ -86,6 +86,8 @@ const RealWinners = () => {
         return <IconComponent className="w-7 h-7" />;
     };
 
+    console.log("winnerData", data);
+
     return (
         <div className={` ${paddingX} py-16`}>
             <div className='text-center flex flex-col items-center justify-center'>
