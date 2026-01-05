@@ -16,7 +16,7 @@ interface JwtPayload {
 }
 
 export const protect = async (
-  req: Request,
+  req: Request & { user?: any }, // allow user on req
   res: Response,
   next: NextFunction
 ) => {
