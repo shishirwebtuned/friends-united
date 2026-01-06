@@ -20,8 +20,12 @@ const JoinUs = () => {
                         Stand with us and amplify the voice of millions. Together, we can influence change and shape the future of Australia.
                     </p>
 
-                    <p className="font-lato text-base md:text-lg mb-10 text-[#e5e5e5]/80">
+                    {/* <p className="font-lato text-base md:text-lg mb-10 text-[#e5e5e5]/80">
                         Your support matters. Join the movement and make a real impact today.
+                    </p> */}
+
+                    <p className="font-lato text-base md:text-lg mb-10 text-[#e5e5e5]/80">
+                        Become a Voice of One of the Super Powerfuls
                     </p>
 
                     <Link

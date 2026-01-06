@@ -99,7 +99,7 @@ export default function Navbar() {
                         alt="Logo"
                         width={220}
                         height={70}
-                        className="w-[140px] sm:w-[160px] md:w-[170px] lg:w-[200px] xl:w-[210px]"
+                        className="w-[130px] sm:w-[150px] md:w-[180px] lg:w-[190px] xl:w-[200px]"
                     />
                 </Link>
 

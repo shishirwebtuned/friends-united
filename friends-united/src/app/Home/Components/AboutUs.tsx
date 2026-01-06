@@ -8,6 +8,7 @@ import SectionHeader from "@/Components/SectionHeader";
 import { motion } from "framer-motion";
 import { client } from '@/lib/sanity.client';
 import imageUrlBuilder from '@sanity/image-url';
+import Link from "next/link";
 
 export interface Voice {
     heading: string;
@@ -85,7 +86,7 @@ const AboutUs: React.FC = () => {
                     {/* Text Column */}
                     <div className="lg:w-1/2 flex flex-col">
                         <SectionHeader
-                            subtitle={`${aboutUsData?.subTitle || "Raising a Fierce Force of Change-Makers"}`}
+                            // subtitle={`${aboutUsData?.subTitle || "Raising a Fierce Force of Change-Makers"}`}
                             title={`${aboutUsData?.title || "United Voices, Unstoppable Revolution"}`}
                             align="left"
                         />
@@ -100,94 +101,96 @@ const AboutUs: React.FC = () => {
                         </motion.p>
 
                         {/* Features Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
-                            <motion.div
-                                initial={{ opacity: 0, x: -15 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.7, ease: "easeOut" }}
-                                className="flex gap-3 items-start">
-                                <div className="flex-shrink-0">
-                                    <img
-                                        src="icons/relationship.png"
-                                        alt="Stronger Together"
-                                        width={60}
-                                        height={60}
-                                        className="object-contain"
-                                    />
-                                </div>
-                                <div>
-                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">{`${aboutUsData?.voices?.[0]?.heading || "Stronger Together"}`}</h4>
-                                    <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">  {aboutUsData?.voices?.[0]?.subHeading || "Collective action to create lasting political impact."}
-                                    </p>
-                                </div>
-                            </motion.div>
+                        {/* {aboutUsData?.voices.length !== 0 && (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+                                <motion.div
+                                    initial={{ opacity: 0, x: -15 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, amount: 0.3 }}
+                                    transition={{ duration: 0.7, ease: "easeOut" }}
+                                    className="flex gap-3 items-start">
+                                    <div className="flex-shrink-0">
+                                        <img
+                                            src="icons/relationship.png"
+                                            alt="Stronger Together"
+                                            width={60}
+                                            height={60}
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">{`${aboutUsData?.voices?.[0]?.heading}`}</h4>
+                                        <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">  {aboutUsData?.voices?.[0]?.subHeading}
+                                        </p>
+                                    </div>
+                                </motion.div>
 
-                            <motion.div
-                                initial={{ opacity: 0, x: 15 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.7, ease: "easeOut" }} className="flex gap-3 items-start">
-                                <div className="flex-shrink-0">
-                                    <img
-                                        src="icons/voice.png"
-                                        alt="Making Voices Heard"
-                                        width={60}
-                                        height={60}
-                                        className="object-contain"
-                                    />
-                                </div>
-                                <div>
-                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">{`${aboutUsData?.voices?.[1]?.heading || "Making Voices Heard"}`}</h4>
-                                    <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">{aboutUsData?.voices?.[1]?.subHeading || "Turning voter concerns into undeniable demands for change."}</p>
-                                </div>
-                            </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, x: 15 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, amount: 0.3 }}
+                                    transition={{ duration: 0.7, ease: "easeOut" }} className="flex gap-3 items-start">
+                                    <div className="flex-shrink-0">
+                                        <img
+                                            src="icons/voice.png"
+                                            alt="Making Voices Heard"
+                                            width={60}
+                                            height={60}
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">{`${aboutUsData?.voices?.[1]?.heading}`}</h4>
+                                        <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">{aboutUsData?.voices?.[1]?.subHeading}</p>
+                                    </div>
+                                </motion.div>
 
-                            <motion.div
-                                initial={{ opacity: 0, x: -15 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.7, ease: "easeOut" }} className="flex gap-3 items-start">
-                                <div className="flex-shrink-0">
-                                    <img
-                                        src="icons/team.png"
-                                        alt="Standing Strong"
-                                        width={60}
-                                        height={60}
-                                        className="object-contain"
-                                    />
-                                </div>
-                                <div>
-                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">{`${aboutUsData?.voices?.[2]?.heading || "Standing Strong"}`}</h4>
-                                    <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">
-                                        {aboutUsData?.voices?.[2]?.subHeading || "Building solidarity to protect our rights and future."}</p>
-                                </div>
-                            </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, x: -15 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, amount: 0.3 }}
+                                    transition={{ duration: 0.7, ease: "easeOut" }} className="flex gap-3 items-start">
+                                    <div className="flex-shrink-0">
+                                        <img
+                                            src="icons/team.png"
+                                            alt="Standing Strong"
+                                            width={60}
+                                            height={60}
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1">{`${aboutUsData?.voices?.[2]?.heading}`}</h4>
+                                        <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">
+                                            {aboutUsData?.voices?.[2]?.subHeading}</p>
+                                    </div>
+                                </motion.div>
 
-                            <motion.div
-                                initial={{ opacity: 0, x: 15 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.7, ease: "easeOut" }}
-                                className="flex gap-3 items-start">
-                                <div className="flex-shrink-0">
-                                    <img
-                                        src="icons/change.png"
-                                        alt="Drive Change Forward"
-                                        width={60}
-                                        height={60}
-                                        className="object-contain"
-                                    />
-                                </div>
-                                <div>
-                                    <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1"> {`${aboutUsData?.voices?.[3]?.heading || "Drive Change Forward"}`} </h4>
-                                    <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">
-                                        {aboutUsData?.voices?.[3]?.subHeading || "Empowering communities to turn ideas into policies that matter."}
+                                <motion.div
+                                    initial={{ opacity: 0, x: 15 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, amount: 0.3 }}
+                                    transition={{ duration: 0.7, ease: "easeOut" }}
+                                    className="flex gap-3 items-start">
+                                    <div className="flex-shrink-0">
+                                        <img
+                                            src="icons/change.png"
+                                            alt="Drive Change Forward"
+                                            width={60}
+                                            height={60}
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4 className="lg:text-xl md:text-lg text-base font-staatliches font-medium tracking-wide mb-1"> {`${aboutUsData?.voices?.[3]?.heading || "Drive Change Forward"}`} </h4>
+                                        <p className="lg:text-sm md:text-xs text-[10px] font-manrope text-[#4e4e4e] leading-loose font-medium">
+                                            {aboutUsData?.voices?.[3]?.subHeading || "Empowering communities to turn ideas into policies that matter."}
 
-                                    </p>
-                                </div>
-                            </motion.div>
-                        </div>
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        )} */}
                         <div className="flex flex-col gap-2 md:gap-3 lg:gap-5 mt-2">
                             <h2 className="text-lg md:text-xl lg:text-2xl font-staatliches text-[#ca7b28]">
                                 {aboutUsData?.revival?.title}
@@ -208,6 +211,10 @@ const AboutUs: React.FC = () => {
                                         <p className="text-gray-600 text-[11px] md:text-[13px] lg:text-[15px] leading-relaxed font-manrope font-medium">
                                             {item}
                                         </p>
+
+                                        {index === 0 && (
+                                            <Link href="/join-us" className="bg-white cursor-pointer text-[#D1792C] font-semibold text-sm md:text-base lg:text-lg font-lato">Join us</Link>
+                                        )}
                                     </div>
                                 ))}
                             </div>

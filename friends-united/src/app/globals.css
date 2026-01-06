@@ -56,7 +56,12 @@
 @theme {
   --font-broadway: "Broadway", "sans-serif";
   --font-arialGreek: "ArialGreek", "sans-serif";
+  --font-firaSansCondensed: var(--font-firaSansCondensed);
 }
+
+/* @theme inline {
+  --font-firs: var(--font-firaSansCondensed);
+} */
 
 .font-staatliches {
   font-family: "Staatliches", sans-serif;
