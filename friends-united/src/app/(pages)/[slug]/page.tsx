@@ -62,6 +62,6 @@ export default async function page({ params }: PageParams) {
         ...service,
         image: service.image ? urlFor(service.image).width(800).url() : null,
     };
-
+    console.log("serviceData", serviceWithImageUrl)
     return <DemandDetail key={slug} service={serviceWithImageUrl} />;
 }

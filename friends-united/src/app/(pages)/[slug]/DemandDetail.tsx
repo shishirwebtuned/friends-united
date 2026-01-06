@@ -20,7 +20,7 @@ interface Service {
     link: string;
     demands?: string[];
     references?: Reference[];
-    demandtext?: string;
+    demandText?: string;
 }
 
 interface DemandDetailProps {
@@ -61,9 +61,9 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                 ))}
                             </ul>
 
-                            {service.demandtext && (
+                            {service.demandText && (
                                 <p className="font-manrope text-xs md:text-sm lg:text-base mt-3 ml-4 md:ml-6 text-gray-700">
-                                    {service.demandtext}
+                                    {service.demandText}
                                 </p>
                             )}
                         </div>
