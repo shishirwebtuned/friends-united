@@ -221,10 +221,10 @@ const AboutUs: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="mt-5 md:mt-6 flex sm:justify-start justify-center">
+                        {/* <div className="mt-5 md:mt-6 flex sm:justify-start justify-center">
                             <CustomButton btnPadding="more" label="Explore Our Story" buttonType="filled-outlined" href="/our-story" />
 
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="lg:w-1/2 mt-12 lg:mt-0 w-full relative flex justify-center">
@@ -250,7 +250,7 @@ const AboutUs: React.FC = () => {
                                 )}
                             </div>
 
-                            <div className="absolute bottom-6 lg:bottom-23.5 right-2 md:right-0 w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] md:w-[290px] md:h-[290px] lg:w-[340px] lg:h-[340px]">
+                            <div className="absolute bottom-6 lg:bottom-7.5 right-2 md:right-0 w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] md:w-[290px] md:h-[290px] lg:w-[340px] lg:h-[340px]">
                                 {aboutUsData?.backimage ? (
                                     <img
                                         src={urlFor(aboutUsData.backimage).width(400).height(400).url()}
