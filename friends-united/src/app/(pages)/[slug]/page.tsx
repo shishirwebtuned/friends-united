@@ -38,6 +38,7 @@ export default async function page({ params }: PageParams) {
         `*[_type == "services" && link == $link][0]{
             title,
             description,
+            order,
             image,
             link,
             demands,

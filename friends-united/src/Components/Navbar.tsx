@@ -14,6 +14,7 @@ import { client } from '@/lib/sanity.client';
 interface DropdownItem {
     label: string;
     href: string;
+    order: number;
 }
 
 interface NavLink {
@@ -31,7 +32,7 @@ export default function Navbar() {
     useEffect(() => {
         // Fetch services to build dynamic dropdown
         client
-            .fetch(`*[_type == "services"]{ title, link }`)
+            .fetch(`*[_type == "services"]{ title, link, order }`)
             .then((services) => {
                 const dynamicNav = [
                     {
@@ -39,6 +40,7 @@ export default function Navbar() {
                         dropdown: services.map((s: any) => ({
                             label: s.title,
                             href: s.link,
+                            order: s.order,
                         })),
                     },
                     { title: "Our Story", href: "/our-story" },
@@ -121,7 +123,7 @@ export default function Navbar() {
 
                                     {openDropdownIndex === index && (
                                         <div className="absolute left-0 top-full z-50 mt-4 w-56 lg:w-64 xl:w-72 rounded-sm bg-[#D1792C] text-white shadow-lg md:text-xs text-[xs] lg:text-base py-2">
-                                            {link.dropdown.map((item, idx) => (
+                                            {link.dropdown?.slice().sort((a, b) => a.order - b.order).map((item, idx) => (
                                                 <Link
                                                     key={idx}
                                                     href={item.href}

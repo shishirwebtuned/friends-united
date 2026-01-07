@@ -197,9 +197,13 @@ const AboutUs: React.FC = () => {
                                 {aboutUsData?.revival?.title}
                             </h2>
 
-                            <p className="text-gray-800 leading-relaxed tracking-wide text-xs md:text-sm lg:text-base font-manrope max-w-2xl">
-                                {aboutUsData?.revival?.description}
-                            </p>
+                            <p
+                                className="text-gray-800 leading-relaxed tracking-wide text-xs md:text-sm lg:text-base font-manrope max-w-2xl"
+                                dangerouslySetInnerHTML={{
+                                    __html: aboutUsData?.revival?.description || "",
+                                }}
+                            />
+
 
                             <div className="flex flex-col gap-1">
                                 {aboutUsData?.revival?.pointList.map((item: any, index: number) => (
