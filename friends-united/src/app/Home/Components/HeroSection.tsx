@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
     const y = useTransform(scrollY, [0, 400], [0, 80]);
 
     return (
-        <section className={`relative overflow-hidden h-[68dvh] md:h-[55dvh] ${paddingX}`}>
+        <section className={`relative overflow-hidden h-[82.5dvh] md:h-[73.5dvh] ${paddingX}`}>
             {/* <MotionImage
                 src="/images/sydneyBanner3.webp"
                 alt="Friends United"
@@ -35,7 +35,19 @@ const HeroSection: React.FC = () => {
                 initial={{ opacity: 0.8, scale: 1.15 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 2, ease: "easeOut" }}
-                className="absolute top-0 left-0 w-full h-full object-cover z-0 hero-image"
+                className="absolute top-0 left-0 w-full h-full object-cover z-0 hero-image md:flex hidden"
+
+            />
+
+            <motion.img
+                src="images/sydneyBannerMobile.webp"
+                alt="Friends United"
+                loading="lazy"
+                style={{ y }}
+                initial={{ opacity: 0.8, scale: 1.15 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 2, ease: "easeOut" }}
+                className="absolute top-0 left-0 w-full h-full object-cover z-0 hero-image md:hidden flex"
 
             />
 

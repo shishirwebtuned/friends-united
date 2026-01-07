@@ -50,12 +50,12 @@ export default async function HomePage() {
       {/* <HeroBanner bannerData={bannerData} /> */}
       <HeroBannerNew bannerData={bannerData} />
       <AboutUs />
-      <OurFight />
-      <HadEnough />
-      <GiveawaySection />
-      <MilestoneWinners />
+      {/* <OurFight /> */}
+      {/* <HadEnough /> */}
+      {/* <GiveawaySection /> */}
+      {/* <MilestoneWinners /> */}
       {/* <BreakSilence /> */}
-      <RealWinners />
+      {/* <RealWinners /> */}
       <JoinUs />
       {/* <SubscriptionForm /> */}
       {/* <JoinUsForm /> */}

@@ -36,22 +36,28 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
     return (
         <>
             {sections.map((section, index) => {
-                const direction = index % 2 === 0 ? "left" : "right";
+                // const direction = index % 2 === 0 ? "left" : "right";
+
+                const direction = "left";
+
 
                 return (
                     <div
                         key={index}
-                        className={`relative group p-6 md:p-10 rounded-3xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_8px_25px_rgba(0,0,0,0.08)] overflow-hidden bg-white backdrop-blur-md ${index % 2 === 0
-                            ? "border-l-4 border-[#ca7b28]"
-                            : "border-r-4 border-[#ca7b28]"
-                            }`}
+                        className={`relative group p-6 md:p-10 rounded-3xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_8px_25px_rgba(0,0,0,0.08)] overflow-hidden bg-white backdrop-blur-md border-l-4 border-[#ca7b28] `}
+                    // ${index % 2 === 0
+                    //     ? "border-l-4 border-[#ca7b28]"
+                    //     : "border-r-4 border-[#ca7b28]"
+                    //     }
                     >
                         {/* Accent Gradient */}
                         <div
-                            className={`absolute inset-0 opacity-100 transition-opacity duration-500 rounded-2xl ${index % 2 === 0
-                                ? "left-0 bg-gradient-to-r from-[#ca7b28]/30 to-transparent"
-                                : "right-0 bg-gradient-to-r from-transparent to-[#ca7b28]/30"
-                                }`}
+                            className={`absolute inset-0 opacity-100 transition-opacity duration-500 rounded-2xl left-0 bg-gradient-to-r from-[#ca7b28]/40 to-[#fff6ea]`}
+
+                        // ${index % 2 === 0
+                        //     ? "left-0 bg-gradient-to-r from-[#ca7b28]/30 to-transparent"
+                        //     : "right-0 bg-gradient-to-r from-transparent to-[#ca7b28]/30"
+                        //     }
                         ></div>
 
                         {/* Title */}
@@ -61,8 +67,8 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true, amount: 0.3 }}
-                            className={`relative z-10 md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-5 text-[#ca7b28] ${index % 2 === 0 ? "text-left" : "text-right"
-                                }`}
+                            className={`relative z-10 md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-5 text-[#ca7b28] text-left `}
+                        // ${index % 2 === 0 ? "text-left" : "text-right"}
                         >
                             {section.title}
                         </motion.h2>
@@ -76,8 +82,8 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 mb-3 text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed ${index % 2 === 0 ? "text-left" : "text-right"
-                                    }`}
+                                className={`relative z-10 mb-3 text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed text-left`}
+                            // ${index % 2 === 0 ? "text-left" : "text-right"}
                             >
                                 {para}
                             </motion.p>
@@ -91,10 +97,11 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 font-manrope text-gray-700 space-y-1 text-sm md:text-base ${index % 2 === 0
-                                    ? "pl-5 text-left list-disc"
-                                    : "pr-5 text-right list-inside md:list-outside list-none"
-                                    }`}
+                                className={`relative z-10 font-manrope text-gray-700 space-y-1 text-sm md:text-base pl-5 text-left list-disc`}
+                            // ${index % 2 === 0
+                            //     ? "pl-5 text-left list-disc"
+                            //     : "pr-5 text-right list-inside md:list-outside list-none"
+                            //     }
                             >
                                 {section.points.map((point, i) => (
                                     <li key={i}>{point}</li>
@@ -110,8 +117,8 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 mt-4 mb-3 font-manrope font-semibold lg:text-base md:text-sm text-xs ${index % 2 === 0 ? "text-left" : "text-right"
-                                    }`}
+                                className={`relative z-10 mt-4 mb-3 font-manrope font-semibold lg:text-base md:text-sm text-xs text-left`}
+                            // ${index % 2 === 0 ? "text-left" : "text-right"}
                             >
                                 {section.subTitle}
                             </motion.p>
@@ -125,11 +132,13 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 list-disc font-manrope text-gray-700 space-y-1 lg:text-base md:text-sm text-xs ${index % 2 === 0
+                                className={`relative z-10 list-disc font-manrope text-gray-700 space-y-1 lg:text-base md:text-sm text-xs pl-5 text-left`}
+                            >
+                                {/* ${index % 2 === 0
                                     ? "pl-5 text-left"
                                     : "pr-5 text-right list-inside md:list-outside"
-                                    }`}
-                            >
+                                    } */}
+
                                 {section.subPoints.map((point, i) => (
                                     <li key={i}>{point}</li>
                                 ))}
@@ -144,8 +153,9 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 mt-3 font-lato lg:text-base md:text-sm text-xs ${index % 2 === 0 ? "text-left" : "text-right"
-                                    }`}
+                                className={`relative z-10 mt-3 font-lato lg:text-base md:text-sm text-xs text-left`}
+                            // ${index % 2 === 0 ? "text-left" : "text-right"
+                            //     }
                             >
                                 {section.ending}
                             </motion.p>

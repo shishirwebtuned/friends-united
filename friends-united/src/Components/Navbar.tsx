@@ -41,6 +41,7 @@ export default function Navbar() {
                             href: s.link,
                         })),
                     },
+                    { title: "Our Story", href: "/our-story" },
                     { title: "Make It Happen", href: "/join-us" },
                     { title: "Contact Us", href: "/contact-us" },
                 ];
@@ -50,6 +51,7 @@ export default function Navbar() {
                 console.error('Failed to load navigation:', error);
                 // Fallback to static nav if fetch fails
                 setNavLinksData([
+                    { title: "Our Story", href: "/our-story" },
                     { title: "Make It Happen", href: "/join-us" },
                     { title: "Contact Us", href: "/contact-us" },
                 ]);
@@ -99,26 +101,26 @@ export default function Navbar() {
                         alt="Logo"
                         width={220}
                         height={70}
-                        className="w-[130px] sm:w-[150px] md:w-[180px] lg:w-[190px] xl:w-[200px]"
+                        className="w-[130px] sm:w-[150px] md:w-[170px] lg:w-[190px] xl:w-[200px]"
                     />
                 </Link>
 
-                <ul className="hidden md:flex items-center h-full xl:space-x-12 lg:space-x-10 space-x-5">
+                <ul className="hidden md:flex items-center h-full xl:space-x-10 lg:space-x-9 space-x-4">
                     {navLinksData.map((link, index) => (
                         <li
                             key={index}
-                            className="relative cursor-pointer"
+                            className="relative cursor-pointer flex items-center h-full"
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
                         >
                             {link.dropdown ? (
                                 <>
-                                    <button className="flex items-center gap-1 text-xs lg:text-sm xl:text-[17px] font-medium uppercase text-[#1b1b1b] hover:text-[#D1792C] transition cursor-pointer">
+                                    <button className="flex items-center gap-1 text-[10px] lg:text-[13px] xl:text-[16px] font-medium uppercase text-[#1b1b1b] hover:text-[#D1792C] transition cursor-pointer">
                                         {link.title} <FaAngleDown className="mt-[2px]" />
                                     </button>
 
                                     {openDropdownIndex === index && (
-                                        <div className="absolute left-0 mt-7 w-64 xl:w-72 rounded-sm bg-[#D1792C] text-white shadow-lg md:text-sm text-xs lg:text-base py-2">
+                                        <div className="absolute left-0 top-full z-50 mt-4 w-56 lg:w-64 xl:w-72 rounded-sm bg-[#D1792C] text-white shadow-lg md:text-xs text-[xs] lg:text-base py-2">
                                             {link.dropdown.map((item, idx) => (
                                                 <Link
                                                     key={idx}
@@ -134,7 +136,7 @@ export default function Navbar() {
                             ) : (
                                 <Link
                                     href={link.href ?? "#"}
-                                    className="text-xs lg:text-sm xl:text-[17px] font-medium uppercase text-[#1b1b1b] hover:text-[#D1792C] transition"
+                                    className="flex items-center h-full text-[10px] lg:text-[13px] xl:text-[16px] font-medium uppercase text-[#1b1b1b] hover:text-[#D1792C] transition"
                                 >
                                     {link.title}
                                 </Link>

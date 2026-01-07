@@ -80,23 +80,24 @@ const AboutUs: React.FC = () => {
 
     console.log("aboutUS Data", aboutUsData);
     return (
-        <section className={` ${paddingX} py-20 md:py-[5.5rem]`}>
+        <section className={` ${paddingX} py-12 md:py-[5.5rem]`}>
             <div className="">
                 <div className="flex flex-col lg:flex-row lg:gap-8">
                     {/* Text Column */}
                     <div className="lg:w-1/2 flex flex-col">
-                        <SectionHeader
+                        {/* <SectionHeader
                             // subtitle={`${aboutUsData?.subTitle || "Raising a Fierce Force of Change-Makers"}`}
-                            title={`${aboutUsData?.title || "United Voices, Unstoppable Revolution"}`}
+                            title={`${aboutUsData?.title}`}
                             align="left"
-                        />
+                        /> */}
+                        <p className="text-lg md:text-xl lg:text-2xl font-firaSansCondensed font-medium tracking-wide text-[#ca7b28] mb-4">Once the land of  ABUNDANT OPPORTUNTIES, WEALTH, PROPERITY AND HIGH LIVING STANDARD NOW SEES MANY OF ITS CITIZENS STRUGGLING TO SURVIVE</p>
 
                         <motion.p
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.7, ease: "easeOut" }}
-                            className="text-sm md:text-[15px] lg:text-base font-manrope leading-relaxed mb-8 text-[#4e4e4e]">{`${aboutUsData?.description || "Friends United turns everyday Australians’ frustrations into a thunderous force that demands politicians stop ignoring us. Together, we battle for affordable living, the right to own a home, and a future that’s fair and just. When over 100,000 voices roar as one, our leaders will have no choice but to act—or be swept away."}`}
+                            className="text-sm md:text-[15px] lg:text-base font-manrope leading-relaxed mb-4 md:mb-5 lg:mb-6 text-[#4e4e4e]">{`${aboutUsData?.description}`}
 
                         </motion.p>
 
@@ -191,7 +192,7 @@ const AboutUs: React.FC = () => {
                                 </motion.div>
                             </div>
                         )} */}
-                        <div className="flex flex-col gap-2 md:gap-3 lg:gap-5 mt-2">
+                        <div className="flex flex-col gap-3 md:gap-3 lg:gap-5 mt-2">
                             <h2 className="text-lg md:text-xl lg:text-2xl font-staatliches text-[#ca7b28]">
                                 {aboutUsData?.revival?.title}
                             </h2>
@@ -204,23 +205,23 @@ const AboutUs: React.FC = () => {
                                 {aboutUsData?.revival?.pointList.map((item: any, index: number) => (
                                     <div
                                         key={index}
-                                        className="flex items-center gap-2"
+                                        className="flex flex-row flex-wrap md:justify-start justify-center items-center gap-y-4 gap-x-2"
                                     >
-                                        <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#ca7b28] flex-shrink-0" />
+                                        {/* <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#ca7b28] flex-shrink-0" /> */}
 
-                                        <p className="text-gray-600 text-[11px] md:text-[13px] lg:text-[15px] leading-relaxed font-manrope font-medium">
+                                        <p className="text-[#ca7b28] text-[11px] md:text-[13px] lg:text-[15px] leading-relaxed font-manrope font-medium bg-[#ca7b28]/20 rounded-xl px-3 md:px-4 py-1.5">
                                             {item}
                                         </p>
 
                                         {index === 0 && (
-                                            <Link href="/join-us" className="bg-white cursor-pointer text-[#D1792C] font-semibold text-sm md:text-base lg:text-lg font-lato">Join us</Link>
+                                            <Link href="/join-us" className="bg-white cursor-pointer text-[#D1792C] border-2 border-[#D1792C] rounded-4xl px-3 py-1.5 font-semibold text-sm md:text-base lg:text-[17px] font-lato bounce-button">Join us</Link>
                                         )}
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        <div className="mt-6">
+                        <div className="mt-5 md:mt-6 flex sm:justify-start justify-center">
                             <CustomButton btnPadding="more" label="Explore Our Story" buttonType="filled-outlined" href="/our-story" />
 
                         </div>
@@ -249,7 +250,7 @@ const AboutUs: React.FC = () => {
                                 )}
                             </div>
 
-                            <div className="absolute bottom-6 lg:bottom-16 right-2 md:right-0 w-[180px] h-[180px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px]">
+                            <div className="absolute bottom-6 lg:bottom-23.5 right-2 md:right-0 w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] md:w-[290px] md:h-[290px] lg:w-[340px] lg:h-[340px]">
                                 {aboutUsData?.backimage ? (
                                     <img
                                         src={urlFor(aboutUsData.backimage).width(400).height(400).url()}

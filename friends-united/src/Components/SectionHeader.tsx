@@ -32,11 +32,12 @@ export default function SectionHeader({
       transition={{ duration: 0.7, ease: "easeOut" }}
       className={`relative mb-6 ${alignment}`}>
       {subtitle ? (
-        <h3
-          className="text-sm md:text-base lg:text-lg font-medium font-staatliches inline-block uppercase text-[#ca7b28] tracking-wider relative pl-5 before:content-[''] before:absolute before:top-1/3 before:left-0 before:w-2 before:h-2 before:bg-[#ca7b28] before:rounded-full"
-        >
-          {subtitle}
-        </h3>
+        // <h3
+        //   className="text-sm md:text-base lg:text-lg font-medium font-staatliches inline-block uppercase text-[#ca7b28] tracking-wider relative pl-5 before:content-[''] before:absolute before:top-1/3 before:left-0 before:w-2 before:h-2 before:bg-[#ca7b28] before:rounded-full"
+        // >
+        //   {subtitle}
+        // </h3>
+        <div></div>
       ) : (
         <div></div>
       )}

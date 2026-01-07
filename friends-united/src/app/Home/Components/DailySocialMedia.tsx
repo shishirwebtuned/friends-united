@@ -56,17 +56,18 @@ export default function DailySocialMedia() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="grid md:grid-cols-1 min-w-6xl"
+        className="grid md:grid-cols-1 w-full max-w-6xl"
       >
         {/* OLD WAY CARD */}
         <div className="relative bg-[#ca7b28]/10 border border-[#ca7b28]/40 rounded-3xl p-6 md:p-8 lg:p-10 shadow-sm hover:shadow-lg transition-shadow duration-300">
-          <span className="absolute -top-3 left-[46%] bg-[#ca7b28] text-white text-[8px] md:text-[10px] lg:text-xs font-semibold px-4 py-1 rounded-full tracking-widest">
+          {/* <span className="absolute -top-3 left-[46%] bg-[#ca7b28] text-white text-[8px] md:text-[10px] lg:text-xs font-semibold px-4 py-1 rounded-full tracking-widest">
             {data.oldWay.subHeader}
-          </span>
-
-          <h2 className="text-xl text-center sm:text-2xl md:text-3xl lg:text-4xl font-staatliches mb-6 text-[#ca7b28]">
-            {data.oldWay.header}
-          </h2>
+          </span> */}
+          <div className="w-full h-auto flex justify-center items-center">
+            <h2 className="text-xl text-center sm:text-2xl md:text-3xl lg:text-4xl font-staatliches mb-6 bg-[#ca7b28] text-white w-fit inline-block px-6 md:px-7 lg:px-8 py-2 md:py-3 rounded-full shadow-lg hover:scale-[1.05] transition-all duration-300 bounce-button">
+              {data.oldWay.header}
+            </h2>
+          </div>
 
           <div className="text-gray-800 text-center leading-relaxed tracking-wide text-sm md:text-base lg:text-lg font-lato space-y-4">
             {data.oldWay.description.map((paragraph, idx) => (
@@ -111,9 +112,9 @@ export default function DailySocialMedia() {
           </p>
 
           <h2 className="relative space-x-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-staatliches text-white">
-            <span>THE</span>
-            <span className="text-[#ca7b28]">POWER OF NUMBERS</span>
-            <span>CAN</span>
+            <span className="text-[#ca7b28]">THE</span>
+            <span className="text-white">POWER OF NUMBERS</span>
+            <span className="text-[#ca7b28]">CAN</span>
             <span className="text-[#ca7b28]">INFLUENCE GOVERNMENT POLICIES AND AGENDAS.</span>
           </h2>
         </div>
