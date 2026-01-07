@@ -36,7 +36,7 @@ const FAQ: React.FC<FAQProps> = ({ faqDataList }) => {
     const toggleAccordion = (id: number) => {
         setOpenId(openId === id ? null : id);
     };
-console.log('faqDatalist', faqDataList.image);
+    console.log('faqDatalist', faqDataList.image);
     console.log('faqDatalist', faqDataList);
     console.log("faqData", staticFAQData);
 
@@ -103,9 +103,10 @@ console.log('faqDatalist', faqDataList.image);
                             >
                                 {faqDataList?.faq ? (
                                     <div className="py-5">
-                                        <div className="whitespace-pre-line  leading-relaxed">
-                                            {faq.answer}
-                                        </div>
+                                        <div className="whitespace-pre-line  leading-relaxed"
+                                            dangerouslySetInnerHTML={{
+                                                __html: faq.answer
+                                            }} />
                                     </div>
                                 ) : (<div
                                     className="py-5"

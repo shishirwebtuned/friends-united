@@ -95,9 +95,11 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                             className="font-manrope text-sm md:text-base lg:text-lg leading-relaxed text-gray-900 whitespace-pre-line mb-6 font-medium"
-                        >
-                            {service.details.intro}
-                        </motion.p>
+                            dangerouslySetInnerHTML={{
+                                __html: service.details.intro || "",
+                            }}
+
+                        />
                     )}
 
                     {/* SECTIONS */}
@@ -121,9 +123,11 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                             )}
 
                                             {section.text && (
-                                                <p className="font-manrope text-sm md:text-base lg:text-lg leading-relaxed text-gray-800 font-medium">
-                                                    {section.text}
-                                                </p>
+                                                <p className="font-manrope text-sm md:text-base lg:text-lg leading-relaxed text-gray-800 font-medium"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: section.text || "",
+                                                    }}
+                                                />
                                             )}
                                         </div>
                                     )}
@@ -131,9 +135,11 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                     {hasList && (
                                         <div className="space-y-2 p-3 md:p-4 lg:p-6 bg-white/60 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
                                             {section.title && (
-                                                <h4 className="text-[#CA7B28] font-staatliches text-lg md:text-xl lg:text-2xl capitalize mb-3 tracking-wide border-b-2 border-[#CA7B28]/30 pb-1">
-                                                    {section.title}
-                                                </h4>
+                                                <h4 className="text-[#CA7B28] font-staatliches text-lg md:text-xl lg:text-2xl capitalize mb-3 tracking-wide border-b-2 border-[#CA7B28]/30 pb-1"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: section.title || "",
+                                                    }}
+                                                />
                                             )}
 
                                             {section.text && (

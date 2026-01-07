@@ -7,7 +7,7 @@ export interface BannerNew {
     subTitle: string;
 }
 
-interface HeroBannerProps {
+export interface HeroBannerProps {
     bannerData: BannerNew;
 }
 

@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { client } from '@/lib/sanity.client';
 import imageUrlBuilder from '@sanity/image-url';
 import Link from "next/link";
+import { HeroBannerProps } from "./HeroBannerNew";
 
 export interface Voice {
     heading: string;
@@ -35,7 +36,7 @@ function urlFor(source: any) {
     return builder.image(source);
 }
 
-const AboutUs: React.FC = () => {
+const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
     const [aboutUsData, setAboutUsData] = React.useState<AboutUs | null>(null);
     const [loading, setLoading] = React.useState<boolean>(true);
 
@@ -79,6 +80,8 @@ const AboutUs: React.FC = () => {
     }, []);
 
     console.log("aboutUS Data", aboutUsData);
+    console.log("banner Data", bannerData);
+
     return (
         <section className={` ${paddingX} py-12 md:py-[5.5rem]`}>
             <div className="">
@@ -90,7 +93,7 @@ const AboutUs: React.FC = () => {
                             title={`${aboutUsData?.title}`}
                             align="left"
                         /> */}
-                        <p className="text-lg md:text-xl lg:text-2xl font-firaSansCondensed font-medium tracking-wide text-[#ca7b28] mb-4">Once the land of  ABUNDANT OPPORTUNTIES, WEALTH, PROPERITY AND HIGH LIVING STANDARD NOW SEES MANY OF ITS CITIZENS STRUGGLING TO SURVIVE</p>
+                        <p className="text-lg md:text-xl lg:text-2xl font-firaSansCondensed font-medium tracking-wide text-[#ca7b28] mb-4" dangerouslySetInnerHTML={{ __html: bannerData.subTitle || "" }} />
 
                         <motion.p
                             initial={{ opacity: 0, y: 40 }}
@@ -213,9 +216,11 @@ const AboutUs: React.FC = () => {
                                     >
                                         {/* <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#ca7b28] flex-shrink-0" /> */}
 
-                                        <p className="text-[#ca7b28] text-[11px] md:text-[13px] lg:text-[15px] leading-relaxed font-manrope font-medium bg-[#ca7b28]/20 rounded-xl px-3 md:px-4 py-1.5">
-                                            {item}
-                                        </p>
+                                        <p className="text-[#ca7b28] text-[11px] md:text-[13px] lg:text-[15px] leading-relaxed font-manrope font-medium bg-[#ca7b28]/20 rounded-xl px-3 md:px-4 py-1.5"
+                                            dangerouslySetInnerHTML={{
+                                                __html: item || "",
+                                            }}
+                                        />
 
                                         {index === 0 && (
                                             <Link href="/join-us" className="bg-white cursor-pointer text-[#D1792C] border-2 border-[#D1792C] rounded-4xl px-3 py-1.5 font-semibold text-sm md:text-base lg:text-[17px] font-lato bounce-button">Join us</Link>

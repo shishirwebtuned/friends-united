@@ -49,7 +49,7 @@ export default async function HomePage() {
       <HeroSection />
       {/* <HeroBanner bannerData={bannerData} /> */}
       <HeroBannerNew bannerData={bannerData} />
-      <AboutUs />
+      <AboutUs bannerData={bannerData} />
       {/* <OurFight /> */}
       {/* <HadEnough /> */}
       {/* <GiveawaySection /> */}

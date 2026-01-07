@@ -31,6 +31,7 @@ const OurFight = () => {
             .fetch(`*[_type == "services"]{
                 _id,
                 title,
+                order,
                 description,
                 image,
                 link

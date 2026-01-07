@@ -83,10 +83,12 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
                                 className={`relative z-10 mb-3 text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed text-left`}
-                            // ${index % 2 === 0 ? "text-left" : "text-right"}
-                            >
-                                {para}
-                            </motion.p>
+                                // ${index % 2 === 0 ? "text-left" : "text-right"}
+                                dangerouslySetInnerHTML={{
+                                    __html: para || "",
+                                }}
+                            />
+
                         ))}
 
                         {/* Points */}
@@ -97,14 +99,16 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 font-manrope text-gray-700 space-y-1 text-sm md:text-base pl-5 text-left list-disc`}
+                                className={`relative z-10 space-y-1 pl-5 text-left list-disc mb-3 text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed`}
                             // ${index % 2 === 0
                             //     ? "pl-5 text-left list-disc"
                             //     : "pr-5 text-right list-inside md:list-outside list-none"
                             //     }
                             >
                                 {section.points.map((point, i) => (
-                                    <li key={i}>{point}</li>
+                                    <li key={i} dangerouslySetInnerHTML={{
+                                        __html: point || "",
+                                    }} />
                                 ))}
                             </motion.ul>
                         )}
@@ -117,7 +121,7 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 mt-4 mb-3 font-manrope font-semibold lg:text-base md:text-sm text-xs text-left`}
+                                className={`relative z-10 mt-4 mb-3 font-semibold text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed text-left`}
                             // ${index % 2 === 0 ? "text-left" : "text-right"}
                             >
                                 {section.subTitle}
@@ -132,7 +136,7 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 list-disc font-manrope text-gray-700 space-y-1 lg:text-base md:text-sm text-xs pl-5 text-left`}
+                                className={`relative z-10 list-disc space-y-1 pl-5 mb-3 text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed text-left`}
                             >
                                 {/* ${index % 2 === 0
                                     ? "pl-5 text-left"
@@ -153,12 +157,13 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 mt-3 font-lato lg:text-base md:text-sm text-xs text-left`}
-                            // ${index % 2 === 0 ? "text-left" : "text-right"
-                            //     }
-                            >
-                                {section.ending}
-                            </motion.p>
+                                className={`relative z-10 mt-3 text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed text-left`}
+                                // ${index % 2 === 0 ? "text-left" : "text-right"
+                                //     }
+                                dangerouslySetInnerHTML={{
+                                    __html: section.ending || "",
+                                }}
+                            />
                         )}
                     </div>
                 );
