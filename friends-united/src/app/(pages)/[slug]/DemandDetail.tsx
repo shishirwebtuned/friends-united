@@ -152,7 +152,9 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
 
                                             <ul className="list-disc lg:ml-6 md:ml-5 ml-4 space-y-1 font-lato md:text-[15px] text-[13px] lg:text-[17px] text-gray-700">
                                                 {section.list.map((item: any, i: number) => (
-                                                    <li key={i}>{item}</li>
+                                                    <li key={i} dangerouslySetInnerHTML={{
+                                                        __html: item || "",
+                                                    }} />
                                                 ))}
                                             </ul>
                                         </div>
