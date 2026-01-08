@@ -32,7 +32,7 @@ export default function DailySocialMedia() {
   if (!data) return <p>Loading...</p>;
 
   return (
-    <section className="relative bg-white text-black px-6 md:px-16 py-12 md:py-16 lg:py-20 flex flex-col gap-8 md:gap-10 lg:gap-12 overflow-hidden items-center">
+    <section className="relative bg-white text-black px-6 md:px-16 py-12 md:py-16 lg:py-20 flex flex-col gap-6 md:gap-7 lg:gap-8 overflow-hidden items-center">
       {/* subtle background accents */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#ca7b28]/10 rounded-full blur-3xl z-0" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-black/5 rounded-full blur-3xl z-0" />
@@ -46,10 +46,10 @@ export default function DailySocialMedia() {
         />
       </div>
 
-      <div className="flex -mt-9 w-full mb-2 items-start justify-center text-center">
+      {/* <div className="flex -mt-9 w-full mb-2 items-start justify-center text-center">
         <p className="uppercase font-manrope font-semibold text-gray-600 text-lg md:text-xl lg:text-2xl">The New Way to Protest</p>
 
-      </div>
+      </div> */}
 
       <motion.div
         initial={{ opacity: 0, y: 80 }}
@@ -65,7 +65,7 @@ export default function DailySocialMedia() {
           </span> */}
           <div className="w-full h-auto flex justify-center items-center">
             <h2 className="text-xl text-center sm:text-2xl md:text-3xl lg:text-4xl font-staatliches mb-6 bg-[#ca7b28] text-white w-fit inline-block px-6 md:px-7 lg:px-8 py-2 md:py-3 rounded-full shadow-lg hover:scale-[1.05] transition-all duration-300 bounce-button">
-              {data.oldWay.header}
+              {data.newWay.header}
             </h2>
           </div>
 
@@ -100,7 +100,7 @@ export default function DailySocialMedia() {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="relative w-full mt-2 md:mt-4 max-w-6xl mx-auto text-center"
+        className="relative w-full mt-3 md:mt-4 lg:mt-8 max-w-6xl mx-auto text-center"
       >
         {/* highlight panel */}
         <div className="relative bg-black/90 text-white rounded-[30px] px-4 md:px-7 lg:px-10 py-6 md:py-12 lg:py-16 shadow-2xl overflow-hidden">

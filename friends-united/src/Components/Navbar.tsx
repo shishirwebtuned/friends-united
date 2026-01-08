@@ -35,6 +35,7 @@ export default function Navbar() {
             .fetch(`*[_type == "services"]{ title, link, order }`)
             .then((services) => {
                 const dynamicNav = [
+                    { title: "Our Story", href: "/our-story" },
                     {
                         title: "What We Stand For",
                         dropdown: services.map((s: any) => ({
@@ -43,7 +44,6 @@ export default function Navbar() {
                             order: s.order,
                         })),
                     },
-                    { title: "Our Story", href: "/our-story" },
                     { title: "Make It Happen", href: "/join-us" },
                     { title: "Contact Us", href: "/contact-us" },
                 ];

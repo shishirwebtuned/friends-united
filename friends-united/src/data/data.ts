@@ -22,6 +22,7 @@ import {
 } from "react-icons/fa";
 
 export const navLinksData = [
+  { title: "Our Story", href: "/our-story" },
   {
     title: "What We Stand For",
     dropdown: [
@@ -38,7 +39,6 @@ export const navLinksData = [
       },
     ],
   },
-  { title: "Our Story", href: "/our-story" },
   { title: "Make It Happen", href: "/join-us" },
   { title: "Contact Us", href: "/contact-us" },
 ];

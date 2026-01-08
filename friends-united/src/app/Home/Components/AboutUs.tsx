@@ -242,7 +242,23 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.9, ease: "easeOut" }}
-                            className="relative w-full h-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px] md:px-0 px-2">
+                            className="relative w-full h-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px] flex justify-center md:px-0 px-2">
+                            {/* <div className="relative w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px] lg:w-[400px] lg:h-[400px]">
+                                {aboutUsData?.frontimage ? (
+                                    <img
+                                        src={urlFor(aboutUsData.frontimage).width(400).height(400).url()}
+                                        alt="Main"
+                                        className="object-cover w-full h-full rounded-xl z-10"
+                                    />
+                                ) : (
+                                    <img
+                                        src="images/united_hands.jpg"
+                                        alt="Main"
+                                        className="object-cover w-full h-full rounded-xl z-10"
+                                    />
+                                )}
+                            </div> */}
+
                             <div className="relative w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px] lg:w-[400px] lg:h-[400px]">
                                 {aboutUsData?.frontimage ? (
                                     <img
@@ -259,7 +275,9 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
                                 )}
                             </div>
 
-                            <div className="absolute bottom-6 lg:bottom-7.5 right-2 md:right-0 w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] md:w-[290px] md:h-[290px] lg:w-[340px] lg:h-[340px]">
+
+
+                            {/* <div className="absolute bottom-6 lg:bottom-7.5 right-2 md:right-0 w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] md:w-[290px] md:h-[290px] lg:w-[340px] lg:h-[340px]">
                                 {aboutUsData?.backimage ? (
                                     <img
                                         src={urlFor(aboutUsData.backimage).width(400).height(400).url()}
@@ -273,7 +291,7 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
                                         className="object-cover w-full h-full rounded-xl shadow-lg z-20"
                                     />
                                 )}
-                            </div>
+                            </div> */}
                         </motion.div>
                     </div>
 
