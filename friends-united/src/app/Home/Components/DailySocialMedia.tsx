@@ -111,11 +111,11 @@ export default function DailySocialMedia() {
             {/* <span className="font-medium text-white -mt-2">See how the</span> */}
           </p>
 
-          <h2 className="relative space-x-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-staatliches text-white">
-            <span className="text-[#ca7b28]">THE</span>
-            <span className="text-white">POWER OF NUMBERS</span>
-            <span className="text-[#ca7b28]">CAN</span>
-            <span className="text-[#ca7b28]">INFLUENCE GOVERNMENT POLICIES AND AGENDAS.</span>
+          <h2 className="relative space-x-2 text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-white">
+            {/* <span className="text-[#ca7b28]">THE</span> */}
+            <span className="text-white tracking-tighter font-medium">POWER OF NUMBERS</span>
+            <span className="text-[#ca7b28] font-medium">can</span>
+            <span className="text-[#ca7b28] tracking-tighter font-medium">INFLUENCE GOVERNMENT POLICIES AND AGENDAS.</span>
           </h2>
         </div>
       </motion.div>

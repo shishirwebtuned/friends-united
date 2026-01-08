@@ -27,16 +27,18 @@ export const navLinksData = [
     dropdown: [
       { label: "Cost of Living", href: "/cost-of-living" },
       { label: "Residential Housing", href: "/residental-housing" },
-      { label: "Illicit Drugs", href: "/illicit-drugs" },
       { label: "Electricity, Water & Gas", href: "/electricity-water-gas" },
+      { label: "Tobacco & Alcohol Taxes", href: "/tobacco-alcohol-taxes" },
+      { label: "Illicit Drugs", href: "/illicit-drugs" },
+      { label: "Immigration", href: "/immigration" },
+      { label: "National Security", href: "/national-security" },
       {
         label: "Government Accountability",
         href: "/government-accountability",
       },
-      { label: "Tobacco & Alcohol Taxes", href: "/tobacco-alcohol-taxes" },
-      { label: "Immigration", href: "/immigration" },
     ],
   },
+  { title: "Our Story", href: "/our-story" },
   { title: "Make It Happen", href: "/join-us" },
   { title: "Contact Us", href: "/contact-us" },
 ];

@@ -43,6 +43,7 @@ export default async function page({ params }: PageParams) {
             link,
             demands,
             demandText,
+            demandTitle,
             references,
             details
         }`,

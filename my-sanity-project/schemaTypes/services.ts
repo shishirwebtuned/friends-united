@@ -48,7 +48,12 @@ export default defineType({
       of: [{type: 'string'}],
       validation: (Rule) => Rule.required().min(1),
     }),
-
+    defineField({
+      name: 'demandTitle',
+      title: 'Demand Title',
+      type: 'text',
+      rows: 3,
+    }),
     // Extra Demand Text (optional)
     defineField({
       name: 'demandText',

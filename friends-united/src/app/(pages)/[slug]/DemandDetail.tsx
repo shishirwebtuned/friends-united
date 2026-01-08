@@ -19,6 +19,7 @@ interface Service {
     image: string | null;
     link: string;
     demands?: string[];
+    demandTitle?: string;
     references?: Reference[];
     demandText?: string;
 }
@@ -55,16 +56,16 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                 Key Demands
                             </h3>
 
-                            <ul className="list-disc list-outside ml-3 md:ml-4 space-y-2 text-gray-700 lg:text-base md:text-sm text-xs font-manrope font-medium">
+                            <h3 className="text-sm md:text-base lg:text-lg font-manrope mb-1 text-[#CA7B28] tracking-wide pb-1" dangerouslySetInnerHTML={{ __html: service?.demandTitle || "" }} />
+
+                            <ul className="list-disc list-outside ml-3 md:ml-4 space-y-2 text-[#CA7B28] lg:text-base md:text-sm text-xs font-manrope font-medium">
                                 {service.demands.map((demand, idx) => (
-                                    <li key={idx}>{demand}</li>
+                                    <li key={idx} dangerouslySetInnerHTML={{ __html: demand }} />
                                 ))}
                             </ul>
 
                             {service.demandText && (
-                                <p className="font-manrope text-xs md:text-sm lg:text-base mt-3 ml-4 md:ml-6 text-gray-700">
-                                    {service.demandText}
-                                </p>
+                                <p className="font-manrope text-xs md:text-sm lg:text-base mt-3 ml-4 md:ml-6 text-gray-700" dangerouslySetInnerHTML={{ __html: service.demandText }} />
                             )}
                         </div>
                     )}
@@ -143,9 +144,10 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                             )}
 
                                             {section.text && (
-                                                <p className="text-xs md:text-sm lg:text-base leading-relaxed text-gray-800 italic">
-                                                    {section.text}
-                                                </p>
+                                                <p className="text-xs md:text-sm lg:text-base leading-relaxed text-gray-800 italic" dangerouslySetInnerHTML={{
+                                                    __html: section.text || "",
+                                                }}
+                                                />
                                             )}
 
                                             <ul className="list-disc lg:ml-6 md:ml-5 ml-4 space-y-1 font-lato md:text-[15px] text-[13px] lg:text-[17px] text-gray-700">
