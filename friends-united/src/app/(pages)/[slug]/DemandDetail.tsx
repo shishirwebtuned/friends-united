@@ -144,7 +144,7 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                             )}
 
                                             {section.text && (
-                                                <p className="text-xs md:text-sm lg:text-base leading-relaxed text-gray-800 italic" dangerouslySetInnerHTML={{
+                                                <p className="text-xs md:text-sm lg:text-base leading-relaxed text-gray-800" dangerouslySetInnerHTML={{
                                                     __html: section.text || "",
                                                 }}
                                                 />
