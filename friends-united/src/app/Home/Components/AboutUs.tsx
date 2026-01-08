@@ -87,7 +87,7 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
             <div className="">
                 <div className="flex flex-col lg:flex-row lg:gap-6">
                     {/* Text Column */}
-                    <div className="lg:w-1/2 flex flex-col">
+                    <div className="lg:w-[60%] flex flex-col">
                         {/* <SectionHeader
                             // subtitle={`${aboutUsData?.subTitle || "Raising a Fierce Force of Change-Makers"}`}
                             title={`${aboutUsData?.title}`}
@@ -236,7 +236,7 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
                         </div> */}
                     </div>
 
-                    <div className="lg:w-1/2 mt-12 lg:mt-0 w-full relative flex justify-center">
+                    <div className="lg:w-[40%] mt-12 lg:mt-0 w-full relative flex justify-center">
                         <motion.div
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
