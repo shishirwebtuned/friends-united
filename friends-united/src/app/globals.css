@@ -197,6 +197,23 @@
   );
 }
 
+.timeline-scroll {
+  height: 100vh; /* full screen */
+  overflow-y: scroll; /* vertical scroll */
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.timeline {
+  position: relative;
+  padding: 60px 0; /* spacing top/bottom */
+}
+
+.timeline-item {
+  scroll-snap-align: center; /* THIS makes the snapping work */
+  min-height: 100vh; /* each section takes full screen */
+}
+
 @keyframes pulse-custom {
   0%,
   100% {
