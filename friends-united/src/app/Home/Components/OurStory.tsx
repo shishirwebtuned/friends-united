@@ -3,6 +3,7 @@
 import SectionHeader from "@/Components/SectionHeader";
 import { paddingX } from "@/data/paddingData";
 import { motion, Variants } from "framer-motion";
+import Link from "next/dist/client/link";
 import React from "react";
 
 const textVariants: Variants = {
@@ -86,7 +87,7 @@ const HomeStorySections: React.FC<HomeStorySectionsProps> = ({ sections }) => {
 
                                 {/* Section Content */}
                                 <div
-                                    className={`w-full md:w-[46%] ${isLeft ? "md:pr-6 lg:pr-10 md:text-left" : "md:pl-6 lg:pl-10"
+                                    className={`w-full md:w-[47%] ${isLeft ? " md:text-left" : ""
                                         }`}
                                 >
                                     {/* Title */}
@@ -96,7 +97,7 @@ const HomeStorySections: React.FC<HomeStorySectionsProps> = ({ sections }) => {
                                         initial="hidden"
                                         whileInView="show"
                                         viewport={{ once: true }}
-                                        className="text-lg md:text-xl lg:text-2xl font-staatliches text-[#ca7b28] mb-1.5 md:mb-3"
+                                        className="text-xl md:text-2xl lg:text-3xl font-staatliches text-[#ca7b28] mb-1.5 md:mb-3"
                                     >
                                         {section.title}
                                     </motion.h2>
@@ -111,7 +112,7 @@ const HomeStorySections: React.FC<HomeStorySectionsProps> = ({ sections }) => {
                                                 initial="hidden"
                                                 whileInView="show"
                                                 viewport={{ once: true }}
-                                                className="text-[11px] md:text-[13px] lg:text-[15px] font-lato leading-relaxed"
+                                                className="text-xs md:text-sm lg:text-base font-lato leading-relaxed"
                                                 dangerouslySetInnerHTML={{ __html: para || "" }}
                                             />
                                         ))}
@@ -195,6 +196,20 @@ const HomeStorySections: React.FC<HomeStorySectionsProps> = ({ sections }) => {
                             </motion.div>
                         );
                     })}
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                    <h2 className="md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-4 text-[#ca7b28]">
+                        Join FRIENDS UNITED
+                    </h2>
+                    <p className="mb-8 font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
+                        Advocate for changes impacting Australia, Australians, our lifestyle, and the future of our Australia.
+                    </p>
+                    <Link
+                        href="/join-us"
+                        className="inline-block bg-[#ca7b28] text-white font-semibold font-manrope px-8 py-3 rounded-full shadow-lg hover:bg-[#b66d22] hover:scale-105 transition-all duration-300 bounce-button"
+                    >
+                        Join Us Now
+                    </Link>
                 </div>
             </div>
         </section>

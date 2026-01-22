@@ -40,7 +40,7 @@ const BecomeFriend = ({ friendData }: PropTypes) => {
                     >
                         <SectionHeader
                             subtitle="Friends United"
-                            title="Becoming a Friend"
+                            title="Becoming a Friends United 'Friend'"
                             align="left"
                         />
 

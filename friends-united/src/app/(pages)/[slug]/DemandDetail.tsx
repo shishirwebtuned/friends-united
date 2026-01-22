@@ -32,6 +32,15 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
 
     if (!service?.title) return null;
 
+    const intro = service.details.intro?.trim();
+
+    const isEmptyIntro =
+        !intro ||
+        intro === "<p><br></p>" ||
+        intro === "<p></p>" ||
+        intro === "<br>" ||
+        intro === "<p>&nbsp;</p>";
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 40 }}
@@ -90,14 +99,14 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                 <div className="subscription-grdient rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.08)] p-6 md:p-8 lg:p-10 text-gray-800 backdrop-blur-sm mb-10">
 
                     {/* INTRO */}
-                    {service.details.intro && (
+                    {!isEmptyIntro && (
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="font-manrope text-sm md:text-base lg:text-lg leading-relaxed text-gray-900 whitespace-pre-line mb-6 font-medium"
+                            className="font-manrope text-sm md:text-base lg:text-lg leading-relaxed text-gray-900 whitespace-pre-line mb-6 font-medium text-center flex flex-col items-center justify-center"
                             dangerouslySetInnerHTML={{
-                                __html: service.details.intro || "",
+                                __html: intro || "",
                             }}
 
                         />
