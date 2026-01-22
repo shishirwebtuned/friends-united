@@ -111,7 +111,7 @@ export default function DailySocialMedia() {
             {/* <span className="font-medium text-white -mt-2">See how the</span> */}
           </p>
 
-          <h2 className="relative space-x-2 text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-white">
+          <h2 className="relative flex flex-col space-x-2 text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-white">
             {/* <span className="text-[#ca7b28]">THE</span> */}
             <span className="text-white tracking-tighter font-medium">POWER OF NUMBERS</span>
             <span className="text-[#ca7b28] font-medium">can</span>

@@ -7,7 +7,17 @@ import realWinners from './realWinners'
 import setting from './setting'
 import ourstory from './ourstory'
 import newWaytoprotest from './newWaytoprotest'
+import becomeFriend from './becomeFriend'
 
-
-
-export const schemaTypes = [banner, unitedVoices, faq, services, contact, realWinners, setting, ourstory ,newWaytoprotest ]
+export const schemaTypes = [
+  banner,
+  unitedVoices,
+  faq,
+  services,
+  contact,
+  realWinners,
+  setting,
+  ourstory,
+  newWaytoprotest,
+  becomeFriend,
+]

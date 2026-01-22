@@ -15,6 +15,8 @@ import JoinUs from './Components/JoinUs';
 import { client } from '@/lib/sanity.client';
 import HeroBannerNew from './Components/HeroBannerNew';
 import DailySocialMedia from './Components/DailySocialMedia';
+import BecomeFriend from './Components/BecomeFriend';
+import HomeStorySections from './Components/OurStory';
 export const revalidate = 60
 
 export default async function HomePage() {
@@ -24,6 +26,15 @@ export default async function HomePage() {
       subTitle,
     }
   `,
+    {},
+    { cache: "no-store" }
+  );
+
+  const ourStoryData = await client.fetch(`
+  *[_type == "ourstory"][0]{
+    sections
+  }
+`,
     {},
     { cache: "no-store" }
   );
@@ -42,7 +53,25 @@ export default async function HomePage() {
     { cache: "no-store" }
   );
 
+  const becomeFriend = await client.fetch(`
+    *[_type == "becomeFriend"][0]{
+      title,
+      pointsTitle,
+      points
+    }
+  `,
+    {},
+    { cache: "no-store" }
+  );
+
   console.log("faq", faq);
+  console.log("friend", becomeFriend);
+  console.log("ourStoryData", ourStoryData);
+
+
+  const sections = ourStoryData?.sections || [];
+
+
 
   return (
     <div>
@@ -50,6 +79,7 @@ export default async function HomePage() {
       {/* <HeroBanner bannerData={bannerData} /> */}
       <HeroBannerNew bannerData={bannerData} />
       <AboutUs bannerData={bannerData} />
+      <HomeStorySections sections={sections} />
       {/* <OurFight /> */}
       {/* <HadEnough /> */}
       {/* <GiveawaySection /> */}
@@ -59,7 +89,8 @@ export default async function HomePage() {
       <JoinUs />
       {/* <SubscriptionForm /> */}
       {/* <JoinUsForm /> */}
-      <FAQ faqDataList={faq} />
+      {/* <FAQ faqDataList={faq} /> */}
+      <BecomeFriend friendData={becomeFriend} />
       <ContactBanner />
       <DailySocialMedia />
     </div>

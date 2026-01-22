@@ -86,7 +86,7 @@ export default function Navbar() {
         // >
 
         <nav
-            className={` ${paddingX} relative top-0 left-0 w-full z-50 transition-colors h-full duration-300 bg-[white]}`}
+            className={`${paddingX} sticky top-0 left-0 w-full z-50 transition-colors h-full shadow-md duration-300 bg-white }`}
         >
 
             <div className="flex items-center w-full h-full justify-between py-1 px-0">

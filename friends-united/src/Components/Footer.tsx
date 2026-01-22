@@ -9,15 +9,15 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedin, FaYoutube, FaWhatsapp,
 
 const Footer = () => {
 
-      const [contactInfo, setContactInfo] = React.useState<{ socialLinks?: any[] }>({});
-    
-        React.useEffect(() => {
-            client.fetch(`*[_type == "setting"][0]{
+    const [contactInfo, setContactInfo] = React.useState<{ socialLinks?: any[] }>({});
+
+    React.useEffect(() => {
+        client.fetch(`*[_type == "setting"][0]{
               socialLinks []
             }`).then((data) => {
-                setContactInfo(data || {});
-            });
-        }, []);
+            setContactInfo(data || {});
+        });
+    }, []);
 
     const socialIconMap: Record<string, React.ReactNode> = {
         FaFacebook: <FaFacebookF />,
@@ -101,15 +101,33 @@ const Footer = () => {
 
                 <hr className="my-6 border-gray-700" />
 
-                <div className="flex flex-col md:flex-row items-center font-manrope lg:text-base md:text-sm text-xs justify-between gap-2 md:gap-0">
-                    <p className="text-white">
-                        &copy; {new Date().getFullYear()} Friends United. All rights reserved.
-                    </p>
-                    <p className="flex gap-2 text-white">
-                        <a href="#" className="hover:text-[#ca7b28] transition-all duration-300 ease-in-out">Terms of Service</a>|
-                        <a href="#" className="hover:text-[#ca7b28] transition-all duration-300 ease-in-out">Privacy Policy</a>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-0 text-white font-manrope lg:text-base md:text-sm text-xs">
+                    <div className="text-center md:text-left">
+                        <p>
+                            &copy; {new Date().getFullYear()} Friends United. All rights reserved.
+                        </p>
+                        <p className="text-white/70 mt-1">
+                            Friends United Pty Ltd · ABN 73 686 033 223
+                        </p>
+                    </div>
+
+                    <p className="flex gap-2 items-center">
+                        <a
+                            href="#"
+                            className="hover:text-[#ca7b28] transition-all duration-300 ease-in-out"
+                        >
+                            Terms of Service
+                        </a>
+                        <span>|</span>
+                        <a
+                            href="#"
+                            className="hover:text-[#ca7b28] transition-all duration-300 ease-in-out"
+                        >
+                            Privacy Policy
+                        </a>
                     </p>
                 </div>
+
             </div>
         </footer>
     );

@@ -34,7 +34,7 @@ export default function RootLayout({
 
         <title>Friends United</title>
       </head>
-      <body className={`relative ${firaSansCondensed.variable}`}
+      <body className={` ${firaSansCondensed.variable}`}
       >
 
         <Navbar />
