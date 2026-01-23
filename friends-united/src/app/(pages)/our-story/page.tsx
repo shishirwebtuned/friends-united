@@ -40,7 +40,7 @@ const Page = async () => {
     const sections = data?.sections || [];
 
     return (
-        <div className={`${paddingX} bg-gradient-to-b from-white via-[#fff9f3] to-white py-16 mb-8`}>
+        <div className={`${paddingX} bg-gradient-to-b from-white via-[#fff9f3] to-white py-8 md:py-12 lg:py-16 mb-4 md:mb-6 lg:mb-8`}>
             {/* Header */}
             <div className="text-center flex items-center justify-center">
                 <SectionHeader subtitle="Explore About Us" title="Our Story" align="center" />
@@ -48,15 +48,15 @@ const Page = async () => {
 
             {/* Sections */}
             <div
-                className="space-y-12 mt-8 text-[#222]">
+                className="space-y-7 md:space-y-10 lg:space-y-12 mt-4 md:mt-6 lg:mt-8 text-[#222]">
                 <OurStorySections sections={sections} />
 
                 {/* Final CTA */}
-                <div className="text-center pt-16 border-t border-gray-200">
-                    <h2 className="md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-4 text-[#ca7b28]">
+                <div className="text-center pt-8 md:pt-12 lg:pt-16 border-t border-gray-200">
+                    <h2 className="md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-2.5 md:mb-3 lg:mb-4 text-[#ca7b28]">
                         Join FRIENDS UNITED
                     </h2>
-                    <p className="mb-8 font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
+                    <p className="mb-4 md:mb-6 lg:mb-8  font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
                         Advocate for changes impacting Australia, Australians, our lifestyle, and the future of our Australia.
                     </p>
 

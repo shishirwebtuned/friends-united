@@ -258,14 +258,14 @@ interface OurStorySectionsProps {
 
 const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
     return (
-        <div className={`${paddingX} bg-gradient-to-b from-[#ca7b28]/10 to-white py-16 mb-8`}>
+        <div className={`${paddingX} bg-gradient-to-b from-[#ca7b28]/10 to-white py-8 md:py-12 lg:py-16 mb-4 md:mb-6 lg:mb-8`}>
             {/* Header */}
             <div className="text-center flex items-center justify-center">
                 <SectionHeader subtitle="Explore About Us" title="Our Story" align="center" />
             </div>
 
             <div
-                className="space-y-12 mt-8 text-[#222]">
+                className="space-y-7 md:space-y-10 lg:space-y-12 mt-4 md:mt-6 lg:mt-8 text-[#222]">
                 {sections.map((section, index) => {
                     // const direction = index % 2 === 0 ? "left" : "right";
 
@@ -399,17 +399,17 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                         </div>
                     );
                 })}
-                <div className="text-center pt-16 border-t border-gray-200">
-                    <h2 className="md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-4 text-[#ca7b28]">
+                <div className="text-center pt-8 md:pt-12 lg:pt-16 border-t border-gray-200">
+                    <h2 className="md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-2.5 md:mb-3 lg:mb-4 text-[#ca7b28]">
                         Join FRIENDS UNITED
                     </h2>
-                    <p className="mb-8 font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
+                    <p className="mb-4 md:mb-6 lg:mb-8 font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
                         Advocate for changes impacting Australia, Australians, our lifestyle, and the future of our Australia.
                     </p>
 
                     <Link
                         href="/join-us"
-                        className="inline-block bg-[#ca7b28] text-white font-semibold font-manrope px-8 py-3 rounded-full shadow-lg hover:bg-[#b66d22] hover:scale-105 transition-all duration-300 bounce-button"
+                        className="inline-block bg-[#ca7b28] text-white font-semibold font-manrope px-6 md:px-7 lg:px-8 py-2 lg:text-base md:text-sm text-xs md:py-2.5 lg:py-3 rounded-full shadow-lg hover:bg-[#b66d22] hover:scale-105 transition-all duration-300 bounce-button"
                     >
                         Join Us
                     </Link>
