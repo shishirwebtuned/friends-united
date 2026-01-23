@@ -41,6 +41,14 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
         intro === "<br>" ||
         intro === "<p>&nbsp;</p>";
 
+    const demandTitle = service.demandTitle?.trim();
+    const isEmptyDemandTitle =
+        !demandTitle ||
+        demandTitle === "<p><br></p>" ||
+        demandTitle === "<p></p>" ||
+        demandTitle === "<br>" ||
+        demandTitle === "<p>&nbsp;</p>";
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 40 }}
@@ -65,16 +73,18 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                 Key Demands
                             </h3>
 
-                            <h3 className="text-sm md:text-base lg:text-lg font-manrope mb-1 text-[#CA7B28] tracking-wide pb-1" dangerouslySetInnerHTML={{ __html: service?.demandTitle || "" }} />
+                            {!isEmptyDemandTitle && (
+                                <h3 className="text-sm md:text-base lg:text-lg font-aptos mb-1 text-[#CA7B28] tracking-wide pb-1" dangerouslySetInnerHTML={{ __html: service?.demandTitle || "" }} />
+                            )}
 
-                            <ul className="list-disc list-outside ml-3 md:ml-4 space-y-2 text-[#CA7B28] lg:text-base md:text-sm text-xs font-manrope font-medium">
+                            <ul className="list-disc list-outside ml-3 md:ml-4 space-y-2 text-[#CA7B28] lg:text-base md:text-sm text-xs font-aptos font-medium">
                                 {service.demands.map((demand, idx) => (
                                     <li key={idx} dangerouslySetInnerHTML={{ __html: demand }} />
                                 ))}
                             </ul>
 
                             {service.demandText && (
-                                <p className="font-manrope text-xs md:text-sm lg:text-base mt-3 ml-4 md:ml-6 text-gray-700" dangerouslySetInnerHTML={{ __html: service.demandText }} />
+                                <p className="font-aptos text-xs md:text-sm lg:text-base mt-3 ml-4 md:ml-6 text-gray-700" dangerouslySetInnerHTML={{ __html: service.demandText }} />
                             )}
                         </div>
                     )}
@@ -104,7 +114,7 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="font-manrope text-sm md:text-base lg:text-lg leading-relaxed text-gray-900 whitespace-pre-line mb-6 font-medium text-center flex flex-col items-center justify-center"
+                            className="font-aptos text-sm md:text-base lg:text-lg leading-relaxed text-gray-900 whitespace-pre-line mb-6 font-medium text-center flex flex-col items-center justify-center"
                             dangerouslySetInnerHTML={{
                                 __html: intro || "",
                             }}
@@ -133,7 +143,7 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                             )}
 
                                             {section.text && (
-                                                <p className="font-manrope text-sm md:text-base lg:text-lg leading-relaxed text-gray-800 font-medium"
+                                                <p className="font-aptos text-sm md:text-base lg:text-lg leading-relaxed text-gray-800 font-medium"
                                                     dangerouslySetInnerHTML={{
                                                         __html: section.text || "",
                                                     }}
@@ -159,7 +169,7 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                                 />
                                             )}
 
-                                            <ul className="list-disc lg:ml-6 md:ml-5 ml-4 space-y-1 font-lato md:text-[15px] text-[13px] lg:text-[17px] text-gray-700">
+                                            <ul className="list-disc lg:ml-6 md:ml-5 ml-4 space-y-1 font-lato md:text-[15px] text-[13px] font-aptos lg:text-[17px] text-gray-700">
                                                 {section.list.map((item: any, i: number) => (
                                                     <li key={i} dangerouslySetInnerHTML={{
                                                         __html: item || "",
@@ -183,7 +193,7 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                         <h3 className="text-lg md:text-xl lg:text-2xl font-staatliches mb-4 text-[#CA7B28]">
                             References
                         </h3>
-                        <ul className="list-disc list-outside ml-4 md:ml-6 space-y-2 font-manrope text-gray-800 lg:text-base md:text-sm text-xs">
+                        <ul className="list-disc list-outside ml-4 md:ml-6 space-y-2 font-aptos text-gray-800 lg:text-base md:text-sm text-xs">
                             {service.references.map((ref, idx) => (
                                 <li key={idx}>
                                     <a
@@ -204,7 +214,7 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                 <div className="flex justify-center mt-8">
                     <Link
                         href="/"
-                        className="bg-[#CA7B28] text-white font-manrope px-4 md:px-6 py-2 border-2 border-[#CA7B28] rounded-md shadow hover:bg-transparent hover:text-[#CA7B28] transition-all duration-300 ease-in-out"
+                        className="bg-[#CA7B28] text-white font-aptos px-4 md:px-6 py-2 border-2 border-[#CA7B28] rounded-md shadow hover:bg-transparent hover:text-[#CA7B28] transition-all duration-300 ease-in-out"
                     ><span className="flex flex-row items-center gap-3 lg:text-base md:text-sm text-xs">
                             <FaArrowLeft />
                             <p>
