@@ -67,7 +67,7 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true, amount: 0.3 }}
-                            className={`relative z-10 md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-5 text-[#ca7b28] text-left `}
+                            className={`relative z-10 md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-1.5 md:mb-2 lg:mb-3 text-[#ca7b28] text-left`}
                         // ${index % 2 === 0 ? "text-left" : "text-right"}
                         >
                             {section.title}
@@ -82,7 +82,7 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 mb-3 text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed text-left`}
+                                className={`relative z-10 mb-0.5 md:mb-1 text-sm md:text-base font-aptos lg:text-lg leading-relaxed text-left`}
                                 // ${index % 2 === 0 ? "text-left" : "text-right"}
                                 dangerouslySetInnerHTML={{
                                     __html: para || "",
@@ -99,7 +99,7 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 space-y-1 pl-5 text-left list-disc mb-3 text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed`}
+                                className={`relative z-10 space-y-0.5 pl-5 text-left list-disc mb-1 md:mb-1.5 lg:mb-2 text-sm md:text-base font-aptos lg:text-lg leading-relaxed`}
                             // ${index % 2 === 0
                             //     ? "pl-5 text-left list-disc"
                             //     : "pr-5 text-right list-inside md:list-outside list-none"
@@ -121,7 +121,7 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 mt-4 mb-3 font-semibold text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed text-left`}
+                                className={`relative z-10 mt-1.5 md:mt-2 lg:mt-2.5 mb-1 md:mb-1.5 font-semibold text-sm md:text-base lg:text-lg font-aptos leading-relaxed text-left`}
                             // ${index % 2 === 0 ? "text-left" : "text-right"}
                             >
                                 {section.subTitle}
@@ -136,12 +136,12 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 list-disc space-y-1 pl-5 mb-3 text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed text-left`}
+                                className={`relative z-10 list-disc space-y-0.5 pl-5 mb-1 md:mb-1.5 lg:mb-2 text-sm md:text-base lg:text-lg font-aptos leading-relaxed text-left`}
                             >
                                 {/* ${index % 2 === 0
-                                    ? "pl-5 text-left"
-                                    : "pr-5 text-right list-inside md:list-outside"
-                                    } */}
+                                                ? "pl-5 text-left"
+                                                : "pr-5 text-right list-inside md:list-outside"
+                                                } */}
 
                                 {section.subPoints.map((point, i) => (
                                     <li key={i}>{point}</li>
@@ -157,7 +157,7 @@ const OurStorySections: React.FC<OurStorySectionsProps> = ({ sections }) => {
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={`relative z-10 mt-3 text-[13px] md:text-[15px] lg:text-[17px] font-lato leading-relaxed text-left`}
+                                className={`relative z-10 mt-1 md:mt-1.5 lg:mt-2 text-sm md:text-base lg:text-lg font-aptos leading-relaxed text-left`}
                                 // ${index % 2 === 0 ? "text-left" : "text-right"
                                 //     }
                                 dangerouslySetInnerHTML={{

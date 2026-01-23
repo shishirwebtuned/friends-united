@@ -4,13 +4,14 @@ import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import PaypalProvider from "./provider";
-import { Fira_Sans_Extra_Condensed } from 'next/font/google';
+import { Fira_Sans_Extra_Condensed, } from 'next/font/google';
 
 const firaSansCondensed = Fira_Sans_Extra_Condensed({
   variable: "--font-firaSansCondensed",
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500"]
 });
+
 
 export const metadata: Metadata = {
   title: "Friends United",

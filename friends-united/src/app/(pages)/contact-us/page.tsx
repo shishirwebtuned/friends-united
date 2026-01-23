@@ -100,19 +100,16 @@ const Page = () => {
                                     {contactInfo.email || ''}
                                 </a>
                             </p>
-                            {contactInfo?.phone &&
-                                <p className="font-lato text-sm md:text-base lg:text-lg">
-                                    Phone:
-                                    <a
-                                        href="tel:+61400123456"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="ml-1 font-manrope font-semibold text-[#ca7b28] hover:underline hover:text-[#b56d21] transition-colors"
-                                    >
-                                        {contactInfo.phone || ''}
-                                    </a>
-                                </p>
-                            }
+                            <p className="font-lato text-sm md:text-base lg:text-lg">
+                                <a
+                                    href="mailto:hello@friendsunited.com.au"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="ml-11 md:ml-12 lg:ml-13.5 font-manrope font-semibold text-[#ca7b28] hover:underline hover:text-[#b56d21] transition-colors"
+                                >
+                                    hello@friendsunited.com.au
+                                </a>
+                            </p>
                             {contactInfo?.address &&
                                 <p className="font-lato text-sm md:text-base lg:text-lg">
                                     Address:

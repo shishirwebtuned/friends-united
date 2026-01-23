@@ -56,6 +56,7 @@
 @theme {
   --font-broadway: "Broadway", "sans-serif";
   --font-arialGreek: "ArialGreek", "sans-serif";
+  --font-aptos: "Aptos", "sans-serif";
   --font-firaSansCondensed: var(--font-firaSansCondensed);
 }
 
@@ -254,6 +255,14 @@
   font-family: "ArialGreek";
   src: url("/fonts/ArialGreek/ArialGreek.ttf") format("opentype");
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aptos";
+  src: url("/fonts/Aptos/Aptos.ttf") format("opentype");
+  font-weight: 400 600 700;
   font-style: normal;
   font-display: swap;
 }

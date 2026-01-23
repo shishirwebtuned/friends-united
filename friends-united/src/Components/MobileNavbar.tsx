@@ -84,9 +84,9 @@ const MobileNavbar: React.FC<MobileNavProps> = ({ onClose }) => {
                     <a href="mailto:hello@friendsunited.com.au" className="block hover:text-[#D1792C] transition-colors">
                         hello@friendsunited.com.au
                     </a>
-                    <a href="tel:0404467516" className="block hover:text-[#D1792C] transition-colors">
+                    {/* <a href="tel:0404467516" className="block hover:text-[#D1792C] transition-colors">
                         0404 467 516
-                    </a>
+                    </a> */}
                 </div>
             </nav>
         </div>

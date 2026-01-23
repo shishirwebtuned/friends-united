@@ -35,17 +35,17 @@ const BecomeFriend = ({ friendData }: PropTypes) => {
                         viewport={{ once: true }}
                         variants={fade}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="space-y-4 md:space-y-6 lg:space-y-8 relative md:sticky md:top-20 -top-5"
+                        className="space-y-4 md:space-y-5 lg:space-y-7 relative md:sticky md:top-20 -top-5"
                     >
                         {/* <SectionHeader
                             subtitle="Friends United"
                             title="Becoming a Friends United 'Friend'"
                             align="left"
                         /> */}
-                        <h1 className="relative z-10 md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-5 text-[#ca7b28] text-left">Becoming a Friends United 'Friend'</h1>
+                        <h1 className="relative z-10 md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-5 text-[#ca7b28] text-left" dangerouslySetInnerHTML={{ __html: friendData.title }} />
 
                         <div
-                            className="md:text-base text-sm lg:text-lg font-manrope text-gray-900 leading-relaxed"
+                            className="md:text-base text-sm lg:text-lg font-manrope text-gray-700 leading-relaxed"
                             dangerouslySetInnerHTML={{ __html: friendData.pointsTitle }}
                         />
                         <Link href="/join-us">
