@@ -6,6 +6,8 @@ import Link from "next/link";
 import SectionHeader from "@/Components/SectionHeader";
 import { paddingX } from "@/data/paddingData";
 import { FaArrowLeft } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import TobaccoPriceTable from "./TobaccoPriceTable";
 
 interface Reference {
     label: string;
@@ -33,6 +35,10 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
     if (!service?.title) return null;
 
     const intro = service.details.intro?.trim();
+
+    const pathname = usePathname();
+
+    const isTobaccoDemandPage = pathname === "/tobacco-alcohol-taxes";
 
     const isEmptyIntro =
         !intro ||
@@ -121,6 +127,22 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
 
                         />
                     )}
+                    {isTobaccoDemandPage && (
+                        <div className="w-full flex items-center justify-center max-w-lg mx-auto mb-5 md:mb-6">
+                            <TobaccoPriceTable />
+                        </div>
+                    )}
+                    {isTobaccoDemandPage && (
+                        <div className="mt-1.5 md:mt-2 mb-4 md:mb-5 flex flex-col items-center justify-center text-center font-aptos text-black lg:text-lg md:text-base text-sm gap-1 md:gap-1.5">
+                            <p>AND THE WINNER FOR THE MOST EXPENSIVE CIGAERETTES IN THE WORLD GOES TO</p>
+
+                            <p className="text-[#ca7b28] text-[22px] md:text-[26px] lg:text-3xl font-semibold">AUSTRALIA</p>
+
+                            <p>SMASHING ITS CLOSEST RIVALRY BY $9.83US or $14.54AU</p>
+
+                            <p className="text-xs md:text-sm lg:text-base">(conversion date 22 Jan 2026)</p>
+                        </div>
+                    )}
 
                     {/* SECTIONS */}
                     <div className="space-y-6">
@@ -163,13 +185,13 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                             )}
 
                                             {section.text && (
-                                                <p className="text-xs md:text-sm lg:text-base leading-relaxed text-gray-800" dangerouslySetInnerHTML={{
+                                                <p className="text-xs md:text-sm font-aptos lg:text-base leading-relaxed text-gray-800" dangerouslySetInnerHTML={{
                                                     __html: section.text || "",
                                                 }}
                                                 />
                                             )}
 
-                                            <ul className="list-disc lg:ml-6 md:ml-5 ml-4 space-y-1 font-lato md:text-[15px] text-[13px] font-aptos lg:text-[17px] text-gray-700">
+                                            <ul className="list-disc lg:ml-6 md:ml-5 ml-4 space-y-1 md:text-sm text-xs font-aptos lg:text-base text-gray-700">
                                                 {section.list.map((item: any, i: number) => (
                                                     <li key={i} dangerouslySetInnerHTML={{
                                                         __html: item || "",
