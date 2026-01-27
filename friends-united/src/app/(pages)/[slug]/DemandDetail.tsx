@@ -203,7 +203,7 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                             </ul>
 
                                             {isIllicitDrugPage && index === 2 &&
-                                                <div className="space-y-1 md:text-sm text-xs font-aptos lg:text-base text-black">
+                                                <div className="space-y-1 md:text-base text-sm font-aptos lg:text-lg text-black">
                                                     Also, consumers continue to face uncertainty of the composition and safety of these products.
                                                 </div>
                                             }
