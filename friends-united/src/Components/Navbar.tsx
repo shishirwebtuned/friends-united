@@ -117,7 +117,7 @@ export default function Navbar() {
                         >
                             {link.dropdown ? (
                                 <>
-                                    <button className="flex items-center gap-1 text-[10px] lg:text-[13px] xl:text-[16px] font-medium uppercase text-[#1b1b1b] hover:text-[#D1792C] transition cursor-pointer">
+                                    <button className="flex items-center gap-1 text-[11px] lg:text-[14px] xl:text-[17px] font-medium uppercase text-[#1b1b1b] hover:text-[#D1792C] transition cursor-pointer">
                                         {link.title} <FaAngleDown className="mt-[2px]" />
                                     </button>
 
@@ -138,7 +138,7 @@ export default function Navbar() {
                             ) : (
                                 <Link
                                     href={link.href ?? "#"}
-                                    className="flex items-center h-full text-[10px] lg:text-[13px] xl:text-[16px] font-medium uppercase text-[#1b1b1b] hover:text-[#D1792C] transition"
+                                    className="flex items-center h-full text-[11px] lg:text-[14px] xl:text-[17px] font-medium uppercase text-[#1b1b1b] hover:text-[#D1792C] transition"
                                 >
                                     {link.title}
                                 </Link>

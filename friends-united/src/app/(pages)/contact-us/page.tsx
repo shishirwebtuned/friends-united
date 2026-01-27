@@ -92,7 +92,7 @@ const Page = () => {
                             <p className="font-lato text-sm md:text-base lg:text-lg">
                                 Email:
                                 <a
-                                    href="mailto:support@friendsunited.com"
+                                    href="mailto:hello@friendsunited.com.au"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="ml-1 font-manrope font-semibold text-[#ca7b28] hover:underline hover:text-[#b56d21] transition-colors "
@@ -100,7 +100,7 @@ const Page = () => {
                                     {contactInfo.email || ''}
                                 </a>
                             </p>
-                            <p className="font-lato text-sm md:text-base lg:text-lg">
+                            {/* <p className="font-lato text-sm md:text-base lg:text-lg">
                                 <a
                                     href="mailto:hello@friendsunited.com.au"
                                     target="_blank"
@@ -109,7 +109,7 @@ const Page = () => {
                                 >
                                     hello@friendsunited.com.au
                                 </a>
-                            </p>
+                            </p> */}
                             {contactInfo?.address &&
                                 <p className="font-lato text-sm md:text-base lg:text-lg">
                                     Address:

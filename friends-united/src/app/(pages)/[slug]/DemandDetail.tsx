@@ -38,7 +38,10 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
 
     const pathname = usePathname();
 
-    const isTobaccoDemandPage = pathname === "/tobacco-alcohol-taxes";
+    const isTobaccoDemandPage = pathname === "/alcohol-tobacco-taxes";
+
+    const isIllicitDrugPage = pathname === "/illicit-drugs";
+
 
     const isEmptyIntro =
         !intro ||
@@ -120,7 +123,7 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="font-aptos text-sm md:text-base lg:text-lg leading-relaxed text-gray-900 whitespace-pre-line mb-6 font-medium text-center flex flex-col items-center justify-center"
+                            className="font-aptos text-sm md:text-base lg:text-lg leading-relaxed text-black whitespace-pre-line mb-6 font-medium text-center flex flex-col items-center justify-center"
                             dangerouslySetInnerHTML={{
                                 __html: intro || "",
                             }}
@@ -159,13 +162,13 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                     {!hasList && (
                                         <div>
                                             {section.title && (
-                                                <h4 className="text-[#CA7B28] font-staatliches text-lg md:text-xl lg:text-2xl capitalize mb-3 tracking-wide">
+                                                <h4 className="text-[#CA7B28] font-staatliches text-base md:text-lg lg:text-xl capitalize mb-3 tracking-wide">
                                                     {section.title}
                                                 </h4>
                                             )}
 
                                             {section.text && (
-                                                <p className="font-aptos text-sm md:text-base lg:text-lg leading-relaxed text-gray-800 font-medium"
+                                                <p className="font-aptos text-sm md:text-base lg:text-lg leading-relaxed text-black font-medium"
                                                     dangerouslySetInnerHTML={{
                                                         __html: section.text || "",
                                                     }}
@@ -177,7 +180,7 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                     {hasList && (
                                         <div className="space-y-2 p-3 md:p-4 lg:p-6 bg-white/60 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
                                             {section.title && (
-                                                <h4 className="text-[#CA7B28] font-staatliches text-lg md:text-xl lg:text-2xl capitalize mb-3 tracking-wide border-b-2 border-[#CA7B28]/30 pb-1"
+                                                <h4 className="text-[#CA7B28] font-staatliches text-base md:text-lg lg:text-xl capitalize mb-3 tracking-wide border-b-2 border-[#CA7B28]/30 pb-1"
                                                     dangerouslySetInnerHTML={{
                                                         __html: section.title || "",
                                                     }}
@@ -185,19 +188,25 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                                             )}
 
                                             {section.text && (
-                                                <p className="text-xs md:text-sm font-aptos lg:text-base leading-relaxed text-gray-800" dangerouslySetInnerHTML={{
+                                                <p className="text-sm md:text-base font-aptos lg:text-lg leading-relaxed text-black" dangerouslySetInnerHTML={{
                                                     __html: section.text || "",
                                                 }}
                                                 />
                                             )}
 
-                                            <ul className="list-disc lg:ml-6 md:ml-5 ml-4 space-y-1 md:text-sm text-xs font-aptos lg:text-base text-gray-700">
+                                            <ul className="list-disc lg:ml-6 md:ml-5 ml-4 space-y-1 md:text-base text-sm font-aptos lg:text-lg text-black">
                                                 {section.list.map((item: any, i: number) => (
                                                     <li key={i} dangerouslySetInnerHTML={{
                                                         __html: item || "",
                                                     }} />
                                                 ))}
                                             </ul>
+
+                                            {isIllicitDrugPage && index === 2 &&
+                                                <div className="space-y-1 md:text-sm text-xs font-aptos lg:text-base text-black">
+                                                    Also, consumers continue to face uncertainty of the composition and safety of these products.
+                                                </div>
+                                            }
                                         </div>
                                     )}
                                 </motion.div>

@@ -128,7 +128,7 @@ const JoinUsForm = () => {
                                             </div>
 
                                             <div>
-                                                <label className="block font-medium mb-1 text-[#212529]">Date Of Birth*</label>
+                                                <label className="block font-medium mb-1 text-[#212529]">Date of Birth*</label>
                                                 <Field name="dateOfBirth" type="date" placeholder="Date Of Birth" className="w-full mt-1 border border-gray-300 px-4 py-2 focus:outline-none bg-white focus:border-[#ca7b28]" />
                                                 <ErrorMessage name="dateOfBirth" component="div" className="text-red-500 text-sm mt-1" />
                                             </div>

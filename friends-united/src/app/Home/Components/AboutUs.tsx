@@ -93,7 +93,7 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
                             title={`${aboutUsData?.title}`}
                             align="left"
                         /> */}
-                        <p className="text-lg md:text-xl lg:text-xl font-firaSansCondensed font-medium tracking-wide text-[#ca7b28] mb-4" dangerouslySetInnerHTML={{ __html: bannerData.subTitle || "" }} />
+                        <p className="text-lg md:text-xl lg:text-xl font-firaSansCondensed font-medium tracking-wide text-[#ca7b28] leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: bannerData.subTitle || "" }} />
 
                         <motion.p
                             initial={{ opacity: 0, y: 40 }}
@@ -216,7 +216,7 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
                                     >
                                         {/* <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#ca7b28] flex-shrink-0" /> */}
 
-                                        <p className="text-[#ca7b28] text-[11px] md:text-[13px] lg:text-[15px] leading-relaxed font-manrope font-medium bg-[#ca7b28]/20 rounded-xl px-3 md:px-4 py-1.5"
+                                        <p className="text-[#ca7b28] text-xs md:text-sm lg:text-base leading-relaxed font-manrope font-medium bg-[#ca7b28]/20 rounded-xl px-3 md:px-4 py-1.5"
                                             dangerouslySetInnerHTML={{
                                                 __html: item || "",
                                             }}
