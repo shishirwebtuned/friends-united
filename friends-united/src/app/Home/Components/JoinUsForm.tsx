@@ -51,7 +51,7 @@ const JoinUsForm = () => {
                 <div className="joinus-gradient md:p-6 sm:p-6 p-5 lg:p-7 xl:p-8 rounded-[30px]">
                     <div className="text-center mb-6">
                         <h3 className="text-white md:text-sm text-xs lg:text-base font-semibold uppercase inline-block font-lato">
-                            Become One of the super powerful voices
+                            Become One of the super powerful voices demanding change
                         </h3>
                         {/* <h1 className="text-3xl md:text-4xl mt-3 font-normal lg:text-5xl font-staatliches text-black">
                             Join Us
@@ -171,11 +171,11 @@ const JoinUsForm = () => {
                                             <label className="block font-medium mb-3 text-[#212529]">Monthly Support</label>
                                             <div className="space-y-4">
                                                 <label className="flex items-center gap-2">
-                                                    <input type="radio" name="monthlySupport" value="2" checked={monthlySupport === 2} onChange={(e) => {
+                                                    <input type="radio" name="monthlySupport" value="2.75" checked={monthlySupport === 2.75} onChange={(e) => {
                                                         setMonthlySupport(Number(e.target.value));
                                                         setAnnualSupport(0);
                                                     }} />
-                                                    <span>$ 2</span>
+                                                    <span>$ 2.75</span>
                                                 </label>
                                                 {/* <label className="flex items-center gap-2">
                                                     <input type="radio" name="monthlySupport" value="100" checked={monthlySupport === 100} onChange={(e) => setMonthlySupport(Number(e.target.value))} />
@@ -193,11 +193,11 @@ const JoinUsForm = () => {
                                             <label className="block font-medium mb-3 text-[#212529]">Annual Support</label>
                                             <div className="space-y-4">
                                                 <label className="flex items-center gap-2">
-                                                    <input type="radio" name="annualSupport" value="24" checked={annualSupport === 24} onChange={(e) => {
+                                                    <input type="radio" name="annualSupport" value="33" checked={annualSupport === 33} onChange={(e) => {
                                                         setAnnualSupport(Number(e.target.value));
                                                         setMonthlySupport(0);
                                                     }} />
-                                                    <span>$ 24</span>
+                                                    <span>$ 33</span>
                                                 </label>
                                                 {/* <label className="flex items-center gap-2">
                                                     <input type="radio" name="annualSupport" value="1000" checked={annualSupport === 1000} onChange={(e) => setAnnualSupport(Number(e.target.value))} />

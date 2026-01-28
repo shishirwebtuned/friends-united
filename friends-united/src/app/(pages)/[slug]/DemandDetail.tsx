@@ -217,8 +217,6 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                 </div>
 
 
-
-
                 {service.references && service.references.length > 0 && (
                     <div className="mb-8">
                         <h3 className="text-lg md:text-xl lg:text-2xl font-staatliches mb-4 text-[#CA7B28]">
@@ -245,8 +243,8 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                 <div className="flex justify-center mt-8">
                     <Link
                         href="/"
-                        className="bg-[#CA7B28] text-white font-aptos px-4 md:px-6 py-2 border-2 border-[#CA7B28] rounded-md shadow hover:bg-transparent hover:text-[#CA7B28] transition-all duration-300 ease-in-out"
-                    ><span className="flex flex-row items-center gap-3 lg:text-base md:text-sm text-xs">
+                        className="bg-[#CA7B28] text-white font-aptos px-4 md:px-6 py-2 border-2 border-[#CA7B28] rounded-md shadow hover:bg-transparent hover:text-[#CA7B28] transition-all duration-300 ease-in-out">
+                        <span className="flex flex-row items-center gap-3 lg:text-base md:text-sm text-xs">
                             <FaArrowLeft />
                             <p>
                                 Back to Home
