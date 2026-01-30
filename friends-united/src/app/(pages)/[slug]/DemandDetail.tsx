@@ -141,9 +141,9 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
 
                             <p className="text-[#ca7b28] text-[22px] md:text-[26px] lg:text-3xl font-semibold">AUSTRALIA</p>
 
-                            <p>SMASHING ITS CLOSEST RIVALRY BY $9.83US or $14.54AU</p>
+                            <p>SMASHING ITS CLOSEST RIVALRY BY $14.79</p>
 
-                            <p className="text-xs md:text-sm lg:text-base">(conversion date 22 Jan 2026)</p>
+                            {/* <p className="text-xs md:text-sm lg:text-base">(conversion date 22 Jan 2026)</p> */}
                         </div>
                     )}
 
