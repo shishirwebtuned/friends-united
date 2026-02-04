@@ -17,6 +17,7 @@ import HeroBannerNew from './Components/HeroBannerNew';
 import DailySocialMedia from './Components/DailySocialMedia';
 import BecomeFriend from './Components/BecomeFriend';
 import HomeStorySections from './Components/OurStory';
+import JoinSection from './Components/JoinSection';
 export const revalidate = 60
 
 export default async function HomePage() {
@@ -79,20 +80,20 @@ export default async function HomePage() {
       {/* <HeroBanner bannerData={bannerData} /> */}
       <HeroBannerNew bannerData={bannerData} />
       <AboutUs bannerData={bannerData} />
-      <HomeStorySections sections={sections} />
+      <JoinSection />
+      {/* <HomeStorySections sections={sections} /> */}
       {/* <OurFight /> */}
       {/* <HadEnough /> */}
       {/* <GiveawaySection /> */}
       {/* <MilestoneWinners /> */}
       {/* <BreakSilence /> */}
       {/* <RealWinners /> */}
-      <JoinUs />
+      {/* <JoinUs /> */}
       {/* <SubscriptionForm /> */}
       {/* <JoinUsForm /> */}
       {/* <FAQ faqDataList={faq} /> */}
-      <BecomeFriend friendData={becomeFriend} />
+      {/* <BecomeFriend friendData={becomeFriend} /> */}
       <ContactBanner />
-      <DailySocialMedia />
     </div>
   )
 }

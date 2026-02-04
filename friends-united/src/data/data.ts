@@ -39,7 +39,7 @@ export const navLinksData = [
       },
     ],
   },
-  { title: "Make It Happen", href: "/join-us" },
+  { title: "Friends United 'Friend'", href: "/become-friend" },
   { title: "Contact Us", href: "/contact-us" },
 ];
 

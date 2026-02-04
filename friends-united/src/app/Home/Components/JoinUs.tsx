@@ -4,7 +4,7 @@ import React from "react";
 
 const JoinUs = () => {
     return (
-        <section className={`relative py-20 md:py-28 giveaway-gradient overflow-hidden ${paddingX} mb-14`}>
+        <section className={`relative py-20 md:py-28 giveaway-gradient overflow-hidden ${paddingX}`}>
             {/* Gradient Accent Background */}
             {/* <div className="absolute inset-0 bg-gradient-to-br from-[#1b120a] via-[#2b1a0f] to-[#3b2313] opacity-95 -z-10"></div> */}
             {/* <div className="absolute -top-20 -right-32 w-[500px] h-[500px] bg-[#ca7b28]/20 rounded-full blur-3xl -z-10"></div> */}

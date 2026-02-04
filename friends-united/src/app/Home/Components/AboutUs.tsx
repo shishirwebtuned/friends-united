@@ -85,7 +85,7 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
     return (
         <section className={` ${paddingX} py-12 md:py-[5.5rem]`}>
             <div className="">
-                <div className="flex flex-col lg:flex-row lg:gap-6">
+                <div className="flex flex-col lg:flex-row lg:gap-6 items-center">
                     {/* Text Column */}
                     <div className="lg:w-[60%] flex flex-col">
                         {/* <SectionHeader
@@ -208,26 +208,26 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
                             />
 
 
-                            <div className="flex flex-col gap-1">
+                            {/* <div className="flex flex-col gap-1">
                                 {aboutUsData?.revival?.pointList.map((item: any, index: number) => (
                                     <div
                                         key={index}
                                         className="flex flex-row flex-wrap md:justify-start justify-center items-center gap-y-4 gap-x-2"
                                     >
-                                        {/* <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#ca7b28] flex-shrink-0" /> */}
+                                        {/* <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#ca7b28] flex-shrink-0" />
 
-                                        <p className="text-[#ca7b28] text-xs md:text-sm lg:text-base leading-relaxed font-manrope font-medium bg-[#ca7b28]/20 rounded-xl px-3 md:px-4 py-1.5"
-                                            dangerouslySetInnerHTML={{
-                                                __html: item || "",
-                                            }}
-                                        />
+                            <p className="text-[#ca7b28] text-xs md:text-sm lg:text-base leading-relaxed font-manrope font-medium bg-[#ca7b28]/20 rounded-xl px-3 md:px-4 py-1.5"
+                                dangerouslySetInnerHTML={{
+                                    __html: item || "",
+                                }}
+                            />
 
-                                        {index === 0 && (
-                                            <Link href="/join-us" className="bg-white cursor-pointer text-[#D1792C] border-2 border-[#D1792C] rounded-4xl px-3 py-1.5 font-semibold text-sm md:text-base lg:text-[17px] font-lato bounce-button">Join us</Link>
-                                        )}
-                                    </div>
+                            {index === 0 && (
+                                <Link href="/join-us" className="bg-white cursor-pointer text-[#D1792C] border-2 border-[#D1792C] rounded-4xl px-3 py-1.5 font-semibold text-sm md:text-base lg:text-[17px] font-lato bounce-button">Join us</Link>
+                            )}
+                        </div>
                                 ))}
-                            </div>
+                    </div> */}
                         </div>
 
                         {/* <div className="mt-5 md:mt-6 flex sm:justify-start justify-center">
@@ -295,10 +295,10 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
                         </motion.div>
                     </div>
 
-
                 </div>
-            </div>
-        </section>
+
+            </div >
+        </section >
     );
 };
 

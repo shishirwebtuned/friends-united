@@ -8,6 +8,7 @@ interface CustomButtonProps {
     buttonType: "filled-outlined" | "filled-nonoutlined" | "outlined";
     btnPadding: "more" | "less";
     disabled?: boolean;
+    capitalize?: boolean;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -17,6 +18,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     buttonType,
     btnPadding,
     disabled,
+    capitalize,
 }) => {
     const baseClasses =
         "inline-block font-semibold tracking-wide md:text-[15px] text-xs sm:text-sm lg:text-[16px] xl:text-[17px] transition focus:outline-none focus:ring-0 ease-in-out duration-300 transition-all cursor-pointer";
@@ -44,6 +46,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
                 "bg-[#D1792C] border-2 border-[#D1792C] text-white hover:bg-[#b85f1f] focus:ring-[#D1792C]/70";
     }
 
+    const textClass = "uppercase";
     let paddingClasses = "";
 
     switch (btnPadding) {
@@ -66,7 +69,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
         "bg-gray-300 border-gray-300 text-gray-600 cursor-not-allowed opacity-80";
 
     const finalClasses = `${baseClasses} ${paddingClasses} ${disabled ? disabledClasses : buttonClasses
-        }`;
+        } ${capitalize ? textClass : ""}`;
 
     if (href) {
         return (

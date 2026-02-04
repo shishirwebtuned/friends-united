@@ -44,7 +44,7 @@ export default function Navbar() {
                             order: s.order,
                         })),
                     },
-                    { title: "Make It Happen", href: "/join-us" },
+                    { title: "Friends United 'Friend'", href: "/become-friend" },
                     { title: "Contact Us", href: "/contact-us" },
                 ];
                 setNavLinksData(dynamicNav);
@@ -54,7 +54,7 @@ export default function Navbar() {
                 // Fallback to static nav if fetch fails
                 setNavLinksData([
                     { title: "Our Story", href: "/our-story" },
-                    { title: "Make It Happen", href: "/join-us" },
+                    { title: "Friends United 'Friend'", href: "/become-friend" },
                     { title: "Contact Us", href: "/contact-us" },
                 ]);
             });
@@ -148,7 +148,8 @@ export default function Navbar() {
                 </ul>
 
                 <div className="hidden md:block">
-                    <CustomButton btnPadding="more" label="Join Us Today" buttonType="filled-outlined" href="/join-us" />
+                    <CustomButton btnPadding="more" label="Join Us"
+                        capitalize buttonType="filled-outlined" href="/join-us" />
                 </div>
 
                 <div className="md:hidden">

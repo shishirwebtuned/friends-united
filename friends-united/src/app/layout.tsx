@@ -5,6 +5,7 @@ import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import PaypalProvider from "./provider";
 import { Fira_Sans_Extra_Condensed, } from 'next/font/google';
+import FooterNew from "@/Components/FooterNew";
 
 const firaSansCondensed = Fira_Sans_Extra_Condensed({
   variable: "--font-firaSansCondensed",
@@ -42,7 +43,7 @@ export default function RootLayout({
         <PaypalProvider>
           {children}
         </PaypalProvider>
-        <Footer />
+        <FooterNew />
 
       </body>
     </html>
