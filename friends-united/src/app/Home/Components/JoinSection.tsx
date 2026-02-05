@@ -66,7 +66,7 @@ const JoinSection = () => {
     }
 
     return (
-        <section className={`${paddingX} lg:py-20 md:py-16 py-12 relative overflow-hidden bg-[#ca7b28]/10`}>
+        <section className={`${paddingX} lg:py-20 md:py-16 py-12 relative overflow-hidden bg-[#ca7b28]/2`}>
 
             {/* floating ambient background */}
             {/* <motion.div
@@ -105,7 +105,7 @@ const JoinSection = () => {
                 <motion.h2
                     variants={itemVariants}
                     className="
-                        md:text-3xl text-2xl lg:text-4xl
+                        md:text-5xl text-3xl lg:text-6xl
                         font-staatliches
                         text-[#ca7b28]
                         tracking-wide
