@@ -30,13 +30,13 @@ const FooterNew = () => {
     };
 
     return (
-        <footer className={`bg-[#1d1d1d] text-white md:py-12 py-10 lg:py-14 ${paddingX}`}>
+        <footer className={`bg-[#1d1d1d] text-white md:py-5 py-4 lg:py-6 ${paddingX}`}>
             <div className="px-4">
 
                 <div className="w-full flex justify-center">
                     <div className="flex flex-row gap-8 max-w-5xl mx-auto text-left">
 
-                        <div className="">
+                        {/* <div className="">
                             <h4 className="text-xl md:text-2xl lg:text-3xl md:mb-4 mb-3 lg:mb-6 font-staatliches font-normal">
                                 GET INVOLVED
                             </h4>
@@ -52,14 +52,15 @@ const FooterNew = () => {
                                     Contact Us
                                 </a>
                             </div>
-                        </div>
+                        </div> */}
 
-                        <div className="">
-                            <h4 className="text-xl md:text-2xl lg:text-3xl md:mb-4 mb-3 lg:mb-6 font-staatliches font-normal">
+                        <div className="flex flex-col
+                        items-center">
+                            <h4 className="text-xl md:text-2xl lg:text-3xl md:mb-3 mb-2 lg:mb-4 font-staatliches font-normal">
                                 Quick Links
                             </h4>
 
-                            <div className="flex gap-4 mt-6">
+                            <div className="flex gap-4 mt-2">
                                 {contactInfo.socialLinks?.map((item, idx) => (
                                     <a
                                         key={idx}
@@ -78,7 +79,7 @@ const FooterNew = () => {
                 </div>
 
 
-                <hr className="my-6 border-gray-700" />
+                <hr className="my-5 border-gray-700" />
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0 text-white font-manrope lg:text-base md:text-sm text-xs">
                     <div className="text-center md:text-left">

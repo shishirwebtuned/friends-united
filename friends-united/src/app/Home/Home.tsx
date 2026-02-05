@@ -93,7 +93,7 @@ export default async function HomePage() {
       {/* <JoinUsForm /> */}
       {/* <FAQ faqDataList={faq} /> */}
       {/* <BecomeFriend friendData={becomeFriend} /> */}
-      <ContactBanner />
+      {/* <ContactBanner /> */}
     </div>
   )
 }

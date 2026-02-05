@@ -51,6 +51,21 @@ const Page = async () => {
                 className="space-y-7 md:space-y-10 lg:space-y-12 mt-4 md:mt-6 lg:mt-8 text-[#222]">
                 <OurStorySections sections={sections} />
 
+                <div className="text-center pt-8 md:pt-12 lg:pt-16 border-t border-gray-200">
+                    <h2 className="md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-2.5 md:mb-3 lg:mb-4 text-[#ca7b28]">
+                        Join FRIENDS UNITED
+                    </h2>
+                    <p className="mb-4 md:mb-6 lg:mb-8  font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
+                        Advocate for changes impacting Australia, Australians, our lifestyle, and the future of our Australia.
+                    </p>
+
+                    <CustomButton
+                        btnPadding="less"
+                        label="Join Now"
+                        buttonType="filled-outlined"
+                        href="/join-us"
+                    />
+                </div>
 
                 <div
                     // initial={{ opacity: 0, scale: 0.9 }}
@@ -77,21 +92,7 @@ const Page = async () => {
                 </div>
 
                 {/* Final CTA */}
-                {/* <div className="text-center pt-8 md:pt-12 lg:pt-16 border-t border-gray-200">
-                    <h2 className="md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-2.5 md:mb-3 lg:mb-4 text-[#ca7b28]">
-                        Join FRIENDS UNITED
-                    </h2>
-                    <p className="mb-4 md:mb-6 lg:mb-8  font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
-                        Advocate for changes impacting Australia, Australians, our lifestyle, and the future of our Australia.
-                    </p>
 
-                    <CustomButton
-                        btnPadding="less"
-                        label="Join Now"
-                        buttonType="filled-outlined"
-                        href="/join-us"
-                    />
-                </div> */}
             </div>
         </div>
 
