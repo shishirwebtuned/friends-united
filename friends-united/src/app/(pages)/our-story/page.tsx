@@ -56,7 +56,7 @@ const Page = async () => {
                         Join FRIENDS UNITED
                     </h2>
                     <p className="mb-4 md:mb-6 lg:mb-8  font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
-                        Advocate for changes impacting Australia, Australians, our Lifestyle, and the Future of our Australia.
+                        Become a part of the Super Powerful Voice demanding change.
                     </p>
 
                     <CustomButton
