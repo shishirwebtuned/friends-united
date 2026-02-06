@@ -56,7 +56,7 @@ const Page = async () => {
                         Join FRIENDS UNITED
                     </h2>
                     <p className="mb-4 md:mb-6 lg:mb-8  font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
-                        Advocate for changes impacting Australia, Australians, our lifestyle, and the future of our Australia.
+                        Advocate for changes impacting Australia, Australians, our Lifestyle, and the Future of our Australia.
                     </p>
 
                     <CustomButton
@@ -67,14 +67,13 @@ const Page = async () => {
                     />
                 </div>
 
-                <div
-                    // initial={{ opacity: 0, scale: 0.9 }}
-                    // whileInView={{ opacity: 1, scale: 1 }}
-                    // transition={{ duration: 0.9, ease: "easeOut" }}
-                    // viewport={{ once: true }}
+                {/* <div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.9, ease: "easeOut" }}
+                    viewport={{ once: true }}
                     className="relative w-full mt-3 md:mt-4 lg:mt-8 text-center"
                 >
-                    {/* highlight panel */}
                     <div className="relative bg-black/90 text-white rounded-[30px] px-4 md:px-7 lg:px-10 py-6 md:py-12 lg:py-16 shadow-2xl overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ca7b28]/90 to-transparent opacity-60" />
 
@@ -89,7 +88,7 @@ const Page = async () => {
 
                         </h2>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Final CTA */}
 

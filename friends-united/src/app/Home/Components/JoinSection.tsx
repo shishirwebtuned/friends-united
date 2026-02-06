@@ -129,7 +129,7 @@ const JoinSection = () => {
                     </p>
 
                     <p className="font-bold text-gray-900">
-                        Australia, Australians, our lifestyle, and the future of our Australia.
+                        Australia, Australians, our Lifestyle, and the Future of our Australia.
                     </p>
                 </motion.div>
 
