@@ -6,6 +6,8 @@ import React from "react";
 import { client } from "@/lib/sanity.client";
 import { motion } from "framer-motion";
 import OurStorySections from "./OurStorySections";
+import JoinSection from "@/app/Home/Components/JoinSection";
+import JoinUsSection from "./JoinUsSection";
 
 interface Section {
     title: string;
@@ -40,7 +42,7 @@ const Page = async () => {
     const sections = data?.sections || [];
 
     return (
-        <div className={`${paddingX} bg-gradient-to-b from-white via-[#fff9f3] to-white py-8 md:py-12 lg:py-16 mb-4 md:mb-6 lg:mb-8`}>
+        <div className={`${paddingX} bg-gradient-to-b from-white via-[#fff9f3] to-white py-8 md:py-12 lg:py-16 mb-0 md:mb-0 lg:mb-0`}>
             {/* Header */}
             <div className="text-center flex items-center justify-center">
                 <SectionHeader subtitle="Explore About Us" title="Our Story" align="center" />
@@ -51,21 +53,7 @@ const Page = async () => {
                 className="space-y-7 md:space-y-10 lg:space-y-12 mt-4 md:mt-6 lg:mt-8 text-[#222]">
                 <OurStorySections sections={sections} />
 
-                <div className="text-center pt-8 md:pt-12 lg:pt-16 border-t border-gray-200">
-                    <h2 className="md:text-3xl text-2xl lg:text-4xl font-staatliches font-normal mb-2.5 md:mb-3 lg:mb-4 text-[#ca7b28]">
-                        Join FRIENDS UNITED
-                    </h2>
-                    <p className="mb-4 md:mb-6 lg:mb-8  font-manrope font-medium lg:text-base md:text-sm text-xs text-gray-700">
-                        Become a part of the Super Powerful Voice demanding change.
-                    </p>
-
-                    <CustomButton
-                        btnPadding="less"
-                        label="Join Now"
-                        buttonType="filled-outlined"
-                        href="/join-us"
-                    />
-                </div>
+                <JoinUsSection />
 
                 {/* <div
                     initial={{ opacity: 0, scale: 0.9 }}

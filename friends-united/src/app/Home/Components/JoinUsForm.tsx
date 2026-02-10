@@ -8,15 +8,15 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Stepper from "@/Components/Stepper";
+import { useRouter } from "next/navigation";
 
 const JoinUsForm = () => {
     const [step, setStep] = useState(1);
     const [monthlySupport, setMonthlySupport] = useState(0);
     const [annualSupport, setAnnualSupport] = useState(0);
-    // const [monthlySupportCustom, setMonthlySupportCustom] = useState(0);
-    // const [annualSupportCustom, setAnnualSupportCustom] = useState(0);
     const [paymentCompleted, setPaymentCompleted] = useState(false);
 
+    const router = useRouter();
     const total = (monthlySupport) + (annualSupport);
 
     const nextStep = () => setStep((prev) => Math.min(prev + 1, 4));
@@ -79,21 +79,35 @@ const JoinUsForm = () => {
                             dateOfBirth: "",
                         }}
                         validationSchema={getValidationSchema(step)}
-                        onSubmit={(values, { resetForm }) => {
-                            console.log("Form values:", values);
-                            console.log("Support amounts:", { monthlySupport, annualSupport, });
-                            alert("Form submitted successfully!");
+                        onSubmit={async (values, { resetForm, setSubmitting }) => {
 
-                            resetForm();
-                            setMonthlySupport(0);
-                            setAnnualSupport(0);
-                            // setMonthlySupportCustom(0);
-                            // setAnnualSupportCustom(0);
-                            setPaymentCompleted(false);
-                            setStep(1);
+                            // 🔥 HARD PRODUCTION GUARD
+                            if (!paymentCompleted) {
+                                alert("Payment not completed yet.");
+                                setSubmitting(false);
+                                return;
+                            }
+
+                            try {
+
+                                console.log("Form values:", values);
+                                console.log("Support amounts:", {
+                                    monthlySupport,
+                                    annualSupport,
+                                });
+
+
+                                setStep(4);
+
+                            } catch (error) {
+                                console.error(error);
+                            } finally {
+                                setSubmitting(false);
+                            }
                         }}
+
                     >
-                        {({ isValid, validateForm, setTouched }) => (
+                        {({ isValid, validateForm, setTouched, submitForm }) => (
                             <Form className="space-y-6 font-manrope">
 
                                 {/* Step 1 */}
@@ -167,77 +181,82 @@ const JoinUsForm = () => {
                                 {/* Step 3 */}
                                 {step === 3 && (
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
                                         <div>
-                                            <label className="block font-medium mb-3 text-[#212529]">Monthly Support</label>
-                                            <div className="space-y-4">
-                                                <label className="flex items-center gap-2">
-                                                    <input type="radio" name="monthlySupport" value="2.75" checked={monthlySupport === 2.75} onChange={(e) => {
-                                                        setMonthlySupport(Number(e.target.value));
+                                            <label>Monthly Support</label>
+                                            <label>
+                                                <input
+                                                    type="radio"
+                                                    checked={monthlySupport === 2.75}
+                                                    onChange={() => {
+                                                        setMonthlySupport(2.75);
                                                         setAnnualSupport(0);
-                                                    }} />
-                                                    <span>$ 2.75</span>
-                                                </label>
-                                                {/* <label className="flex items-center gap-2">
-                                                    <input type="radio" name="monthlySupport" value="100" checked={monthlySupport === 100} onChange={(e) => setMonthlySupport(Number(e.target.value))} />
-                                                    <span>$ 5.00</span>
-                                                </label> */}
-                                                {/* <label className="flex items-center gap-2">
-                                                    <input type="radio" name="monthlySupport" value="custom" checked={monthlySupportCustom > 0} onChange={() => setMonthlySupportCustom(0)} />
-                                                    <span>Custom:</span>
-                                                    <input type="number" placeholder="Enter amount" className="border border-gray-300 px-2 py-1 w-auto sm:w-36 focus:outline-none bg-white rounded-sm focus:border-[#ca7b28] pl-3" value={monthlySupportCustom > 0 ? monthlySupportCustom : ""} onChange={(e) => setMonthlySupportCustom(Number(e.target.value))} />
-                                                </label> */}
-                                            </div>
+                                                    }}
+                                                />
+                                                $ 2.75
+                                            </label>
                                         </div>
 
                                         <div>
-                                            <label className="block font-medium mb-3 text-[#212529]">Annual Support</label>
-                                            <div className="space-y-4">
-                                                <label className="flex items-center gap-2">
-                                                    <input type="radio" name="annualSupport" value="33" checked={annualSupport === 33} onChange={(e) => {
-                                                        setAnnualSupport(Number(e.target.value));
+                                            <label>Annual Support</label>
+                                            <label>
+                                                <input
+                                                    type="radio"
+                                                    checked={annualSupport === 33}
+                                                    onChange={() => {
+                                                        setAnnualSupport(33);
                                                         setMonthlySupport(0);
-                                                    }} />
-                                                    <span>$ 33</span>
-                                                </label>
-                                                {/* <label className="flex items-center gap-2">
-                                                    <input type="radio" name="annualSupport" value="1000" checked={annualSupport === 1000} onChange={(e) => setAnnualSupport(Number(e.target.value))} />
-                                                    <span>$ 60</span>
-                                                </label> */}
-                                                {/* <label className="flex items-center gap-2">
-                                                    <input type="radio" name="annualSupport" value="custom" checked={annualSupportCustom > 0} onChange={() => setAnnualSupportCustom(0)} />
-                                                    <span>Custom:</span>
-                                                    <input type="number" placeholder="Enter amount" className="border border-gray-300 px-2 py-1 w-auto sm:w-36 focus:outline-none bg-white rounded-sm focus:border-[#ca7b28] pl-3" value={annualSupportCustom > 0 ? annualSupportCustom : ""} onChange={(e) => setAnnualSupportCustom(Number(e.target.value))} />
-                                                </label> */}
-                                            </div>
+                                                    }}
+                                                />
+                                                $ 33
+                                            </label>
                                         </div>
 
                                         <div className="col-span-full">
-                                            <p className="font-semibold text-[#212529]">
-                                                Total: ${total}
-                                            </p>
+
+                                            <p>Total: ${total}</p>
 
                                             {total > 0 && (
-                                                <div className="mt-6 bg-[white] p-6 rounded-xl shadow-lg flex flex-col items-center">
-                                                    <p className="text-[#212529] font-semibold mb-4 text-lg">Proceed to pay ${total}</p>
-                                                    <PayPalButtons
-                                                        style={{ layout: "vertical", color: "gold", shape: "rect", label: "pay", tagline: false }}
-                                                        createOrder={(data, actions) => {
-                                                            if (!actions?.order) return Promise.reject("PayPal actions.order undefined");
-                                                            return actions.order.create({
-                                                                intent: "CAPTURE",
-                                                                purchase_units: [{ amount: { currency_code: "AUD", value: total.toString() } }],
-                                                            });
+
+                                                <div className="mt-6 bg-white p-6 rounded-xl shadow-lg flex flex-col items-center">
+
+                                                    <p>Proceed to pay ${total}</p>
+
+                                                    {/* 🔥 SQUARE BUTTON */}
+                                                    <button
+                                                        type="button"
+                                                        className="text-white bg-[#006aff] px-6 py-3 rounded-md"
+                                                        onClick={async () => {
+
+                                                            const url =
+                                                                monthlySupport === 2.75
+                                                                    ? "https://square.link/u/VesqyMYH?src=embed"
+                                                                    : "https://square.link/u/FuVO4Em2?src=embed";
+
+                                                            const w = 500;
+                                                            const h = window.innerHeight * 0.75;
+                                                            const left = (window.innerWidth - w) / 2;
+                                                            const top = (window.innerHeight - h) / 2;
+
+                                                            window.open(
+                                                                url,
+                                                                "Square Payment",
+                                                                `scrollbars=yes,width=${w},height=${h},top=${top},left=${left}`
+                                                            );
+
+                                                            setPaymentCompleted(true);
+
+                                                            alert("Payment window opened.");
+
+                                                            await submitForm();
                                                         }}
-                                                        onApprove={async (data, actions) => {
-                                                            if (actions?.order) {
-                                                                await actions.order.capture();
-                                                                setPaymentCompleted(true);
-                                                                alert("Payment successful!");
-                                                            }
-                                                        }}
-                                                    />
+                                                    >
+                                                        Pay now
+                                                    </button>
+
                                                 </div>
                                             )}
+
                                         </div>
                                     </div>
                                 )}
@@ -245,22 +264,18 @@ const JoinUsForm = () => {
                                 {/* Step 4 */}
                                 {step === 4 && (
                                     <div className="text-center space-y-4">
-                                        <p className="text-[#212529] font-semibold">Please review your information before submitting.</p>
-                                        <CustomButton
-                                            btnPadding="less"
-                                            buttonType="filled-outlined"
-                                            label="Submit"
-                                            type="submit"
-                                            disabled={!isValid || !paymentCompleted}
-                                        />
+                                        <p className="text-[#212529] font-semibold">
+                                            🎉 Joined as member successfully!
+                                        </p>
 
-                                        {(!isValid || !paymentCompleted) && (
-                                            <p className="text-red-600 text-sm mt-2">
-                                                {!paymentCompleted
-                                                    ? "Please complete your payment before submitting."
-                                                    : "Some fields are invalid or missing. Please check your information."}
-                                            </p>
-                                        )}
+                                        <button
+                                            type="button"
+                                            className="text-white cursor-pointer bg-[#ca7b28] px-6 py-2 rounded-full hover:bg-[#d4861f]"
+                                            onClick={() => router.push("/")}
+                                        >
+                                            Done
+                                        </button>
+
                                     </div>
                                 )}
 
@@ -317,10 +332,6 @@ const JoinUsForm = () => {
                                     </div>
                                 </div>
 
-                                {/* Progress Bar */}
-                                {/* <div className="w-full bg-[#ca7b28]/30 h-2 rounded-full mt-6">
-                                    <motion.div className="bg-[#ca7b28] h-2 rounded-full" initial={{ width: 0 }} animate={{ width: `${progress}%` }} transition={{ type: "spring", stiffness: 100, damping: 20 }} />
-                                </div> */}
                                 <div className="relative">
                                     <Stepper currentStep={step} totalSteps={4} />
                                 </div>
