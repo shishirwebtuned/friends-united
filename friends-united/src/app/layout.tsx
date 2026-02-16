@@ -35,6 +35,12 @@ export default function RootLayout({
         />
 
         <title>Friends United</title>
+
+        <script
+          type="text/javascript"
+          src="https://sandbox.web.squarecdn.com/v1/square.js"
+        ></script>
+
       </head>
       <body className={` ${firaSansCondensed.variable}`}
       >

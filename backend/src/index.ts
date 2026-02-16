@@ -1,10 +1,8 @@
-
-
-
 import app from "./app.js";
 import { connectDB } from "./config/database.js";
+import dotenv from "dotenv";
 
-
+dotenv.config();
 const PORT = Number(process.env.PORT) || 5000;
 
 // Connect to database (non-blocking)
@@ -22,13 +20,13 @@ connectDB()
 app.get("/", (req, resp) => {
   resp.status(200).json({
     status: "success",
-    message: "Friends United Backend is running"
+    message: "Friends United Backend is running",
   });
 });
 
 // Start server only in development (Vercel handles this in production)
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, '0.0.0.0', () => {
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, "0.0.0.0", () => {
     console.log(`✅ Server running on http://localhost:${PORT}`);
   });
 }
