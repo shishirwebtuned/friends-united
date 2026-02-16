@@ -6,7 +6,7 @@ import { sendResponse } from "../utils/sendResponse.js";
 
 dotenv.config();
 
-export const createContactemail = catchAsync(async (req, res ,next) => {
+export const createContactemail = catchAsync(async (req, res) => {
   const { firstName, lastName, email, phoneNumber, message } = req.body;
 
   if (!firstName || !lastName || !email || !phoneNumber || !message) {
@@ -34,6 +34,16 @@ export const createContactemail = catchAsync(async (req, res ,next) => {
     html,
   });
 
-  // Don't send response here - let the next controller handle it
-  next();
+  sendResponse(res, {
+    success: true,
+    message: "Your message has been sent successfully.",
+    data: {
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      message,
+    },
+    statusCode: 201,
+  });
 });

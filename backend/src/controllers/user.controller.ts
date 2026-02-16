@@ -17,7 +17,7 @@ export const loginUser = catchAsync(async (req, res) => {
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) throw new AppError("Incorrect Password", 401);
 
-  const token = generateToken((user._id as string).toString(), user.role);
+  const token = generateToken(user._id.toString(), user.role);
 
   sendResponse(res, {
     success: true,
@@ -25,7 +25,7 @@ export const loginUser = catchAsync(async (req, res) => {
     message: "Login Successful",
     data: {
       user: {
-        id: user._id,
+        id: user._id.toString(),
         name: user.name,
         email: user.email,
         role: user.role,
@@ -37,24 +37,21 @@ export const loginUser = catchAsync(async (req, res) => {
 });
 
 export const registerUser = catchAsync(async (req, res) => {
-  const { name, email, password, phone, address , role, createdBy  } = req.body;
+  const { name, email, password, phone, address, role, createdBy } = req.body;
 
-  if (!name || !email || !password || !phone || !address || !role )
+  if (!name || !email || !password || !phone || !address || !role)
     throw new AppError("All fields are  required", 400);
 
- const existingUser = await User.findOne({
-  $or: [
-    { email: email }, 
-    { phone: phone }
-  ] 
-});
+  const existingUser = await User.findOne({
+    $or: [{ email: email }, { phone: phone }],
+  });
 
-if (existingUser) {
-  // Check which field caused the conflict for a better error message
-  const conflictField = existingUser.email === email ? "Email" : "Phone number";
-  throw new AppError(`${conflictField} already exists`, 409);
-}
-  
+  if (existingUser) {
+    // Check which field caused the conflict for a better error message
+    const conflictField =
+      existingUser.email === email ? "Email" : "Phone number";
+    throw new AppError(`${conflictField} already exists`, 409);
+  }
 
   const otp = Math.floor(100000 + Math.random() * 900000);
 
@@ -71,10 +68,10 @@ if (existingUser) {
     password,
     phone,
     address,
-    role ,
+    role,
     otp: hashedOtp,
     otpExpiry: otpExpires,
-    createdBy
+    createdBy,
   });
 
   await user.save();
@@ -91,8 +88,7 @@ if (existingUser) {
     </div>
   `;
 
-  if(createdBy !== "admin")
-  {
+  if (createdBy !== "admin") {
     try {
       await sendEmail({ to: email, subject, html });
     } catch (emailError) {
@@ -149,7 +145,7 @@ export const verifyOtp = catchAsync(async (req, res) => {
 export const getUsers = catchAsync(async (req, res) => {
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
-  const skip = (page - 1) * limit;  
+  const skip = (page - 1) * limit;
   const users =
     (await User.find({})
       .select("-password")
@@ -163,7 +159,8 @@ export const getUsers = catchAsync(async (req, res) => {
     statusCode: 200,
     message: users.length ? "Users Fetched Successfully" : "No Users found",
     data: {
-      users,pagination: {
+      users,
+      pagination: {
         total: await User.countDocuments(),
         page,
         limit,
@@ -198,8 +195,7 @@ export const deleteUser = catchAsync(async (req, res) => {
     statusCode: 200,
     message: "User Deleted Successfully",
   });
-}
-);
+});
 
 export const updateUserStatus = catchAsync(async (req, res) => {
   const { id } = req.params;
@@ -217,10 +213,9 @@ export const updateUserStatus = catchAsync(async (req, res) => {
   });
 });
 
-
 export const updateUser = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const { name, phone, address,createdBy,email,password ,role } = req.body;
+  const { name, phone, address, createdBy, email, password, role } = req.body;
   try {
     const user = await User.findById(id);
     if (!user) {
@@ -243,60 +238,55 @@ export const updateUser = catchAsync(async (req, res) => {
       message: "User updated successfully",
       data: { user },
     });
-
   } catch (error) {
     throw new AppError("Error updating user: " + (error as Error).message, 500);
   }
-  
 });
 
 export const forgotPassword = catchAsync(async (req, res) => {
-  const { email } = req.body
+  const { email } = req.body;
 
   if (!email) {
-    throw new AppError('Email is required', 400)
+    throw new AppError("Email is required", 400);
   }
 
   // Find user by email
-  const user = await User.findOne({ email })
+  const user = await User.findOne({ email });
 
   if (!user) {
     // Return consistent response for security (don't reveal if email exists)
     return sendResponse(res, {
       success: true,
       statusCode: 200,
-      message: 'If this email exists, you will receive a password reset link',
+      message: "If this email exists, you will receive a password reset link",
       data: null,
-    })
+    });
   }
 
   // Generate OTP
-  const otp = Math.floor(100000 + Math.random() * 900000)
+  const otp = Math.floor(100000 + Math.random() * 900000);
 
   // Hash OTP for storage
   const hashedOtp = crypto
-    .createHash('sha256')
+    .createHash("sha256")
     .update(String(otp))
-    .digest('hex')
+    .digest("hex");
 
   // Set OTP expiration (10 minutes)
- const otpExpires = new Date(Date.now() + 10 * 60 * 1000)
-
+  const otpExpires = new Date(Date.now() + 10 * 60 * 1000);
 
   // Update user with OTP and expiry
-  user.otp = hashedOtp
-  user.otpExpiry =  otpExpires
-  await user.save()
-  sendResponse(res,{
-      success: true,
-      statusCode: 200,
-      message: `${otp}`,
-
-    }
-  )
+  user.otp = hashedOtp;
+  user.otpExpiry = otpExpires;
+  await user.save();
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: `${otp}`,
+  });
 
   // Send OTP via email
-  const subject = 'Friends United - Password Reset OTP'
+  const subject = "Friends United - Password Reset OTP";
 
   const html = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
@@ -322,22 +312,22 @@ export const forgotPassword = catchAsync(async (req, res) => {
         </p>
       </div>
     </div>
-  `
+  `;
 
   try {
-    await sendEmail({ to: email, subject, html })
+    await sendEmail({ to: email, subject, html });
   } catch (emailError) {
-    console.error('Failed to send password reset OTP:', emailError)
-    throw new AppError('Failed to send reset email. Please try again.', 500)
+    console.error("Failed to send password reset OTP:", emailError);
+    throw new AppError("Failed to send reset email. Please try again.", 500);
   }
 
   sendResponse(res, {
     success: true,
     statusCode: 200,
-    message: 'Password reset OTP sent to your email',
+    message: "Password reset OTP sent to your email",
     data: null,
-  })
-})
+  });
+});
 
 export const resetpassword = catchAsync(async (req, res) => {
   const { email, newPassword } = req.body;
@@ -380,7 +370,7 @@ export const resetpassword = catchAsync(async (req, res) => {
   });
 });
 
-export const getme = catchAsync<AuthRequest>(async (req, res) => {
+export const getme = catchAsync(async (req, res) => {
   const user = req.user;
 
   if (!user) {
@@ -394,5 +384,3 @@ export const getme = catchAsync<AuthRequest>(async (req, res) => {
     data: user,
   });
 });
-
-

@@ -138,7 +138,7 @@ const JoinUsForm = () => {
                                 {step === 3 && "Payment"}
                                 {step === 4 && "Success"}
                             </h2>
-                            <div className="w-[15%] mb-1 h-[2px] rounded-full bg-[#ca7b28]/80"></div>
+                            <div className="w-[15%] mb-1 h-0.5 rounded-full bg-[#ca7b28]/80"></div>
                         </div>
                     </div>
 

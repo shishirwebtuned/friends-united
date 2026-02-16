@@ -15,8 +15,8 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:8080",
-  process.env.CLIENT_URL,
-  "https://friends-united.vercel.app",
+  "https://friends-unitedd.vercel.app",
+  "https://friendsunited.com.au",
   "https://*.vercel.app",
 ].filter((origin): origin is string => Boolean(origin));
 
@@ -45,7 +45,6 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-// Middleware
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json({ limit: "10mb" }));

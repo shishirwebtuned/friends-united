@@ -2,6 +2,7 @@ import type { Document, Types } from "mongoose";
 
 export interface IUser extends Document {
   name: string;
+  _id: Types.ObjectId;
   email: string;
   password: string;
   role: string;
