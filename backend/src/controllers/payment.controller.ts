@@ -8,7 +8,9 @@ import { sendMemberWelcomeEmail } from "../utils/NewMemberEmail.js";
 
 dotenv.config();
 
-const WEBHOOK_SIGNATURE_KEY = process.env.WEBHOOK_SIGNATURE_KEY || "";
+const WEBHOOK_SIGNATURE_KEY = process.env.WEBHOOK_SIGNATURE_KEY!;
+
+const WEBHOOK_URL = process.env.WEBHOOK_URL!;
 
 const generateUniqueMemberId = async () => {
   let memberId;
@@ -106,28 +108,32 @@ export const createMember = catchAsync(async (req, res) => {
 export const squareWebhook = catchAsync(async (req, res) => {
   const signature = req.headers["x-square-hmacsha256-signature"];
 
-  if (typeof signature !== "string") {
+  if (!signature || typeof signature !== "string") {
     throw new AppError("Missing webhook signature", 403);
   }
 
-  if (!signature) {
-    throw new AppError("Missing webhook signature", 403);
-  }
-
-  const body = JSON.stringify(req.body);
+  const rawBody = req.body;
 
   const hmac = crypto.createHmac("sha256", WEBHOOK_SIGNATURE_KEY);
-
-  hmac.update(body);
+  hmac.update(WEBHOOK_URL);
+  hmac.update(rawBody);
 
   const hash = hmac.digest("base64");
 
-  if (hash !== signature) {
-    console.error("❌ Invalid webhook signature");
+  const hashBuffer = Buffer.from(hash);
+  const signatureBuffer = Buffer.from(signature);
+
+  if (hashBuffer.length !== signatureBuffer.length) {
     throw new AppError("Invalid webhook signature", 403);
   }
 
-  const event = req.body;
+  const isValid = crypto.timingSafeEqual(hashBuffer, signatureBuffer);
+
+  if (!isValid) {
+    throw new AppError("Invalid webhook signature", 403);
+  }
+
+  const event = JSON.parse(rawBody.toString());
 
   console.log("📬 Webhook received:", event.type);
 
@@ -143,7 +149,7 @@ export const squareWebhook = catchAsync(async (req, res) => {
     const status = payment.status;
     const amountMoney = payment.amountMoney;
     const buyerEmail = payment.buyerEmailAddress;
-    const amountInDollars = amountMoney?.amount / 100;
+    const amountInDollars = (amountMoney?.amount ?? 0) / 100; // ✅ fixed NaN bug
 
     console.log(`💳 Payment ${squarePaymentId}: ${status}`);
 
@@ -151,13 +157,19 @@ export const squareWebhook = catchAsync(async (req, res) => {
       try {
         const member = await Member.findOne({ email: buyerEmail });
 
-        if (!member || member.paymentStatus === "completed") {
-          console.log("⚠️ Already processed or missing member");
+        // ✅ fixed idempotency check order
+        if (!member) {
+          console.warn("⚠️ No member found:", buyerEmail);
           return res.status(200).send("OK");
         }
 
         if (member.squarePaymentId === squarePaymentId) {
           console.log("⚠️ Duplicate webhook ignored");
+          return res.status(200).send("OK");
+        }
+
+        if (member.paymentStatus === "completed") {
+          console.log("⚠️ Already processed");
           return res.status(200).send("OK");
         }
 
@@ -168,37 +180,50 @@ export const squareWebhook = catchAsync(async (req, res) => {
 
         await member.save();
 
+        console.log(`✅ Member payment completed: ${member._id}`);
+
         try {
           await sendMemberWelcomeEmail({
             memberName: `${member.firstName} ${member.lastName}`,
             memberEmail: member.email,
             memberNo: member.memberId,
           });
-
-          console.log("✅ Welcome email sent");
+          console.log("✅ Welcome email sent to:", member.email);
         } catch (err) {
           console.error("❌ Error sending welcome email:", err);
         }
-
-        console.log(`✅ Member payment completed: ${member._id}`);
       } catch (error) {
         console.error("❌ Member update failed:", error);
       }
     } else if (status === "FAILED") {
       try {
-        await Member.findOneAndUpdate(
+        const result = await Member.findOneAndUpdate(
           { email: buyerEmail, paymentStatus: "pending" },
           { paymentStatus: "failed" },
+          { new: true },
         );
+
+        if (!result) {
+          console.warn(
+            "⚠️ No pending member found to mark as failed:",
+            buyerEmail,
+          );
+        } else {
+          console.log("❌ Payment marked as failed for member:", result._id);
+        }
       } catch (error) {
-        console.error("Error updating failed payment:", error);
+        console.error("❌ Error updating failed payment:", error);
       }
     } else if (status === "PENDING") {
       console.log("⏳ Payment pending...");
+    } else {
+      console.warn("⚠️ Unhandled payment status:", status);
     }
+  } else {
+    console.log("ℹ️ Unhandled event type:", event.type);
   }
 
-  res.status(200).send("OK");
+  return res.status(200).send("OK");
 });
 
 export const getMemberPaymentStatus = catchAsync(async (req, res) => {

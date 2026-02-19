@@ -7,7 +7,11 @@ import {
 
 const router = express.Router();
 
-router.post("/webhook/square", squareWebhook);
+router.post(
+  "/webhook/square",
+  express.raw({ type: "application/json" }),
+  squareWebhook,
+);
 router.post("/member", createMember);
 router.get("/member/status", getMemberPaymentStatus);
 

@@ -1,14 +1,11 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import dotenv from "dotenv";
 
 import userRoutes from "./routes/user.routes.js";
 import contactRoutes from "./routes/contact.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
 import { errorHandler } from "./middleware/error.middleware.js";
-
-dotenv.config();
 
 const app = express();
 
@@ -45,12 +42,18 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
+const baseApi = "/api";
+
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
+
+app.use(
+  `${baseApi}/payments/webhook/square`,
+  express.raw({ type: "application/json" }),
+);
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
-
-const baseApi = "/api";
 
 app.use(`${baseApi}/users`, userRoutes);
 app.use(`${baseApi}/contacts`, contactRoutes);
