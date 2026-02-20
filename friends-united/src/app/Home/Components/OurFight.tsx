@@ -66,7 +66,7 @@ const OurFight = () => {
         <section className={`relative py-10 ${paddingX}`}>
             <div className="absolute top-0 left-[-50px] opacity-20">
                 <img
-                    src="images/unity_hands.png"
+                    src="/images/unity_hands.png"
                     alt="unity"
                     width={200}
                     height={200}
@@ -75,7 +75,7 @@ const OurFight = () => {
             </div>
             <div className="absolute bottom-0 right-[50px] opacity-20">
                 <img
-                    src="images/diversity.png"
+                    src="/images/diversity.png"
                     alt="diversity"
                     width={200}
                     height={200}

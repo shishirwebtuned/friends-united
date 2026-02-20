@@ -99,7 +99,7 @@ export default function Navbar() {
                         className="w-[140px] sm:w-[160px] md:w-[170px] lg:w-[200px] xl:w-[240px]"
                     /> */}
                     <img
-                        src="images/logo.svg"
+                        src="/images/logo.svg"
                         alt="Logo"
                         width={220}
                         height={70}

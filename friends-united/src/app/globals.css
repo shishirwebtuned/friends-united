@@ -1,7 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
-
 @import "tailwindcss";
 
 @import "tw-animate-css";
@@ -48,13 +44,11 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-/* #b16d24
-#965e20
-#7c4f1b
-#8a5a22 */
-
 @theme {
   --font-broadway: "Broadway", "sans-serif";
+  --font-manrope: var(--font-manrope);
+  --font-staatliches: var(--font-staatliches);
+  --font-lato: var(--font-lato);
   --font-arialGreek: "ArialGreek", "sans-serif";
   --font-aptos: "Aptos", "sans-serif";
   --font-firaSansCondensed: var(--font-firaSansCondensed);
@@ -77,18 +71,6 @@
 
 .content-html p {
   margin: 0.5rem 0;
-}
-
-.font-staatliches {
-  font-family: "Staatliches", sans-serif;
-}
-
-.font-lato {
-  font-family: "Lato", sans-serif;
-}
-
-.font-manrope {
-  font-family: "Manrope", sans-serif;
 }
 
 .text-customOrange {

@@ -73,7 +73,7 @@ const MobileNavbar: React.FC<MobileNavProps> = ({ onClose }) => {
                     )}
                 </div>
                 <Link
-                    href="#"
+                    href="/join-us"
                     onClick={onClose}
                     className="bg-[#ca7b28] text-white font-semibold px-6 py-2 rounded-lg hover:bg-[#b85f1f] transition-colors mt-4"
                 >

@@ -5,6 +5,7 @@ import crypto from "crypto";
 import { Member } from "../models/member.model.js";
 import { sendResponse } from "../utils/sendResponse.js";
 import { sendMemberWelcomeEmail } from "../utils/NewMemberEmail.js";
+import { sendAdminNewMemberEmail } from "../utils/NewMemberAdminEmail.js";
 
 dotenv.config();
 
@@ -191,6 +192,17 @@ export const squareWebhook = catchAsync(async (req, res) => {
           console.log("✅ Welcome email sent to:", member.email);
         } catch (err) {
           console.error("❌ Error sending welcome email:", err);
+        }
+
+        try {
+          await sendAdminNewMemberEmail({
+            memberName: `${member.firstName} ${member.lastName}`,
+            memberEmail: member.email,
+            memberNo: member.memberId,
+          });
+          console.log("✅ Admin notified for:", member.email);
+        } catch (err) {
+          console.error("❌ Error sending admin email:", err);
         }
       } catch (error) {
         console.error("❌ Member update failed:", error);

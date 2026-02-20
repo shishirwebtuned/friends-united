@@ -1,6 +1,5 @@
 "use client";
 
-import CustomButton from "@/Components/CustomButton";
 import { paddingX } from "@/data/paddingData";
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -8,6 +7,7 @@ import * as Yup from "yup";
 import Stepper from "@/Components/Stepper";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
 
@@ -15,7 +15,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5
 
 const JoinUsForm = () => {
     const [step, setStep] = useState(1);
-    const [monthlySupport, setMonthlySupport] = useState(0);
+    const [monthlySupport, setMonthlySupport] = useState(2.75);
     const [annualSupport, setAnnualSupport] = useState(0);
     const [memberEmail, setMemberEmail] = useState("");
     const [paymentCompleted, setPaymentCompleted] = useState(false);
@@ -25,8 +25,15 @@ const JoinUsForm = () => {
     const total = monthlySupport + annualSupport;
 
     const nextStep = () => setStep((prev) => Math.min(prev + 1, 4));
-    const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
+    const prevStep = () => {
+        setStep((prev) => Math.max(prev - 1, 1));
+        setMemberEmail("");
+        setPaymentCompleted(false);
+    }
 
+    const monthlyUrl = process.env.NEXT_PUBLIC_SQUARE_MONTHLY_URL || "https://square.link/u/VesqyMYH?src=embed";
+
+    const annualUrl = process.env.NEXT_PUBLIC_SQUARE_ANNUAL_URL || "https://square.link/u/FuVO4Em2?src=embed";
 
     useEffect(() => {
         if (step !== 3 || !memberEmail) return;
@@ -44,12 +51,12 @@ const JoinUsForm = () => {
                     setPaymentCompleted(true);
                     setStep(4);
                     clearInterval(interval);
-                    alert("Payment completed! Welcome aboard.");
+                    toast.success("Payment completed! Welcome aboard.");
                 } else {
                     retries++;
                     if (retries >= MAX_RETRIES) {
                         clearInterval(interval);
-                        console.warn("Payment not completed after maximum retries.");
+                        toast.error("Payment not completed after maximum retries.");
                     }
                 }
             } catch (err) {
@@ -65,6 +72,7 @@ const JoinUsForm = () => {
 
 
     const handlePaymentClick = async (values: any) => {
+
         try {
 
             setIsPaymentProcessing(true);
@@ -79,21 +87,22 @@ const JoinUsForm = () => {
             );
 
             if (!response.data.success) {
-                alert("Failed to start membership");
+                console.error("Failed to start membership");
                 setIsPaymentProcessing(false);
                 return;
             }
 
             const url =
                 monthlySupport === 2.75
-                    ? "https://square.link/u/VesqyMYH?src=embed"
-                    : "https://square.link/u/FuVO4Em2?src=embed";
+                    ? monthlyUrl : annualUrl;
 
             window.open(url, "_blank");
             setMemberEmail(values.email);
+            setIsPaymentProcessing(false);
 
         } catch (err) {
             console.error(err);
+            toast.error("Something went wrong. Please try again.");
             setIsPaymentProcessing(false);
         }
     };
@@ -159,7 +168,7 @@ const JoinUsForm = () => {
                         validationSchema={getValidationSchema(step)}
                         onSubmit={() => { }}
                     >
-                        {({ isValid, validateForm, setTouched, values, isSubmitting }) => (
+                        {({ validateForm, setTouched, values, isSubmitting }) => (
                             <Form className="space-y-6 font-manrope">
                                 {/* Step 1 - Personal Details */}
                                 {step === 1 && (
@@ -382,6 +391,12 @@ const JoinUsForm = () => {
                                                         {isPaymentProcessing ? "Processing..." : `Pay $${total.toFixed(2)} Now`}
                                                     </button>
                                                 )}
+
+                                                {memberEmail && !paymentCompleted && (
+                                                    <p className="text-center text-sm text-gray-500 animate-pulse mt-3">
+                                                        ⏳ Waiting for payment confirmation...
+                                                    </p>
+                                                )}
                                             </div>
                                         )}
                                     </div>
@@ -423,15 +438,8 @@ const JoinUsForm = () => {
                                         )}
 
                                         <div className="ml-auto">
-                                            {step === 3 && paymentCompleted ? (
-                                                <button
-                                                    type="submit"
-                                                    disabled={isSubmitting}
-                                                    className="text-white bg-green-600 hover:bg-green-700 px-8 py-2 rounded-full font-semibold transition-colors disabled:opacity-50"
-                                                >
-                                                    {isSubmitting ? "Submitting..." : "Submit"}
-                                                </button>
-                                            ) : step < 3 ? (
+
+                                            {step < 3 ? (
                                                 <button
                                                     type="button"
                                                     className="text-white bg-[#ca7b28] hover:bg-[#d4861f] px-8 py-2 rounded-full font-semibold transition-colors"

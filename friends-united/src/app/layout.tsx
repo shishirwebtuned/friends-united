@@ -4,14 +4,32 @@ import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import PaypalProvider from "./provider";
-import { Fira_Sans_Extra_Condensed, } from 'next/font/google';
+import { Fira_Sans_Extra_Condensed, Manrope, Staatliches, Lato } from 'next/font/google';
 import FooterNew from "@/Components/FooterNew";
+import { Toaster } from "react-hot-toast";
 
 const firaSansCondensed = Fira_Sans_Extra_Condensed({
   variable: "--font-firaSansCondensed",
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500"]
 });
+
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin"],
+});
+
+const staatliches = Staatliches({
+  variable: "--font-staatliches",
+  subsets: ["latin"],
+  weight: ["400"]
+});
+
+const lato = Lato({
+  variable: "--font-lato",
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "700", "900"]
+})
 
 
 export const metadata: Metadata = {
@@ -42,7 +60,7 @@ export default function RootLayout({
         ></script>
 
       </head>
-      <body className={` ${firaSansCondensed.variable}`}
+      <body className={` ${firaSansCondensed.variable} ${manrope.variable} ${staatliches.variable} ${lato.variable}`}
       >
 
         <Navbar />
@@ -50,6 +68,39 @@ export default function RootLayout({
           {children}
         </PaypalProvider>
         <FooterNew />
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              borderRadius: '8px',
+              padding: '12px 16px',
+              fontWeight: '500',
+            },
+
+            success: {
+              style: {
+                background: '#d1fae5',
+                color: '#065f46',
+              },
+              iconTheme: {
+                primary: '#10b981',
+                secondary: '#ecfdf5',
+              },
+            },
+
+            error: {
+              style: {
+                background: '#fee2e2',
+                color: '#991b1b',
+              },
+              iconTheme: {
+                primary: '#ef4444',
+                secondary: '#fef2f2',
+              },
+            },
+          }}
+        />
 
       </body>
     </html>
