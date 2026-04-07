@@ -93,14 +93,14 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
                             title={`${aboutUsData?.title}`}
                             align="left"
                         /> */}
-                        <p className="text-lg md:text-xl lg:text-xl font-firaSansCondensed font-medium tracking-wide text-[#ca7b28] leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: bannerData.subTitle || "" }} />
+                        <p className="text-[19px] md:text-[23px] lg:text-[26px] font-firaSansCondensed font-medium tracking-wide text-[#ca7b28] leading-normal mb-4 md:mb-6" dangerouslySetInnerHTML={{ __html: bannerData.subTitle || "" }} />
 
                         <motion.p
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.7, ease: "easeOut" }}
-                            className="text-sm md:text-[15px] lg:text-base font-manrope leading-relaxed mb-4 md:mb-5 lg:mb-6 text-[#4e4e4e]">{`${aboutUsData?.description}`}
+                            className="text-[15px] md:text-[18px] lg:text-[20px] font-manrope leading-relaxed mb-4 md:mb-5 lg:mb-6 text-[#4e4e4e]">{`${aboutUsData?.description}`}
 
                         </motion.p>
 
@@ -196,12 +196,12 @@ const AboutUs: React.FC<HeroBannerProps> = ({ bannerData }) => {
                             </div>
                         )} */}
                         <div className="flex flex-col gap-3 md:gap-3 lg:gap-5 mt-2">
-                            <h2 className="text-lg md:text-xl lg:text-2xl font-staatliches text-[#ca7b28]">
+                            <h2 className="text-[22px] md:text-[26px] lg:text-[29px] font-staatliches text-[#ca7b28]">
                                 {aboutUsData?.revival?.title}
                             </h2>
 
                             <p
-                                className="text-gray-800 leading-relaxed tracking-wide text-xs md:text-sm lg:text-base font-manrope max-w-2xl"
+                                className="text-gray-800 leading-relaxed tracking-wide text-[15px] md:text-[18px] lg:text-[20px] font-manrope max-w-2xl"
                                 dangerouslySetInnerHTML={{
                                     __html: aboutUsData?.revival?.description || "",
                                 }}

@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 dotenv.config();
 interface EmailOptions {
-  to: string;
+  to: string | string[];
   subject: string;
   text?: string;
   html?: string;
@@ -29,6 +29,9 @@ export const sendEmail = async ({
       debug: true,
     });
 
+    await transporter.verify();
+    console.log("SMTP connection successful");
+
     const info = await transporter.sendMail({
       from: `"Friends United" <${process.env.SMTP_USER}>`,
       to,
@@ -40,8 +43,12 @@ export const sendEmail = async ({
 
     console.log("Email sent: %s", info.messageId);
     return info;
-  } catch (error) {
-    console.error("Error sending email:", error);
-    throw new Error("Email sending failed");
+  } catch (error: any) {
+    console.error("SMTP FULL ERROR:");
+    console.error(error);
+    console.error("CODE:", error?.code);
+    console.error("RESPONSE:", error?.response);
+    console.error("COMMAND:", error?.command);
+    throw error;
   }
 };

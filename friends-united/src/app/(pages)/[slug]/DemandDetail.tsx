@@ -38,7 +38,12 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
 
     const pathname = usePathname();
 
-    const isTobaccoDemandPage = pathname === "/alcohol-tobacco-taxes";
+    const isTobaccoDemandPage = [
+        "/alcohol-tobacco-taxes",
+        "/tobacco-alcohol-taxes",
+    ].includes(pathname);
+
+    const isCostOfLivingPage = pathname === "/cost-of-living";
 
     const isIllicitDrugPage = pathname === "/illicit-drugs";
 
@@ -118,17 +123,31 @@ const DemandDetail: React.FC<DemandDetailProps> = ({ service }) => {
                 <div className="subscription-grdient rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.08)] p-6 md:p-8 lg:p-10 text-gray-800 backdrop-blur-sm mb-10">
 
                     {/* INTRO */}
-                    {!isEmptyIntro && (
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
-                            className="font-aptos text-sm md:text-base lg:text-lg leading-relaxed text-black whitespace-pre-line mb-6 font-medium text-center flex flex-col items-center justify-center"
-                            dangerouslySetInnerHTML={{
-                                __html: intro || "",
-                            }}
 
-                        />
+                    {!isEmptyIntro && (
+                        isCostOfLivingPage ? (
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8 }}
+                                className="font-aptos text-sm md:text-base lg:text-lg leading-relaxed text-black whitespace-pre-line mb-6 font-medium text-left flex flex-col items-left justify-start"
+                                dangerouslySetInnerHTML={{
+                                    __html: intro || "",
+                                }}
+
+                            />
+                        ) : (
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8 }}
+                                className="font-aptos text-sm md:text-base lg:text-lg leading-relaxed text-black whitespace-pre-line mb-6 font-medium text-center flex flex-col items-center justify-center"
+                                dangerouslySetInnerHTML={{
+                                    __html: intro || "",
+                                }}
+
+                            />
+                        )
                     )}
                     {isTobaccoDemandPage && (
                         <div className="w-full flex items-center justify-center max-w-lg mx-auto mb-5 md:mb-6">

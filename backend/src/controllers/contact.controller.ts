@@ -3,6 +3,7 @@ import { AppError } from "../utils/AppError.js";
 import { catchAsync } from "../utils/catchAsync.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import { sendResponse } from "../utils/sendResponse.js";
+import { Contact } from "../models/contact.model.js";
 
 dotenv.config();
 
@@ -89,11 +90,28 @@ export const createContactemail = catchAsync(async (req, res) => {
   </div>
 `;
 
+  await Contact.create({
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    message,
+  });
+
   await sendEmail({
-    to: process.env.CLIENT_EMAIL as string,
+    to: [
+      process.env.CLIENT_EMAIL as string,
+      process.env.CLIENT_EMAIL_TWO as string,
+    ],
     subject,
     html,
   });
+
+  // await sendEmail({
+  //   to: process.env.CLIENT_EMAIL_TWO as string,
+  //   subject,
+  //   html,
+  // });
 
   sendResponse(res, {
     success: true,
@@ -106,5 +124,53 @@ export const createContactemail = catchAsync(async (req, res) => {
       message,
     },
     statusCode: 201,
+  });
+});
+
+export const getAllContacts = catchAsync(async (req, res) => {
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+
+  const skip = (page - 1) * limit;
+
+  const contacts = await Contact.find()
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit)
+    .lean();
+
+  const total = await Contact.countDocuments();
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: contacts.length
+      ? "Contacts Fetched Successfully"
+      : "No Contacts found",
+    data: {
+      contacts,
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    },
+  });
+});
+
+export const getContactById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const contact = await Contact.findById(id).lean();
+
+  if (!contact) throw new AppError("Contact not found", 404);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Contact Fetched Successfully",
+    data: {
+      contact,
+    },
   });
 });

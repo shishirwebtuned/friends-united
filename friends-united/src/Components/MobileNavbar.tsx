@@ -1,10 +1,23 @@
 "use client";
 import Link from "next/link";
-import { navLinksData } from "@/data/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
-import CustomButton from "./CustomButton";
+import { client } from "@/lib/sanity.client";
+
+
+interface DropdownItem {
+    label: string;
+    href: string;
+    order: number;
+}
+
+interface NavLink {
+    title: string;
+    href?: string;
+    dropdown?: DropdownItem[];
+}
+
 
 interface MobileNavProps {
     onClose: () => void;
@@ -12,10 +25,41 @@ interface MobileNavProps {
 
 const MobileNavbar: React.FC<MobileNavProps> = ({ onClose }) => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const [navLinksData, setNavLinksData] = useState<NavLink[]>([]);
 
     const toggleDropdown = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
     };
+
+    useEffect(() => {
+        client
+            .fetch(`*[_type == "services"]{ title, link, order }`)
+            .then((services) => {
+                const dynamicNav: NavLink[] = [
+                    { title: "Our Story", href: "/our-story" },
+                    {
+                        title: "What We Stand For",
+                        dropdown: services.map((s: any) => ({
+                            label: s.title,
+                            href: s.link,
+                            order: s.order,
+                        })),
+                    },
+                    { title: "Friends United 'Friend'", href: "/become-friend" },
+                    { title: "Contact Us", href: "/contact-us" },
+                ];
+
+                setNavLinksData(dynamicNav);
+            })
+            .catch(() => {
+                setNavLinksData([
+                    { title: "Our Story", href: "/our-story" },
+                    { title: "Friends United 'Friend'", href: "/become-friend" },
+                    { title: "Contact Us", href: "/contact-us" },
+                ]);
+            });
+    }, []);
+
 
     return (
         <div className="flex flex-col h-full text-black">
@@ -46,7 +90,7 @@ const MobileNavbar: React.FC<MobileNavProps> = ({ onClose }) => {
                                             transition={{ duration: 0.3, ease: "easeInOut" }}
                                             className="flex space-y-2 flex-col pl-4 overflow-hidden"
                                         >
-                                            {link.dropdown.map((item, idx) => (
+                                            {link.dropdown?.slice().sort((a, b) => a.order - b.order).map((item, idx) => (
                                                 <Link
                                                     key={idx}
                                                     href={item.href}

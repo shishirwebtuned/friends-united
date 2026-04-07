@@ -15,7 +15,7 @@ const userSchema = new Schema<IUser>(
     password: { type: String, required: true },
     role: {
       type: String,
-      enum: ["admin", "user"],
+      enum: ["admin", "user", "subAdmin"],
       required: true,
       default: "user",
     },
@@ -24,10 +24,14 @@ const userSchema = new Schema<IUser>(
     status: { type: Boolean, default: false },
     otp: { type: String, default: null },
     otpExpiry: { type: Date, default: null },
-    createdBy: { type: String, enum:["user", "Admin"], default: "user" },
+    createdBy: {
+      type: String,
+      enum: ["user", "Admin", "subAdmin"],
+      default: "user",
+    },
     bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 userSchema.pre("save", async function (next) {

@@ -144,7 +144,10 @@ export const sendAdminNewMemberEmail = async (
   const html = generateAdminNewMemberEmailTemplate(data);
 
   await sendEmail({
-    to: (process.env.CLIENT_EMAIL as string) || "hello@friendsunited.com.au",
+    to: [
+      process.env.CLIENT_EMAIL || "hello@friendsunited.com.au",
+      process.env.CLIENT_EMAIL_TWO || "gusmacri@gmail.com",
+    ],
     subject: `New Member Joined – #${data.memberNo}`,
     html,
   });

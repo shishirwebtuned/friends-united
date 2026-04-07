@@ -125,11 +125,11 @@ const JoinSection = () => {
                     "
                 >
                     <p>
-                        Become a part of the Movement that Advocates for changes that impact
+                        Become a part of the Movement that Advocates for changes that impacts
                     </p>
 
                     <p className="font-bold text-gray-900">
-                        Australia, Australians, our Lifestyle, and the Future of our Australia.
+                        Australia, Australians, our Lifestyle, and the Future of Australia.
                     </p>
                 </motion.div>
 

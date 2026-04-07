@@ -6,15 +6,20 @@ import userRoutes from "./routes/user.routes.js";
 import contactRoutes from "./routes/contact.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
 import { errorHandler } from "./middleware/error.middleware.js";
+import memberRoutes from "./routes/member.routes.js";
 
 const app = express();
 
 const allowedOrigins = [
   "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:5000",
   "http://localhost:8080",
   "https://friends-unitedd.vercel.app",
   "https://friendsunited.com.au",
+  "http://friendsunited.com.au",
   "https://*.vercel.app",
+  "https://admin-friendsunited.vercel.app",
 ].filter((origin): origin is string => Boolean(origin));
 
 const corsOptions = {
@@ -58,6 +63,7 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(`${baseApi}/users`, userRoutes);
 app.use(`${baseApi}/contacts`, contactRoutes);
 app.use(`${baseApi}/payments`, paymentRoutes);
+app.use(`${baseApi}/members`, memberRoutes);
 
 // Error handler
 app.use(errorHandler);
