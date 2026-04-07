@@ -123,7 +123,7 @@ const JoinUsSection = () => {
                     </p>
 
                     <p className="font-bold text-gray-900">
-                        Australia, Australians, our Lifestyle, and the Future of our Australia.
+                        Australia, Australians, our Lifestyle, and the Future of Australia.
                     </p>
                 </motion.div>
 
