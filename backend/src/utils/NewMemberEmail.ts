@@ -3,7 +3,7 @@ import { sendEmail } from "./sendEmail.js";
 interface MemberWelcomeEmailData {
   memberName: string;
   memberEmail: string;
-  memberNo: number;
+  memberNo: string;
 }
 
 const generateMemberWelcomeEmailTemplate = (

@@ -6,6 +6,7 @@ import { Member } from "../models/member.model.js";
 import { sendResponse } from "../utils/sendResponse.js";
 import { sendMemberWelcomeEmail } from "../utils/NewMemberEmail.js";
 import { sendAdminNewMemberEmail } from "../utils/NewMemberAdminEmail.js";
+import { sendMemberWelcomeNewEmail } from "../utils/NewMemberEmailNew.js";
 
 dotenv.config();
 
@@ -13,21 +14,21 @@ const WEBHOOK_SIGNATURE_KEY = process.env.WEBHOOK_SIGNATURE_KEY!;
 
 const WEBHOOK_URL = process.env.WEBHOOK_URL!;
 
-const generateUniqueMemberId = async () => {
-  let memberId;
-  let exists = true;
+const generateUniqueMemberId = async (): Promise<string> => {
+  const lastMember = await Member.findOne({})
+    .sort({ memberId: -1 })
+    .select("memberId")
+    .lean();
 
-  while (exists) {
-    memberId = Math.floor(100000 + Math.random() * 900000);
+  let nextNumber = 1;
 
-    const existingMember = await Member.exists({ memberId });
-
-    if (!existingMember) {
-      exists = false;
-    }
+  if (lastMember?.memberId) {
+    nextNumber = parseInt(lastMember.memberId, 10) + 1;
   }
 
-  return memberId;
+  const paddedId = String(nextNumber).padStart(5, "0");
+
+  return paddedId;
 };
 
 export const createMember = catchAsync(async (req, res) => {
@@ -184,7 +185,7 @@ export const squareWebhook = catchAsync(async (req, res) => {
         console.log(`✅ Member payment completed: ${member._id}`);
 
         try {
-          await sendMemberWelcomeEmail({
+          await sendMemberWelcomeNewEmail({
             memberName: `${member.firstName} ${member.lastName}`,
             memberEmail: member.email,
             memberNo: member.memberId,
@@ -198,7 +199,7 @@ export const squareWebhook = catchAsync(async (req, res) => {
           await sendAdminNewMemberEmail({
             memberName: `${member.firstName} ${member.lastName}`,
             memberEmail: member.email,
-            memberNo: member.memberId,
+            memberNo: `${member.memberId}`,
           });
           console.log("✅ Admin notified for:", member.email);
         } catch (err) {

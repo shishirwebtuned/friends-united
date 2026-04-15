@@ -12,7 +12,7 @@ const memberSchema = new Schema(
       lowercase: true,
       trim: true,
     },
-    memberId: { type: Number, unique: true, required: true },
+    memberId: { type: String, unique: true, required: true },
     phoneNumber: { type: String, required: true },
     streetAddress: { type: String },
     suburb: { type: String, default: false },

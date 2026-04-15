@@ -4,6 +4,8 @@ dotenv.config();
 
 import app from "./app.js";
 import { connectDB } from "./config/database.js";
+import { sendMemberWelcomeNewEmail } from "./utils/NewMemberEmailNew.js";
+import { sendAdminNewMemberEmail } from "./utils/NewMemberAdminEmail.js";
 
 const PORT = Number(process.env.PORT) || 5000;
 
